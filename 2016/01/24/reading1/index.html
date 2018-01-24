@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="《你不知道的Javascript上卷》 (this)"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2016/01/24/reading1/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 《你不知道的Javascript上卷》 (this) - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          《你不知道的Javascript上卷》 (this)
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-01-24
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Reading/">Reading</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章-关于this"><span class="toc-text">第一章 关于this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-this-的全面解析"><span class="toc-text">第二章 this 的全面解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三章-对象"><span class="toc-text">第三章 对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章-原型"><span class="toc-text">第五章 原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六章-行为委托"><span class="toc-text">第六章 行为委托</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="第一章-关于this"><a href="#第一章-关于this" class="headerlink" title="第一章 关于this"></a>第一章 关于this</h2><p>this 隐式传递了一个对象的引用，即对上下文环境的引用<br>this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用</p>
+<h2 id="第二章-this-的全面解析"><a href="#第二章-this-的全面解析" class="headerlink" title="第二章 this 的全面解析"></a>第二章 this 的全面解析</h2><p>调用栈：为了到达当前执行的位置所调用的所有函数，可以理解为是函数调用列表<br>调用位置：函数被调用的位置</p>
+<p>this绑定规则<br>找到调用位置</p>
+<blockquote>
+<p>默认规则</p>
+</blockquote>
+<p>直接使用不带任何参数的函数引用进行调用，只能使用默认绑定，this指向全局变量</p>
+<blockquote>
+<p>隐式绑定</p>
+</blockquote>
+<p>调用位置是否有上下文，或者说是否被某个对象包含<br>function foo( ) { …… }<br>var obj = {  foo: foo; }<br>obj.foo( )<br>当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象。<br>但是当 var bar = obj.foo; bar( ) 这时this就指向全局变量  因为这里obj.foo是引用</p>
+<blockquote>
+<p>显式绑定</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">call( )   apply ( )</div><div class="line">foo.call ( )</div><div class="line">Function.prototype.bind()</div><div class="line">eg:</div><div class="line">function foo ( ) &#123; &#125;</div><div class="line">var obj = &#123;&#125;</div><div class="line">var bar  = foo.bind ( obj );</div><div class="line">bar ( )</div></pre></td></tr></table></figure>
+<p>API 调用的上下文绑定<br>内置函数中有可选参数context ,通常被称为“上下文”，其作用和bind一样，确保你的回调函数使用指定的this</p>
+<blockquote>
+<p>new绑定</p>
+</blockquote>
+<p>使用new调用foo时，会构造一个新对象并把它绑定到foo( )调用中的this 上</p>
+<p>优先级：4 &gt; 3 &gt;  2 &gt; 1<br>特例： 当call apply bind 传入对象时null或者undefined时，实际应用是默认绑定规则。</p>
+<h2 id="第三章-对象"><a href="#第三章-对象" class="headerlink" title="第三章 对象"></a>第三章 对象</h2><blockquote>
+<p>js 中六种主要类型 ( 语言类型 )：</p>
+</blockquote>
+<ol>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>object</li>
+</ol>
+<blockquote>
+<p>内置对象</p>
+</blockquote>
+<ol>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Date</li>
+<li>RegExp</li>
+<li>Error</li>
+</ol>
+<p>obj.hasOwnProperty( key ) 属性key是否存在于obj中，不包括prototype链<br>obj.propertyIsEnumerable( key ) 属性key是否存在于obj中，不包括prototype链，且enumerable: true<br>Object.keys( obj ) 包含一个数组返回所有可枚举属性  只会查找对象直接包含的属性<br>Object.getOwnPropertyNames ( obj )  只会查找对象直接包含的属性</p>
+<p>for … in 属性存在于对象及其prototype原型链中</p>
+<p>使用 in 查找属性会查找整条原型链，无论是否可枚举</p>
+<p>遍历：</p>
+<ol>
+<li>forEach ( )会遍历所有的值，忽略函数的返回值</li>
+<li>every（）遍历直到返回值为 false</li>
+<li>some（）遍历直到返回值为 true</li>
+</ol>
+<h2 id="第五章-原型"><a href="#第五章-原型" class="headerlink" title="第五章 原型"></a>第五章 原型</h2><p>Object.create( obj ) 创建一个对象，并把这个对象的[[prototype]] 关联到指定对象<br>普通 prototype链最终都指向内置的Object.prototype</p>
+<p>Object.prototype包含：<br>.toString() .valueOf() .hasOwnProperty() .isPrototypeOf()</p>
+<h2 id="第六章-行为委托"><a href="#第六章-行为委托" class="headerlink" title="第六章 行为委托"></a>第六章 行为委托</h2><p>关联风格代码：对象关联（OLOO， Objects linked to other objects ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var LoginController = &#123;</div><div class="line">     errors: [],</div><div class="line">     getUsers: function( ) &#123; &#125;,</div><div class="line">     validateEntry: function ( ) &#123; &#125;,</div><div class="line">     showDialog: function ( ) &#123; &#125;</div><div class="line">&#125;</div><div class="line">var AuthController = object.create( LoginController );</div><div class="line">AuthController.errors = [ ];</div><div class="line">AuthController.checkAuth = function( ) &#123; &#125;;</div><div class="line"></div><div class="line">//简单的像委托链上添加一个或者多个对象，不需要实例化</div><div class="line">var controller1 = Object.create( AuthController );</div><div class="line">var controller2 = Object.create( AuthController );</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2016/01/24/reading1/">localhost/2016/01/24/reading1/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/01/24/reading2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">《你不知道的Javascript上卷》 (作用域)</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/12/10/jekyll-blog/">
+        <span class="next-text nav-default">jekyll & github定制个人博客</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

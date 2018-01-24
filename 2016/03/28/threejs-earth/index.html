@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Three.js实现会动的地球"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2016/03/28/threejs-earth/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Three.js实现会动的地球 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Three.js实现会动的地球
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-28
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境配置"><span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建three-js环境"><span class="toc-text">创建three.js环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制地球"><span class="toc-text">绘制地球</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鼠标移动让地球转起来"><span class="toc-text">鼠标移动让地球转起来</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>通过Three.js实现自由转动的地球</p>
+<p>参考资料：<a href="http://www.smartjava.org/content/render-open-data-3d-world-globe-threejs" target="_blank" rel="external">Render open data on a 3D world globe with Three.js</a><br>and <a href="http://threejs.org/examples/#canvas_geometry_earth" target="_blank" rel="external">转动的地球－官网例子</a></p>
+</blockquote>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ol>
+<li>Three.js: revision:”49”</li>
+<li>jquery</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>1.创建three.js环境</li>
+<li>2.创建3D地球，并把它加到scene中</li>
+<li>3.通过鼠标位置来转动3D地球</li>
+</ol>
+<h2 id="创建three-js环境"><a href="#创建three-js环境" class="headerlink" title="创建three.js环境"></a>创建three.js环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">// 全局变量</div><div class="line">var POS_X = 0;</div><div class="line">var POS_Y = 0;</div><div class="line">var POS_Z = 3000;</div><div class="line">var WIDTH = window.innerWidth;</div><div class="line">var HEIGHT = window.innerHeight;</div><div class="line"></div><div class="line">var FOV = 45;</div><div class="line">var NEAR = 1;</div><div class="line">var FAR = 4000;</div><div class="line">var mouseX = 0, mouseY = 0;</div><div class="line">var windowHalfX = window.innerWidth / 2;</div><div class="line">var windowHalfY = window.innerHeight / 2;</div><div class="line"></div><div class="line">// some global variables and initialization code</div><div class="line">// simple basic renderer</div><div class="line">var renderer = new THREE.WebGLRenderer();</div><div class="line">renderer.setSize(WIDTH,HEIGHT);</div><div class="line">renderer.setClearColorHex(0x111111);</div><div class="line"></div><div class="line">// 将renderer内容加入到html#globe对象中</div><div class="line">var mapDiv = document.getElementById(&quot;globe&quot;);</div><div class="line">mapDiv.appendChild(renderer.domElement);</div><div class="line"></div><div class="line">// 创建摄像头，并指向原点</div><div class="line">var camera = new THREE.PerspectiveCamera(FOV,WIDTH/HEIGHT,NEAR,FAR);</div><div class="line">camera.position.set(POS_X,POS_Y, POS_Z);</div><div class="line">camera.lookAt(new THREE.Vector3(0,0,0));</div><div class="line"></div><div class="line">//创建scene</div><div class="line">// create a basic scene and add the camera</div><div class="line">var scene = new THREE.Scene();</div><div class="line">scene.add(camera);</div><div class="line"></div><div class="line">//执行</div><div class="line">$(document).ready(function()  &#123;</div><div class="line">	// 灯光</div><div class="line">	addLights();</div><div class="line">	// 绘制地球 </div><div class="line">	addEarth();</div><div class="line">	// 刷新，显示</div><div class="line">	render();</div><div class="line">	// 根据鼠标位置，旋转camera，从而能够多角度的观察地球</div><div class="line">	document.addEventListener( &apos;mousemove&apos;, onDocumentMouseMove, false );</div><div class="line">	// 当窗口大小改变时，自动调整内容大小</div><div class="line">	window.addEventListener( &apos;resize&apos;, onWindowResize, false );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="绘制地球"><a href="#绘制地球" class="headerlink" title="绘制地球"></a>绘制地球</h2><p>通过THREE.SphereGeometry创建球体对象，用jpg图片贴纹理，让球体像个地球，然后加入到场景scene中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// add the earth</div><div class="line">function addEarth() &#123;</div><div class="line">   var spGeo = new THREE.SphereGeometry(600,50,50);</div><div class="line">   var planetTexture = THREE.ImageUtils.loadTexture( &quot;assets/world-big-2-grey.jpg&quot; );</div><div class="line">   var mat2 =  new THREE.MeshPhongMaterial( &#123;</div><div class="line">       map: planetTexture,</div><div class="line">       perPixel: false,</div><div class="line">       shininess: 0.2 &#125; );</div><div class="line">   sp = new THREE.Mesh(spGeo,mat2);</div><div class="line">   scene.add(sp);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="鼠标移动让地球转起来"><a href="#鼠标移动让地球转起来" class="headerlink" title="鼠标移动让地球转起来"></a>鼠标移动让地球转起来</h2><p>首先，要监听鼠标移动mousemove事件，记录下鼠标相对于原点（0，0）的位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function onDocumentMouseMove( event ) &#123;</div><div class="line">   mouseX = ( event.clientX - windowHalfX );</div><div class="line">   mouseY = ( event.clientY - windowHalfY );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其次，render()函数中根据 mouseX mouseY的值，定时改变camera的位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function render() &#123;</div><div class="line">	//根据鼠标位置来判断camera的位置</div><div class="line">	//mouseX  距离中点的偏移量   mouseX/windowHalfX  在横屏面内想要偏移的角度，效果使得球左右转动</div><div class="line">	//－mouseY 距离中点y的偏移量   -mouseY/windowHalfY 在纵平面内想要偏移的角度，效果使得球上下转动</div><div class="line">   camera.position.x = POS_Z*Math.sin(mouseX*Math.PI/windowHalfX);</div><div class="line">   camera.position.z = POS_Z*Math.cos(mouseX*Math.PI/windowHalfX);</div><div class="line">   camera.position.y = POS_Z*Math.sin((-mouseY/windowHalfY)*Math.PI/2)</div><div class="line">   </div><div class="line">   camera.lookAt( scene.position );</div><div class="line">   light.position = camera.position;</div><div class="line">   light.lookAt(scene.position);</div><div class="line">   renderer.render( scene, camera );</div><div class="line">   // 动画 根据浏览器的渲染间隔进行绘制</div><div class="line">   requestAnimationFrame( render );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>主要框架就讲到这里啦，还有一点实现细节，比如light的绘制，实现详见<a href="https://github.com/mingxinyike/3dGlobal" target="_blank" rel="external">Github</a></p>
+<p>在<a href="http://www.smartjava.org/content/render-open-data-3d-world-globe-threejs" target="_blank" rel="external">Render open data on a 3D world globe with Three.js</a>例子中还提到在地球上添加自定义数据。</p>
+<p>放上效果图一张：<br><img src="http://blog.liuxj.com/img/20160328.png" alt="哎呀，显示不粗来？！"></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2016/03/28/threejs-earth/">localhost/2016/03/28/threejs-earth/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/04/18/JSONP/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JSONP原理与实现</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/03/20/requirejs-angularjs/">
+        <span class="next-text nav-default">AngularJS 和 RequireJS的集成</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="JS 动态加载文件及处理依赖"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2017/08/26/js动态加载文件及处理依赖/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> JS 动态加载文件及处理依赖 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JS 动态加载文件及处理依赖
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-26
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NEJ-define-js-源码简析"><span class="toc-text">NEJ define.js 源码简析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NEJ-define-的使用"><span class="toc-text">NEJ.define 的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEJ-define-函数的实现逻辑"><span class="toc-text">NEJ.define 函数的实现逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环依赖"><span class="toc-text">循环依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#define-依赖文件类型为-TEXT-JSON／-CSS"><span class="toc-text">define 依赖文件类型为 TEXT/ JSON／ CSS</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="NEJ-define-js-源码简析"><a href="#NEJ-define-js-源码简析" class="headerlink" title="NEJ define.js 源码简析"></a>NEJ define.js 源码简析</h1><blockquote>
+<p><a href="https://github.com/NEYouFan/nej-framework/blob/master/doc/DEPENDENCY.md" target="_blank" rel="external">define.js</a> 是 <a href="https://github.com/NEYouFan/nej-framework" target="_blank" rel="external">NEJ</a> 提供的一套文件依赖管理系统，功能有点类似于 requirejs。</p>
+</blockquote>
+<h2 id="NEJ-define-的使用"><a href="#NEJ-define-的使用" class="headerlink" title="NEJ.define 的使用"></a>NEJ.define 的使用</h2><blockquote>
+<p>注：define.js 除了文件依赖的管理还有一些其他配置，本文仅讨论依赖文件的加载是如何实现的</p>
+</blockquote>
+<p>页面引入依赖库文件，配置参数通过 define.js 的查询参数输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;/path/to/nej/define.js?pro=./&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>NEJ.define 为全局函数，输入参数为 _deps 依赖文件列表，以及 _callback 回调函数，其中依赖文件列表中返回的对象会作为回调函数的参数返回，供 _callback 函数调用。<br>除了依赖文件返回的对象以外，回调函数还会额外注入四个参数，依次为p、o、f、r，其中：</p>
+<ul>
+<li>p为输出结果集空间，用于注入到其他执行函数中的内容</li>
+<li>o为对象实例，即{}，用于处理对象默认值，如 var x = options||o;</li>
+<li>f为函数实例，返回false，用于处理方法默认值，如 var func = x.onready||f;</li>
+<li>r为数组实例，即[]，用于处理数组默认值，如 var arr = options.list||r;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">NEJ.define([</div><div class="line">    &apos;base/element&apos;,</div><div class="line">    &apos;pro/extend/util&apos;,</div><div class="line">    &apos;/path/to/file.js&apos;,</div><div class="line">    &apos;&#123;platform&#125;patch.js&apos;,</div><div class="line">    &apos;text!/path/to/file.css&apos;,</div><div class="line">    &apos;text!/path/to/file.html&apos;</div><div class="line">],function(e,u,t,h,css,html,p,o,f,r)&#123;</div><div class="line"></div><div class="line">    // TODO something</div><div class="line"></div><div class="line">    // 返回结果可注入给其他文件</div><div class="line">    return p;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="NEJ-define-函数的实现逻辑"><a href="#NEJ-define-函数的实现逻辑" class="headerlink" title="NEJ.define 函数的实现逻辑"></a>NEJ.define 函数的实现逻辑</h2><p>匿名函数中定义全局变量记录状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">xqueue = [&#123;</div><div class="line">    n: filename, //当前文件路径</div><div class="line">    d: dependency, //依赖文件路径列表</div><div class="line">    f: function, //当前函数回调列表</div><div class="line">    //...</div><div class="line">&#125;];</div><div class="line"></div><div class="line">scache = &#123;</div><div class="line">    filename: state //状态 0-loading 1-waiting 2-defined</div><div class="line">&#125;;</div><div class="line"></div><div class="line">rcache = &#123;</div><div class="line">    filename: result //文件返回对象</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>具体实现函数及流程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">define(deps, callback)</div><div class="line">|</div><div class="line">|-- dodefine(window, deps) // xqueue.push(uri, deps, callback) xqueue列表中加入&#123;当前文件路径，依赖列表，回调函数&#125;</div><div class="line">    |</div><div class="line">    |--- doLoadScript(deps) // 通过 createElement(script) 引入依赖文件</div><div class="line">    |   |</div><div class="line">    |   |--- doAddListener() // 添加 script 元素 onload 事件，执行 doScriptLoaded </div><div class="line">    |       |</div><div class="line">    |       |--- doScriptLoaded() // 相应 filename 的 scache 状态变为 2-defined  </div><div class="line">    |    </div><div class="line">    |--- doCheckLoading() // 检查 deps 依赖文件是否加载完毕</div><div class="line">        |</div><div class="line">        |---| doExecFunction() // deps 全部加载完毕后（检查 scache）, 执行 callback(xqueue[].f)函数，函数执行参数 args 由 doMergeID 计算得到</div><div class="line">            |</div><div class="line">            |--- doMergeID() // 从 rcache 中取出 deps 依赖文件的返回结果 args</div><div class="line">            |</div><div class="line">            |--- doMergeResulst() // 将callback回调函数的执行结果记录在 rcache 中</div></pre></td></tr></table></figure></p>
+<h2 id="循环依赖"><a href="#循环依赖" class="headerlink" title="循环依赖"></a>循环依赖</h2><p>github 上有 define.js 对于<a href="https://github.com/NEYouFan/nej-framework/blob/master/doc/DEPENDENCY.md" target="_blank" rel="external">循环依赖</a>的处理。</p>
+<ul>
+<li>强依赖：依赖文件之间的接口调用直接出现在文件定义函数中，避免代码出现强依赖，执行过程会出异常</li>
+<li>弱依赖：依赖文件之间的接口调用出现在文件定义函数内部的某个接口中，允许出现弱依赖，可以正常处理</li>
+</ul>
+<p>这里主要讨论弱依赖的情况下，还是 github 上的例子 a.js  -&gt;  b.js  -&gt;  a.js<br>a.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">NEJ.define([</div><div class="line">    &apos;./b.js&apos;</div><div class="line">],function(b,p)&#123;</div><div class="line"></div><div class="line">    // 在其他API中调用了b的接口</div><div class="line">    p.doSomething = function()&#123;</div><div class="line">        var result = b.api();</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    p.api = function()&#123;</div><div class="line">        // TODO</div><div class="line">        return &apos;aaaaa&apos;;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    return p;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>b.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">NEJ.define([</div><div class="line">    &apos;./a.js&apos;</div><div class="line">],function(a,p)&#123;</div><div class="line"></div><div class="line">    // 在其他API中调用了a的接口</div><div class="line">    p.doSomething = function()&#123;</div><div class="line">        var result = b.api();</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    p.api = function()&#123;</div><div class="line">        // TODO</div><div class="line">        return &apos;bbbbbb&apos;;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    return p;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>当出现弱依赖的情况下，在上节实现流程中，doLoadScript() 函数中，在加载依赖的文件前，会判断 scache[_uri] 中值是否为null（scache记录了文件的状态）， 如果不为 null 则说明之前已经加载过，不会再进行加载，依赖文件返回的对象可以直接从 rcache 中找到。</p>
+<h2 id="define-依赖文件类型为-TEXT-JSON／-CSS"><a href="#define-依赖文件类型为-TEXT-JSON／-CSS" class="headerlink" title="define 依赖文件类型为 TEXT/ JSON／ CSS"></a>define 依赖文件类型为 TEXT/ JSON／ CSS</h2><ul>
+<li><p>动态加载 TEXT<br>通过 XMLHttpRequest 请求 TEXT 文件，得到返回结果保存在 rcache 中。</p>
+</li>
+<li><p>动态加载 JSON<br>动态加载 TEXT 的流程，JSON.parse(result) 保存在 rcache 中找到。</p>
+</li>
+<li><p>动态加载 CSS<br>创建一个 link 元素</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var link = d.createElement(&apos;link&apos;);</div><div class="line">link.rel = &apos;stylesheet&apos;;</div><div class="line">(d.getElementsByTagName(&apos;head&apos;)[0]||d.body).appendChild(link);</div><div class="line">link.href = _uri;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2017/08/26/js动态加载文件及处理依赖/">localhost/2017/08/26/js动态加载文件及处理依赖/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/01/weinre远程调试/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">weinre 远程调试移动设备</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/08/26/Regular笔记/">
+        <span class="next-text nav-default">Regular笔记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

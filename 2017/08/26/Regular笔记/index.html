@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Regular笔记"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2017/08/26/Regular笔记/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Regular笔记 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Regular笔记
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-26
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Regular-js-笔记"><span class="toc-text">Regular.js 笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于指令"><span class="toc-text">关于指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于-过滤器-filter"><span class="toc-text">关于 过滤器 filter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于-Event"><span class="toc-text">关于 Event</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件可以分为两大类：-DOM事件-amp-组件事件"><span class="toc-text">事件可以分为两大类： DOM事件 & 组件事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义事件注册"><span class="toc-text">自定义事件注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件的回调"><span class="toc-text">事件的回调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件监听"><span class="toc-text">事件监听</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="Regular-js-笔记"><a href="#Regular-js-笔记" class="headerlink" title="Regular.js 笔记"></a>Regular.js 笔记</h1><h2 id="关于指令"><a href="#关于指令" class="headerlink" title="关于指令"></a>关于指令</h2><p>Regular.directive(name, definition) // 指令名 | 指令定义<br>其中 definition = function (elem, value) {}<br>elem 为指令绑定的当前元素<br>value 为指令等于的值，有两种类型 <strong>string</strong> 以及 <strong>expression</strong><br>string 可以直接获取它的值，而expression类型的值需要 Component.$get 方法获取。</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">r-html</span>=<span class="string">&#123;ppp&#125;</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">  name: <span class="string">'alert'</span>,</div><div class="line">  template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">  </div><div class="line">&#125;);</div><div class="line">Alert.directive(<span class="string">'r-html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">elem, value</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (value.type === <span class="string">'expression'</span>) &#123;</div><div class="line">      <span class="keyword">var</span> vv = <span class="keyword">this</span>.$get(value);</div><div class="line">      elem.innerHTML = vv;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      elem.innerHTML = value;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Alert(&#123;<span class="attr">data</span>: &#123;<span class="attr">ppp</span>: <span class="string">'hello kitty'</span>&#125;&#125;).$inject(<span class="built_in">document</span>.getElementById(<span class="string">'test'</span>));</div></pre></td></tr></table></figure></p>
+<p>在directive definition 里面还可以使用 Component.$watch 来监测数据的改变，实时修改数据。</p>
+<p>通过 directive 赋值的数据，是不会自动更新到View的，所以需要Component.$watch 手动绑定。<br>下面代码将 data.ppp 与 p 元素绑定，自动更新 view<br>涉及到的API： component.$watch(expression, callback(newValue, oldValue) [, options])</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">r-html</span>=<span class="string">&#123;ppp&#125;</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.changedata()&#125;</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">  name: <span class="string">'alert'</span>,</div><div class="line">  template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">  </div><div class="line">&#125;);</div><div class="line">Alert.directive(<span class="string">'r-html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">elem, value</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (value.type === <span class="string">'expression'</span>) &#123;</div><div class="line">      <span class="keyword">var</span> vv = <span class="keyword">this</span>.$get(value);</div><div class="line">      elem.innerHTML = vv;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      elem.innerHTML = value;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.$watch(value, <span class="function"><span class="keyword">function</span>(<span class="params">newValue, oldValue</span>) </span>&#123;</div><div class="line">      elem.innerHTML = newValue;</div><div class="line">    &#125;);</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Alert(&#123;</div><div class="line">  data: &#123;<span class="attr">ppp</span>: <span class="string">'hello kitty'</span>&#125;,</div><div class="line">  changedata: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.data.ppp=<span class="string">"hahaha"</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.data.ppp);</div><div class="line">  &#125;</div><div class="line">&#125;).$inject(<span class="built_in">document</span>.getElementById(<span class="string">'test'</span>));</div></pre></td></tr></table></figure></p>
+<h2 id="关于-过滤器-filter"><a href="#关于-过滤器-filter" class="headerlink" title="关于 过滤器 filter"></a>关于 过滤器 filter</h2><p>Component.filter(name, factory) //过滤器名称 | 新的自定义过滤器<br>模版过滤器</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;name | addname: 'ergou'&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Alert.filter(<span class="string">'addname'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value, name</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> value + name;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>又一个问题，现在情况这个过滤器应该是个单向的，双向绑定的过滤器应该这么写</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">r-model</span>=<span class="string">&#123;array|join:</span>'<span class="attr">-</span>'&#125; &gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Regular.filter(<span class="string">'join'</span>, &#123;</div><div class="line">  <span class="comment">//["1","2","3"] - &gt; '1-2-3'</span></div><div class="line">  get: <span class="function"><span class="keyword">function</span>(<span class="params">origin, split </span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> origin.join( split || <span class="string">"-"</span> );</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// **Important **</span></div><div class="line">  <span class="comment">// "1"-"2"-"3" - &gt; ["1","2","3"]</span></div><div class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">dest, split </span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> dest.split( split || <span class="string">"-"</span> );</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="关于-Event"><a href="#关于-Event" class="headerlink" title="关于 Event"></a>关于 Event</h2><h3 id="事件可以分为两大类：-DOM事件-amp-组件事件"><a href="#事件可以分为两大类：-DOM事件-amp-组件事件" class="headerlink" title="事件可以分为两大类： DOM事件 &amp; 组件事件"></a>事件可以分为两大类： <strong>DOM事件</strong> &amp; <strong>组件事件</strong></h3><p>事件触发：</p>
+<ul>
+<li>DOM事件：用户触发</li>
+<li>组件事件： Component.$emit(eventName)</li>
+</ul>
+<p>关于事件冒泡</p>
+<ul>
+<li>DOM事件部分可以冒泡</li>
+<li>组件事件不能冒泡</li>
+</ul>
+<p>关于$event </p>
+<ul>
+<li>DOM事件中传入的 $event 是事件对象</li>
+<li>组件事件中是$emit(eventName, [,args…]) 传入的第一个参数</li>
+</ul>
+<h3 id="自定义事件注册"><a href="#自定义事件注册" class="headerlink" title="自定义事件注册"></a>自定义事件注册</h3><p>两个方法：显式 &amp; 隐式</p>
+<ul>
+<li>显示方法<br>Component.event(eventName, factory);</li>
+<li>隐式<br>在节点或者组件中遇到 on-eventName 属性时，会先检查是否注册了 eventName 这个自定义事件，如果没有，则会通过 addEventListener 来绑定事件。</li>
+</ul>
+<h3 id="事件的回调"><a href="#事件的回调" class="headerlink" title="事件的回调"></a>事件的回调</h3><p>1、表达式插值 触发后表达式会执行一次<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.heihei(</span>'<span class="attr">hello</span>')&#125;&gt;</span>click on me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
+<p>2、非表达式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;printOut&#125;</span>&gt;</span>click on me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;,</div><div class="line">    init: &#123;</div><div class="line">      <span class="keyword">this</span>.$on(<span class="string">"printOut"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.heihei(<span class="string">'hello'</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><ul>
+<li>子组件触发事件，父组件监听：<br>组件方法的注册需要在组件的最外层用on-XXX来注册，触发需要在组件里里面采用 this.$emit(eventName, args)实现，例如：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.clickBtn()&#125;</span>&gt;</span>btn1!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;,</div><div class="line">    clickBtn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'clicked by btn1'</span>);</div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'show'</span>); <span class="comment">//触发了 show 事件</span></div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">var</span> Parent = Regular.extend(&#123;</div><div class="line">      name: <span class="string">'pp'</span>,</div><div class="line">      template: <span class="string">'&lt;div &gt;&lt;alert on-show=&#123;this.printout("show pp")&#125;&gt;&lt;/alert&gt;&lt;/div&gt;'</span>, <span class="comment">//注册show 事件</span></div><div class="line">      printout: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(text); </div><div class="line">      &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">new</span> Parent(&#123;</div><div class="line">  &#125;).$inject(<span class="built_in">document</span>.getElementById(<span class="string">'test'</span>));</div></pre></td></tr></table></figure>
+<ul>
+<li>组件内部触发 this.$emit，组件内部监听 this.$on </li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.clickBtn()&#125;</span>&gt;</span>btn1!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;,</div><div class="line">    clickBtn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'clicked by btn1'</span>);</div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'show'</span>);</div><div class="line">    &#125;,</div><div class="line">    init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.$on(<span class="string">'show'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'showevent'</span>);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://regularjs.github.io/guide/zh/basic/directive.html" target="_blank" rel="external">官方guide</a></li>
+<li><a href="http://regularjs.github.io/reference/?api-zh#api-reference-静态接口-componentdirective" target="_blank" rel="external">官方文档</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2017/08/26/Regular笔记/">localhost/2017/08/26/Regular笔记/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/08/26/js动态加载文件及处理依赖/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JS 动态加载文件及处理依赖</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/05/25/binding/">
+        <span class="next-text nav-default">双向绑定中如何发现数据变化</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

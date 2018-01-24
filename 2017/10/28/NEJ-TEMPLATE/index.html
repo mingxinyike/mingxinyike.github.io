@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="NEJ 的模板类型"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2017/10/28/NEJ-TEMPLATE/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> NEJ 的模板类型 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          NEJ 的模板类型
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-28
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NEJ-template"><span class="toc-text">NEJ template</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型"><span class="toc-text">基本类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#txt"><span class="toc-text">txt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ntp"><span class="toc-text">ntp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jsx"><span class="toc-text">jsx</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="NEJ-template"><a href="#NEJ-template" class="headerlink" title="NEJ template"></a>NEJ template</h1><p><strong>document.createDocumentFragment</strong><br>返回一个文档片段，对该文档片段的修改不会导致页面 reflow ，故常用于 DOM 操作的性能优化</p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><h3 id="txt"><a href="#txt" class="headerlink" title="txt"></a>txt</h3><p>步骤：</p>
+<ul>
+<li>将模板放入缓存</li>
+<li>取出模板，字符串格式</li>
+<li>字符串格式模板转为node 格式</li>
+<li>node格式模板加入DOM tree </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/tpl'</span></div><div class="line">_t._$addTextTemplate(<span class="string">'txt-template-1'</span>, <span class="string">`&lt;div&gt;&lt;p&gt;aaaaaaaaaa&lt;/p&gt;&lt;/div&gt;`</span>);</div><div class="line"><span class="keyword">var</span> _text = _t._$getTextTemplate(<span class="string">'txt-template-1'</span>);</div><div class="line"><span class="keyword">var</span> _node = _e._$html2node(_text);</div><div class="line">_e._$get(<span class="string">'text'</span>).append(_node);</div></pre></td></tr></table></figure>
+<p>或者将模板写入 TEXTAREA 标签下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"txt"</span> <span class="attr">id</span>=<span class="string">"txt-template-1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>aaaaaaaaaaaaaa<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- content here --&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/tpl'</span></div><div class="line"> _t._$parseTemplate(<span class="string">'txt-template-1'</span>);</div><div class="line"><span class="keyword">var</span> _text = _t._$getTextTemplate(<span class="string">'txt-template-1'</span>);</div><div class="line"><span class="keyword">var</span> _node = _e._$html2node(_text);</div><div class="line">_e._$get(<span class="string">'text'</span>).append(_node);</div></pre></td></tr></table></figure>
+<p><strong>html2node</strong></p>
+<ul>
+<li>正则找到第一个标签名</li>
+<li>根据标签名，生成一个元素。li–&gt; ul tr–&gt;tbody 等， 一般生成 div </li>
+<li>将 html 字符串作为 innerHTML 放入 div 中</li>
+<li>判断 div 中的 children 元素有几个？一个的话返回children 元素，多个的话返回 div 元素本身</li>
+</ul>
+<h3 id="ntp"><a href="#ntp" class="headerlink" title="ntp"></a>ntp</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/tpl'</span></div><div class="line"><span class="comment">// 解析模版，支持textarea的批量解析</span></div><div class="line">_t._$parseTemplate(<span class="string">'ntp-template-1'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 根据模板ID取模板内容</span></div><div class="line"><span class="comment">// 返回模板对应的DOM树结构</span></div><div class="line"><span class="keyword">var</span> _node = _t._$getNodeTemplate(<span class="string">'ntp-template-1'</span>);</div></pre></td></tr></table></figure>
+<p><strong>_$getNodeTemplate</strong><br>判断<br>-如果取出来的格式是字符串的话，执行 html2node 返回 node 格式，并缓存起来，以便下次直接调用</p>
+<h3 id="jsx"><a href="#jsx" class="headerlink" title="jsx"></a>jsx</h3><p>符合jst语法的模板，例如服务器端模板 freemarkder, verlocity 等</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"jst"</span> <span class="attr">id</span>=<span class="string">"jst-template-1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"w-table"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>序号<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">thead</span>&gt;</span>\</div><div class="line">      &#123;if !defined("workers")&#125;</div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"3"</span>&gt;</span>数据加载失败，请稍后再试！<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      &#123;elseif workers&amp;&amp;workers.length&#125;</div><div class="line">        &#123;list workers as x&#125;</div><div class="line">          <span class="tag">&lt;<span class="name">tr&#123;if</span> <span class="attr">x_index</span>==<span class="string">x_length-1&#125;</span> <span class="attr">class</span>=<span class="string">"last"</span>&#123;/<span class="attr">if</span>&#125;&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;x_index+1&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;x.name&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;if x.gender==1&#125;男&#123;else&#125;女&#123;/if&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        &#123;/list&#125;</div><div class="line">      &#123;else&#125;</div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"3"</span>&gt;</span>没有工人！<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      &#123;/if&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/jst'</span></div><div class="line"><span class="comment">// 模板缓存</span></div><div class="line">_t._$add(<span class="string">'jst-template-1'</span>);</div><div class="line"><span class="comment">// 根据模板ID取模板内容</span></div><div class="line"><span class="comment">// 返回整合数据后的html代码</span></div><div class="line"><span class="keyword">var</span> _html = _t._$get(<span class="string">'jst-template-1'</span>,&#123;</div><div class="line">    workers:[</div><div class="line">        &#123;<span class="attr">name</span>:<span class="string">'abc'</span>,<span class="attr">gender</span>:<span class="number">1</span>&#125;,</div><div class="line">        &#123;<span class="attr">name</span>:<span class="string">'def'</span>,<span class="attr">gender</span>:<span class="number">1</span>&#125;,</div><div class="line">        &#123;<span class="attr">name</span>:<span class="string">'ghi'</span>&#125;</div><div class="line">    ]</div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> _node = _e._$html2node(_html);</div><div class="line">_e._$get(<span class="string">'text'</span>).append(_node);</div></pre></td></tr></table></figure>
+<p><strong>模板解析</strong><br>采用 TrimPath 库来解析</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2017/10/28/NEJ-TEMPLATE/">localhost/2017/10/28/NEJ-TEMPLATE/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/11/25/node静态资源服务器/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">node 实现静态资源服务器</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/10/15/面向对象设计五大基本原则/">
+        <span class="next-text nav-default">面向对象设计的五大基本原则</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

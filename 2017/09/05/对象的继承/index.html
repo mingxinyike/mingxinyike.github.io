@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="js对象的继承"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2017/09/05/对象的继承/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> js对象的继承 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          js对象的继承
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-05
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#javascript-继承"><span class="toc-text">javascript 继承</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数的继承"><span class="toc-text">构造函数的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#prototype-继承"><span class="toc-text">prototype 继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝属性继承"><span class="toc-text">拷贝属性继承</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非构造函数的继承"><span class="toc-text">非构造函数的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#利用-prototype"><span class="toc-text">利用 prototype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深拷贝"><span class="toc-text">深拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEJ-Klass-如何实现继承"><span class="toc-text">NEJ Klass 如何实现继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于-new-究竟做了啥"><span class="toc-text">关于 new 究竟做了啥</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="javascript-继承"><a href="#javascript-继承" class="headerlink" title="javascript 继承"></a>javascript 继承</h1><h2 id="构造函数的继承"><a href="#构造函数的继承" class="headerlink" title="构造函数的继承"></a>构造函数的继承</h2><h3 id="prototype-继承"><a href="#prototype-继承" class="headerlink" title="prototype 继承"></a>prototype 继承</h3><p>利用空对象来继承 Parent.prototype, 这样修改子对象的 prototype 就不会影响 父对象的prototype了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">F.prototype = Parent.prototype;</div><div class="line">Child.prototype = <span class="keyword">new</span> F();</div><div class="line">Child.prototype.constructor = Child;</div></pre></td></tr></table></figure>
+<h3 id="拷贝属性继承"><a href="#拷贝属性继承" class="headerlink" title="拷贝属性继承"></a>拷贝属性继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p = Parent.prototype;</div><div class="line"><span class="keyword">var</span> c = Child.prototype;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">    c[i] = p[i];</div><div class="line">&#125;</div><div class="line">c.uber = p;</div></pre></td></tr></table></figure>
+<p>上述两个例子来自<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="external">ruanyifeng博客</a></p>
+<h2 id="非构造函数的继承"><a href="#非构造函数的继承" class="headerlink" title="非构造函数的继承"></a>非构造函数的继承</h2><h3 id="利用-prototype"><a href="#利用-prototype" class="headerlink" title="利用 prototype"></a>利用 prototype</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>将父对象的属性拷贝到子对象中</p>
+<h2 id="NEJ-Klass-如何实现继承"><a href="#NEJ-Klass-如何实现继承" class="headerlink" title="NEJ Klass 如何实现继承"></a>NEJ Klass 如何实现继承</h2><p>_Klass 函数是一个构造函数的生产器，可以返回一个构造函数<br>其中 _Klass.init 方法可以重写，用来生成 this 对象里面的各个属性，<br>_Klass.extend 方法主要用来修改 this.prototype，可以实现父元素的继承，返回的是 this.prototype</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">_Klass = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> klass = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.init.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">        &#125;;</div><div class="line">        <span class="comment">// &lt;!-- 初始化对象 --&gt;</span></div><div class="line">        klass.prototype.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">        <span class="comment">// &lt;!-- 实现继承 --&gt;</span></div><div class="line">        klass.extend = <span class="function"><span class="keyword">function</span> (<span class="params">ssuper</span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.$<span class="keyword">super</span> = ssuper;</div><div class="line">            <span class="keyword">var</span> P = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">            P.prototype = ssuper.prototype;</div><div class="line">            <span class="keyword">this</span>.prototype = <span class="keyword">new</span> P();</div><div class="line">            <span class="keyword">this</span>.prototype.constructor = <span class="keyword">this</span>;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.prototype;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> klass;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>定义一个想要继承的父元素<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Parent = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.parentname = <span class="string">'parent'</span>;</div><div class="line">&#125;</div><div class="line">Parent.prototype.country = <span class="string">'China'</span>;</div></pre></td></tr></table></figure></p>
+<p>实现子元素<br>B 为 _Klass 生成的一个构造函数<br>pro 为 B.prototype，此时 Parent.prototype 已经赋值给 B.prototype 了<br>可以在 pro 上拓展属性，相当于在 B.prototype 上增加原型属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> B = _Klass();</div><div class="line"><span class="keyword">var</span> pro = B.extend(Parent);</div><div class="line">pro.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'xiaojing'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最终生成实例，此时 pp 属性有 name,<br>pp.<strong>proto</strong> 为 pro 这个对象，包括 init, constructor, <strong>proto</strong>(Parent.prototype)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pp = <span class="keyword">new</span> B();</div></pre></td></tr></table></figure>
+<h2 id="关于-new-究竟做了啥"><a href="#关于-new-究竟做了啥" class="headerlink" title="关于 new 究竟做了啥"></a>关于 new 究竟做了啥</h2><p>来自 javascript 语言精粹<br>如果在一个函数前面带上 new 来调用，那么背地里将会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会绑定到那个新对象上。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2017/09/05/对象的继承/">localhost/2017/09/05/对象的继承/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/10/15/面向对象设计五大基本原则/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">面向对象设计的五大基本原则</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/09/01/移动前端开发小Tip/">
+        <span class="next-text nav-default">移动端前端开发小Tip</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

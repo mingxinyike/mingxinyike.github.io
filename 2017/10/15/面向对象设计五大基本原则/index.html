@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="面向对象设计的五大基本原则"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2017/10/15/面向对象设计五大基本原则/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 面向对象设计的五大基本原则 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          面向对象设计的五大基本原则
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-15
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SOLID-面向对象设计的五大基本原则"><span class="toc-text">SOLID 面向对象设计的五大基本原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#单一职责原则"><span class="toc-text">单一职责原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开放封闭原则"><span class="toc-text">开放封闭原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#利用对象的多态性消除条件分支"><span class="toc-text">利用对象的多态性消除条件分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#放置挂钩"><span class="toc-text">放置挂钩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用回调"><span class="toc-text">使用回调</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#里氏替换原则-LSP-The-Liskov-Substitution-Priciple"><span class="toc-text">里氏替换原则 LSP The Liskov Substitution Priciple</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最少知识原则"><span class="toc-text">最少知识原则</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="SOLID-面向对象设计的五大基本原则"><a href="#SOLID-面向对象设计的五大基本原则" class="headerlink" title="SOLID 面向对象设计的五大基本原则"></a>SOLID 面向对象设计的五大基本原则</h1><ul>
+<li>S 单一职责原则</li>
+<li>O 开放封闭原则</li>
+<li>L 里氏替换原则</li>
+<li>I 接口隔离原则</li>
+<li>D 依赖倒置原则</li>
+</ul>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>一个类应该只有一项工作，只有一个改变它的理由</p>
+<p>单一指责类型：</p>
+<ul>
+<li>information holder 存储对象并提供对象信息</li>
+<li>structurer 维护对象和信息之间的关系</li>
+<li>service provider 处理工作并提供服务</li>
+<li>controller 控制决策一系列负责的任务处理</li>
+<li>coordinator 分配工作</li>
+<li>interfacer 在系统的各个部分转化信息（或请求）</li>
+</ul>
+<h2 id="开放封闭原则"><a href="#开放封闭原则" class="headerlink" title="开放封闭原则"></a>开放封闭原则</h2><p>软件实体应该是可以扩展的，但是是不可修改的</p>
+<h3 id="利用对象的多态性消除条件分支"><a href="#利用对象的多态性消除条件分支" class="headerlink" title="利用对象的多态性消除条件分支"></a>利用对象的多态性消除条件分支</h3><p>每当看到大片的 if 或者 else 就应该考虑是否能够利用对象的多态性来重构它们</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> makeSound = <span class="function"><span class="keyword">function</span> (<span class="params">animal</span>) </span>&#123;</div><div class="line">    animal.sound();</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Duck = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">Duck.prototype.sound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'嘎嘎嘎'</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Chicken = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line">Chicken.prototype.sound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'咯咯咯'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">makeSound(<span class="keyword">new</span> Duck());</div><div class="line">makeSound(<span class="keyword">new</span> Chicken());</div></pre></td></tr></table></figure>
+<h3 id="放置挂钩"><a href="#放置挂钩" class="headerlink" title="放置挂钩"></a>放置挂钩</h3><p>模版中在可能变化的地方放置挂钩函数，挂钩返回结果由具体子类决定。程序就拥有了变化的可能。</p>
+<h3 id="使用回调"><a href="#使用回调" class="headerlink" title="使用回调"></a>使用回调</h3><p>回调是一种特殊的挂钩。可以把一部分易于变化的逻辑封装在回调函数里，然后把回调函数当作参数传入一个稳定和封闭的函数中。如 AJAX请求后要做的一些事情。</p>
+<h2 id="里氏替换原则-LSP-The-Liskov-Substitution-Priciple"><a href="#里氏替换原则-LSP-The-Liskov-Substitution-Priciple" class="headerlink" title="里氏替换原则 LSP The Liskov Substitution Priciple"></a>里氏替换原则 LSP The Liskov Substitution Priciple</h2><p>派生类型必须可以替换它的基类型<br>继承子类型需要在语义上等价于基类型里的期望行为。</p>
+<h2 id="最少知识原则"><a href="#最少知识原则" class="headerlink" title="最少知识原则"></a>最少知识原则</h2><p>中介者模式 &amp;&amp; 外观模式<br>封装：数据的隐藏，只暴露必要的接口API供外界访问。<br>实现：闭包</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2017/10/15/面向对象设计五大基本原则/">localhost/2017/10/15/面向对象设计五大基本原则/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/10/28/NEJ-TEMPLATE/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">NEJ 的模板类型</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/09/05/对象的继承/">
+        <span class="next-text nav-default">js对象的继承</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

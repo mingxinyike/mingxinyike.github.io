@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="《你不知道的Javascript上卷》 (作用域)"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2016/01/24/reading2/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 《你不知道的Javascript上卷》 (作用域) - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          《你不知道的Javascript上卷》 (作用域)
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-01-24
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Reading/">Reading</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章-作用域"><span class="toc-text">第一章 作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二章-函数作用域和块作用域"><span class="toc-text">第二章 函数作用域和块作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章-js语句提升"><span class="toc-text">第四章 js语句提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五章-作用域闭包"><span class="toc-text">第五章 作用域闭包</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="第一章-作用域"><a href="#第一章-作用域" class="headerlink" title="第一章 作用域"></a>第一章 作用域</h2><p>LHS ： 对变量进行赋值时使用LHS查询<br>RHS ：获取变量的值使用RHS查询<br>LHS，RHS都会从当前执行作用域开始，向上级作用域一级一级查找，知道全局作用域<br>不成功的LHS会自动隐式地创建一个全局变量<br>不成功的RHS会抛出ReferenceError异常</p>
+<p>js 是基于词法作用域，<strong>即函数的变量由定义该函数的上下文决定，而不是执行环境上下文决定，非动态作用域</strong><br>主要区别在于：<br>词法作用域是在写代码或者说是定义时确定的，而动态作用域是运行环境确定的。<br>而this机制很像动态作用域</p>
+<h2 id="第二章-函数作用域和块作用域"><a href="#第二章-函数作用域和块作用域" class="headerlink" title="第二章 函数作用域和块作用域"></a>第二章 函数作用域和块作用域</h2><p>函数是js中最常见的作用域单元<br>声明在一个函数内部的变量或者函数会在当前作用域中隐藏起来，该做法满足最小授权或者最小暴露原则，指软件设计中，应该最小限度的暴露必要内容，而将其他内容隐藏起来，比如某对象的API设计；另一个好处就是避免命名冲突</p>
+<p>函数声明与函数表达式：<br>function在整个声明中的位置，如果是第一个词就是函数声明，否则就是函数表达式。</p>
+<blockquote>
+<p>函数声明</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function foo( )&#123; …… &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>函数表达式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">( function foo( ) &#123; …… &#125; ) ( )</div><div class="line">     //赋值表达式</div><div class="line">     var foo = function ( ) &#123; ……  &#125;</div><div class="line">     //匿名函数表达式</div><div class="line">     ( function( ) &#123; …… &#125; ) ( )</div></pre></td></tr></table></figure>
+<p>Q：立即执行的函数表达式有什么好处？ foo变量名会被隐藏在自身中不会非必要的污染外部作用域</p>
+<p>块级作用域</p>
+<p>ES3开始，try／catch 结构在catch分句中具有块级作用域<br>ES6中let和const可以声明块级作用域变量</p>
+<h2 id="第四章-js语句提升"><a href="#第四章-js语句提升" class="headerlink" title="第四章 js语句提升"></a>第四章 js语句提升</h2><p>作用域中变量和函数声明会被提升，而赋值表达式则不会。并且函数声明要优先于变量声明。</p>
+<h2 id="第五章-作用域闭包"><a href="#第五章-作用域闭包" class="headerlink" title="第五章 作用域闭包"></a>第五章 作用域闭包</h2><p>闭包定义： 这个函数在定义时的词法作用域以外的地方被调用。闭包使得函数可以继续访问定义时的词法作用域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">for (var i = 1; i &lt;= 5; i++) &#123;</div><div class="line">     setTimeout(function timer() &#123;</div><div class="line">     console.log(i);</div><div class="line">&#125;, i* 1000);</div><div class="line">&#125;</div><div class="line">//输出6，6，6，6，6，因为引用的是同一个变量</div><div class="line"></div><div class="line">for (var i = 1; i &lt;= 5; i++) &#123;</div><div class="line">( function(i) &#123;</div><div class="line">     setTimeout(function timer() &#123;</div><div class="line">     console.log(i);</div><div class="line">&#125;, i* 1000);</div><div class="line">&#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>后者输出1，2，3，4，5，原因是匿名函数新建了一个词法作用域，把 i 瞬间的值赋值给匿名函数词法作用域中的i ，timer 中的 i 查找最近的词法作用域中的 i，就是匿名函数中的 i</p>
+<p>模块</p>
+<blockquote>
+<p>必须有外部的封闭函数，该函数必须至少被调用一次（每次调用都会创建一个新的模块实例）<br>封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以访问或者修改私有的状态。</p>
+</blockquote>
+<p>eg:  jQuery<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">jquery = function()&#123;&#125;;</div><div class="line"></div><div class="line">window.jquery = window.$ = jquery;</div><div class="line">//将内部的闭包函数赋值给全局变量，从而对外提供借口</div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>eg: 现在的模块定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var module = (function manager()&#123;</div><div class="line">var module = &#123;&#125;;</div><div class="line">function define()&#123;&#125;;</div><div class="line">function get()&#123;&#125;;</div><div class="line">return &#123;</div><div class="line">     define: define;</div><div class="line">     get: get;</div><div class="line">&#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2016/01/24/reading2/">localhost/2016/01/24/reading2/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/02/25/plan/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">有一个梦想要在春天播种，秋天收获（小半年计划）</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/01/24/reading1/">
+        <span class="next-text nav-default">《你不知道的Javascript上卷》 (this)</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="AngularJS 和 RequireJS的集成"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2016/03/20/requirejs-angularjs/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> AngularJS 和 RequireJS的集成 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          AngularJS 和 RequireJS的集成
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境需求"><span class="toc-text">环境需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件目录"><span class="toc-text">文件目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在index-html中插入script标签"><span class="toc-text">在index.html中插入script标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main-js"><span class="toc-text">main.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#app-js"><span class="toc-text">app.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#controllers-js"><span class="toc-text">controllers.js</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>这篇博文主要记录一下angularjs与requirejs的集成</p>
+<p>RequireJS帮助定义和管理js文件之间的依赖关系，鼓励模块化，是AMD规范最好的实现者之一。同时异步加载，防止js加载阻塞页面渲染。</p>
+</blockquote>
+<h2 id="环境需求"><a href="#环境需求" class="headerlink" title="环境需求"></a>环境需求</h2><ol>
+<li>requirejs</li>
+<li>angular.js</li>
+<li>angular-route.js</li>
+<li>angular-animate.js</li>
+</ol>
+<h2 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h2><p> <img src="http://blog.liuxj.com/img/20160320.png" alt="文件目录"></p>
+<h2 id="在index-html中插入script标签"><a href="#在index-html中插入script标签" class="headerlink" title="在index.html中插入script标签"></a>在index.html中插入script标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&apos;scripts/vendor/require.js&apos; data-main=&apos;scripts/main.js&apos;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h2><p>其中插一句嘴，requirejs有两个方法一个是require一个是define</p>
+<ol>
+<li><p>define 从名字就可以看出这个api是用来定义一个模块<br>如果模块存在依赖:则第一个参数是依赖的名称数组；第二个参数是函数，在模块的所有依赖加载完毕后，该函数会被调用来定义该模块，因此该模块应该返回一个定义了本模块的object。依赖关系会以参数的形式注入到该函数上，参数列表与依赖名称列表一一对应。</p>
+</li>
+<li><p>require 加载依赖模块，并执行加载完后的回调函数</p>
+</li>
+</ol>
+<p>require.config是用来配置模块加载位置,具体requirejs的语法详见<a href="http://www.requirejs.cn/" target="_blank" rel="external">requirejs</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">require.config(&#123;</div><div class="line">    baseUrl: &apos;scripts/&apos;,</div><div class="line">    paths: &#123;</div><div class="line">        jquery: &apos;vendor/jquery/jquery.min&apos;,</div><div class="line">        angular: &apos;http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min&apos;,</div><div class="line">        &apos;angular-route&apos;: &apos;http://apps.bdimg.com/libs/angular.js/1.4.6/angular-route.min&apos;,</div><div class="line">        &apos;angular-animate&apos;: &apos;http://apps.bdimg.com/libs/angular.js/1.4.6/angular-animate.min&apos;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    shim: &#123;</div><div class="line">        angular:&#123;</div><div class="line">            exports: &quot;angular&quot;</div><div class="line">        &#125;,</div><div class="line">        &apos;angular-route&apos;: &#123;</div><div class="line">            deps: [&quot;angular&quot;],</div><div class="line">            exports: &quot;angular-route&quot;</div><div class="line">        &#125;,</div><div class="line">        &apos;angular-animate&apos;: &#123;</div><div class="line">            deps: [&quot;angular&quot;],</div><div class="line">            exports: &quot;angular-animate&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// init myApp</div><div class="line">require([&quot;angular&quot;, &quot;app&quot;, &quot;controllers&quot;],function(angular)&#123;</div><div class="line">    // add myApp to document</div><div class="line">    angular.bootstrap(document, [&quot;myApp&quot;]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其中app.js定义angular.module以及路由配置，controllers用来放置各种控制器代码。以后还需要directives, services也是在这里引入。<br>angular.bootstrap方法是angular自带的，用来手动启动一个angular app。所以不需要再index.html中再加上ng-app=”myApp”这个属性。</p>
+<h2 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h2><p>定义angular.module以及路由配置，返回angular.module对象<br>依赖： angular angular-route angular-animate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">define([&quot;angular&quot;,&quot;angular-route&quot;,&quot;angular-animate&quot;],function(angular)&#123;</div><div class="line"></div><div class="line">var app = angular.module(&quot;myApp&quot;,[&apos;ngRoute&apos;,&apos;ngAnimate&apos;]);</div><div class="line">    app.config([&apos;$routeProvider&apos;,function($routeProvider) &#123;</div><div class="line">        $routeProvider.</div><div class="line">            when(&apos;/&apos;, &#123;</div><div class="line">                redirectTo: &quot;/data&quot;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/data&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/data.html&apos;,</div><div class="line">                controller: &apos;dataCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/map&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/map.html&apos;,</div><div class="line">                controller: &apos;mapCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/analysis&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/analysis.html&apos;,</div><div class="line">                controller: &apos;analysisCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/about&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/about.html&apos;,</div><div class="line">                controller: &apos;aboutCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .otherwise(&#123;</div><div class="line">                redirectTo: &apos;/data&apos;</div><div class="line">            &#125;);</div><div class="line">    &#125;]);</div><div class="line">    return app;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="controllers-js"><a href="#controllers-js" class="headerlink" title="controllers.js"></a>controllers.js</h2><p>依赖: app</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">define([&apos;app&apos;], function (app) &#123;</div><div class="line"></div><div class="line">app.controller(&quot;headerCtrl&quot;,[&apos;$scope&apos;,&apos;$location&apos;, function($scope, $location) &#123;</div><div class="line">    //...</div><div class="line">&#125;]);</div><div class="line"></div><div class="line">app.controller(&quot;dataCtrl&quot;, function($scope) &#123;</div><div class="line">    //...      </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2016/03/20/requirejs-angularjs/">localhost/2016/03/20/requirejs-angularjs/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/03/28/threejs-earth/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Three.js实现会动的地球</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/02/25/plan/">
+        <span class="next-text nav-default">有一个梦想要在春天播种，秋天收获（小半年计划）</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

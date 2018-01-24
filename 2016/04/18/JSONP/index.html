@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="JSONP原理与实现"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2016/04/18/JSONP/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> JSONP原理与实现 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JSONP原理与实现
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-04-18
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JSONP简单实现"><span class="toc-text">JSONP简单实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSONP封装"><span class="toc-text">JSONP封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充-jQuery-ajax-实现版"><span class="toc-text">补充 jQuery.ajax()实现版</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>JSONP就是利用script标签没有跨域限制，来达到与第三方通讯的目的。并提供一个回调函数来接收数据（函数名可约定，或通过地址参数传递）。<br>第三方产生的响应为json数据的包装（故称之为jsonp，即json padding）<br><a href="https://www.zhihu.com/question/19966531" target="_blank" rel="external">知乎－JSONP工作原理</a></p>
+</blockquote>
+<p>同源策略：所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。</p>
+<p>作为同源策略的一部分，XMLHttpRequest对象通常仅可以发起和文档具有相同服务器的HTTP请求。这个限制关闭了安全漏洞，但也阻止了大量合适的跨域请求</p>
+<p>Ajax跨域技术三方面的解决方案：</p>
+<ol>
+<li>JSONP </li>
+<li>Peoxy 代理 </li>
+<li>CORS</li>
+</ol>
+<p>本文主要讨论JSONP的实现</p>
+<h2 id="JSONP简单实现"><a href="#JSONP简单实现" class="headerlink" title="JSONP简单实现"></a>JSONP简单实现</h2><p>例子来源于<a href="http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json" target="_blank" rel="external">Flickr API</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">        function callbackFunction(result) &#123;</div><div class="line">            console.log(result);</div><div class="line">        &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json&amp;jsoncallback=callbackFunction&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>支持JSONP的服务不会强制指定客户端必须实现的回调函数名称。它使用查询参数的值，允许客户端指定一个函数名，然后使用函数名去填充响应。如上例中jsoncallback=callbackFunction。callbackFunction就是执行返回数据的回调函数名称</p>
+<p>jsonp的URL格式： url?key1=value1&amp;key2=value2&amp;…&amp;jsoncallback=callback</p>
+<h2 id="JSONP封装"><a href="#JSONP封装" class="headerlink" title="JSONP封装"></a>JSONP封装</h2><p><strong>封装结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">JSONP(url, &#123;</div><div class="line">    data: &#123;key1: value, key2: value&#125;, </div><div class="line">    callback: function()&#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>JSONP实现</strong>  </p>
+<p>参考js权威指南P507<br>实现流程:</p>
+<ol>
+<li>创建独一无二的回调函数名称</li>
+<li>创建回调函数，调用参数中的callback函数</li>
+<li>根据URL，data参数，以及回调函数名，生成新的URL访问地址</li>
+<li>创建script标签，设置src为新的访问地址。将script标签插入body中<br><em>注意：访问例子中的URL貌似需要翻墙</em></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">function JSONP(url, obj) &#123;</div><div class="line">        //创建唯一的回调函数名称</div><div class="line">        var callbackFuc = &quot;callback&quot; + JSONP.counter++;</div><div class="line">        // url加工</div><div class="line">        var text = &quot;&quot;;</div><div class="line">        if (&quot;data&quot; in obj) &#123;</div><div class="line">            for (k in obj[&quot;data&quot;]) &#123;</div><div class="line">                text = text + k + &quot;=&quot; + obj[&quot;data&quot;][k] + &quot;&amp;&quot;;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        text = (url.indexOf(&quot;?&quot;) === -1)?  &quot;?&quot; + text: &quot;&amp;&quot; + text;</div><div class="line">        // 写入回调函数</div><div class="line">        if (obj[&quot;callback&quot;]) &#123;</div><div class="line">            JSONP[callbackFuc] = function(result)&#123;</div><div class="line">                obj[&quot;callback&quot;](result); // 处理响应数据</div><div class="line">            &#125;</div><div class="line">            text = text + &quot;jsoncallback=JSONP.&quot; + callbackFuc;</div><div class="line">        &#125;</div><div class="line">        // 插入script标签</div><div class="line">        var script = document.createElement(&quot;script&quot;);</div><div class="line">        script.src = url+text;</div><div class="line">        document.body.appendChild(script);</div><div class="line">    &#125;</div><div class="line">    // 创建唯一回调函数名</div><div class="line">    JSONP.counter = 0;</div><div class="line">    //跨域访问测试1</div><div class="line">    JSONP(&quot;http://api.flickr.com/services/feeds/photos_public.gne&quot;, &#123;</div><div class="line">        data: &#123;</div><div class="line">        &quot;tags&quot;: &quot;cat&quot;,</div><div class="line">        &quot;tagmode&quot;: &quot;any&quot;,</div><div class="line">        &quot;format&quot;: &quot;json&quot;</div><div class="line">        &#125;,</div><div class="line">        callback: function (data) &#123;</div><div class="line">            console.log(data);// data 是服务端返回的数据</div><div class="line">        &#125;</div><div class="line">    &#125;) </div><div class="line">    // 跨域访问测试2</div><div class="line">    JSONP(&quot;http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json&quot;, &#123;</div><div class="line">        callback: function (data) &#123;</div><div class="line">            alert(data.items[1].author);// data 是服务端返回的数据</div><div class="line">        &#125;</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p>权威指南中在定义脚本执行回调函数时，对执行过的函数和标签进行销毁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">JSONP[callbackFuc] = function(result)&#123;</div><div class="line">    try &#123;</div><div class="line">        obj[&quot;callback&quot;](result); // 处理响应数据;</div><div class="line">    &#125;</div><div class="line">    finally &#123;</div><div class="line">        delete JSONP[callbackFuc]; //删除该函数</div><div class="line">        script.parentNode.removeChild(script); //移除script元素</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="补充-jQuery-ajax-实现版"><a href="#补充-jQuery-ajax-实现版" class="headerlink" title="补充 jQuery.ajax()实现版"></a>补充 jQuery.ajax()实现版</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function callbackFunction(data) &#123;</div><div class="line">    alert(&quot;callback&quot;);</div><div class="line">    // console.log(data);</div><div class="line">&#125;</div><div class="line">jQuery.ajax(&#123;</div><div class="line">    type: &quot;GET&quot;,</div><div class="line">    url: &quot;http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json&amp;jsoncallback=callbackFunction&quot;,</div><div class="line">    dataType: &quot;jsonp&quot;,</div><div class="line">    jsonpCallback:&quot;callbackFunction&quot;,</div><div class="line">    success: function(data,response) &#123;</div><div class="line">        alert(&quot;success&quot;);</div><div class="line">        // console.log(data);</div><div class="line">        // console.log(&quot;response&quot;);</div><div class="line">        // console.log(response);</div><div class="line">    &#125;,</div><div class="line">    error: function(data) &#123;</div><div class="line">        alert(&apos;fail&apos;);</div><div class="line">        console.log(data);</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2016/04/18/JSONP/">localhost/2016/04/18/JSONP/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/04/19/CORS&JSONP/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CORS or JSONP</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/03/28/threejs-earth/">
+        <span class="next-text nav-default">Three.js实现会动的地球</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

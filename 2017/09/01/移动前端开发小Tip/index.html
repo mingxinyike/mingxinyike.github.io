@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="移动端前端开发小Tip"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2017/09/01/移动前端开发小Tip/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 移动端前端开发小Tip - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          移动端前端开发小Tip
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#移动端前端开发–采用-rem-来定义宽度，实现不同设备的等比缩放"><span class="toc-text">移动端前端开发–采用 rem 来定义宽度，实现不同设备的等比缩放</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的-meta-标签实例"><span class="toc-text">常用的 meta 标签实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#采用设备像素进行开发"><span class="toc-text">采用设备像素进行开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#针对不同设备进行缩放"><span class="toc-text">针对不同设备进行缩放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动端字体大小"><span class="toc-text">移动端字体大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-text">参考文章</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="移动端前端开发–采用-rem-来定义宽度，实现不同设备的等比缩放"><a href="#移动端前端开发–采用-rem-来定义宽度，实现不同设备的等比缩放" class="headerlink" title="移动端前端开发–采用 rem 来定义宽度，实现不同设备的等比缩放"></a>移动端前端开发–采用 rem 来定义宽度，实现不同设备的等比缩放</h1><h2 id="常用的-meta-标签实例"><a href="#常用的-meta-标签实例" class="headerlink" title="常用的 meta 标签实例"></a>常用的 meta 标签实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;</div></pre></td></tr></table></figure>
+<p>这里device-width 为理想适口宽度，即 css 像素。</p>
+<h2 id="采用设备像素进行开发"><a href="#采用设备像素进行开发" class="headerlink" title="采用设备像素进行开发"></a>采用设备像素进行开发</h2><p>因为一般设计稿都是最大分辨率进行设计的，即基于设备像素进行设计，所以开发的时候也基于设备像素进行开发是比较方便的。通过 document.documentElement.clientWidth 可以拿到设备像素，设备像素 = css像素（理想适口宽度） * window.devicePixelRatio(设备像素比)<br>需要 js 动态获取当前设备的设备像素，设置 meta，进行缩放。这时，开发中 css 的像素就是针对设备像素而言的。css中的像素值可以直接根据设计稿来定义啦。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scale = <span class="number">1</span> / <span class="built_in">window</span>.devicePixelRatio;</div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'meta[name="viewport"]'</span>).setAttribute(<span class="string">'content'</span>, <span class="string">'width=device-width, initial-scale='</span> + scale + <span class="string">',minimum-scale='</span> + scale + <span class="string">', user-scalable=no'</span>);</div></pre></td></tr></table></figure>
+<h2 id="针对不同设备进行缩放"><a href="#针对不同设备进行缩放" class="headerlink" title="针对不同设备进行缩放"></a>针对不同设备进行缩放</h2><p>不同设备的具有不同的设备像素，如何将针对 iphone6 的设计稿也同样适用于 iphone5 呢？这里采用 rem 来解决这个问题。1rem 等于 html元素的 fontSize。我们针对不同的设备（iphone5, iphone6 等等）设置不同的fontSize = 设备分辨率的1/10。那么 CSS 中，1rem 就等于屏幕的1/10，就可以针对不同的设备宽度进行缩放了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.documentElement.style.fontSize = <span class="built_in">document</span>.documentElement.clientWidth / ratio + <span class="string">'px'</span>;</div></pre></td></tr></table></figure>
+<p>这里 ratio 的大小针对设计稿中的设备像素宽度决定，比如，设备像素宽度为750px，radio=7.5， 此时 1rem = 100px，定义宽度时就可以直接将设计稿中元素的宽度除以 100，如果设备像素为1200， radio= 12，1rem = 100px, 比较方便计算。</p>
+<h2 id="移动端字体大小"><a href="#移动端字体大小" class="headerlink" title="移动端字体大小"></a>移动端字体大小</h2><p>通常采用媒体查询的方式，媒体查询一般分为 321px以下，321px～400px 之间，400px 以上三种。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> screen and (max-width: <span class="number">321px</span>) &#123;</div><div class="line">    <span class="selector-tag">header</span>,<span class="selector-tag">footer</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">16px</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">321px</span>) and (max-width:<span class="number">400px</span>) &#123;</div><div class="line">    <span class="selector-tag">header</span>,<span class="selector-tag">footer</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">17px</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">400px</span>) &#123;</div><div class="line">    <span class="selector-tag">header</span>,<span class="selector-tag">footer</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">19px</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://hcysun.me/2015/10/19/%E4%B8%80%E7%AF%87%E7%9C%9F%E6%AD%A3%E6%95%99%E4%BC%9A%E4%BD%A0%E5%BC%80%E5%8F%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0-%E4%BA%8C/" target="_blank" rel="external">一篇真正教会你开发移动端页面的文章</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2017/09/01/移动前端开发小Tip/">localhost/2017/09/01/移动前端开发小Tip/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/09/05/对象的继承/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">js对象的继承</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/09/01/css BEM 命名思想/">
+        <span class="next-text nav-default">CSS BEM 命名思想</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

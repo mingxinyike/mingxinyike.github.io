@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="jekyll & github定制个人博客"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2015/12/10/jekyll-blog/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> jekyll & github定制个人博客 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          jekyll & github定制个人博客
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-12-10
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于github-pages"><span class="toc-text">关于github pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Ruby"><span class="toc-text">安装Ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jekyll-模版"><span class="toc-text">Jekyll 模版</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义域名"><span class="toc-text">自定义域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于多说"><span class="toc-text">关于多说</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博文markdown格式以及代码高亮"><span class="toc-text">博文markdown格式以及代码高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现分类页面导航"><span class="toc-text">实现分类页面导航</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现文章列表分页"><span class="toc-text">实现文章列表分页</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>我的个人博客是在github pages上的个人主页<a href="https://github.com/mingxinyike/mingxinyike.github.io" target="_blank" rel="external">github</a>，用Jekyll进行构建。其中，评论系统采用<a href="http://dev.duoshuo.com/docs" target="_blank" rel="external">多说</a>，主要因为多说是国内的，用户可以用微博豆瓣QQ登录，非常方便。</p>
+</blockquote>
+<h2 id="关于github-pages"><a href="#关于github-pages" class="headerlink" title="关于github pages"></a>关于github pages</h2><p>每个github帐号只能有一个仓库来存放个人主页，而且仓库的名字必须是username/username.github.io，这是特殊的命名约定。你可以通过<a href="http://username.github.io来访问你的个人主页。" target="_blank" rel="external">http://username.github.io来访问你的个人主页。</a></p>
+<h2 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h2><p>自行百度</p>
+<h2 id="Jekyll-模版"><a href="#Jekyll-模版" class="headerlink" title="Jekyll 模版"></a>Jekyll 模版</h2><p>拥有username.github.io个人主页仓库后，需要Jekyll构建博客。</p>
+<p>命令行中输入以下命令能够让网站跑起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 安装jekyll</div><div class="line">gem install jekyll</div><div class="line">//下载博客模板</div><div class="line">jekyll new my-awesome-site</div><div class="line">cd my-awesome-site</div><div class="line">my-awesome-site $ jekyll serve</div><div class="line">//这个时候随简单的博客网站就发布好了</div></pre></td></tr></table></figure>
+<p><a href="http://jekyll.bootcss.com/" target="_blank" rel="external">jekyll中文指南</a>模板指南中有网站结构的介绍，以及分业等一些功能。<br>再次基础上修改css, html就能够得到自己的博客啦，同时将项目上传至github上，别人就能够通过yourname.github.io 访问到你的博客啦！<br><a href="http://jekyllthemes.org/" target="_blank" rel="external">jekyll主题模板</a>这里也有很多好看的主题模板，喜欢的可以clone下来，在此基础上进行修改。</p>
+<h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>同时github－pages个人主页可以自定义域名，这样别人就可以通过你的自定义域名访问到你的博客了！<br>两个步骤：</p>
+<ol>
+<li>1.在项目中加CNAME文件，其中协商域名名称，如 <a href="http://blog.liuxj.com" target="_blank" rel="external">http://blog.liuxj.com</a></li>
+<li>2.在域名管理系统中，添加CNAME，主机记录： blog， 记录值：username.github.io</li>
+</ol>
+<h2 id="关于多说"><a href="#关于多说" class="headerlink" title="关于多说"></a>关于多说</h2><p>使用很简单：<br><strong>在多说的网站上注册，获得通用代码，粘贴到页面就OK</strong><br>我在default.html中加入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 多说评论框 start --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ds-thread"</span> <span class="attr">data-thread-key</span>=<span class="string">&#123;&#123;page.id&#125;&#125;</span> <span class="attr">data-title</span>=<span class="string">&#123;&#123;page.title&#125;&#125;</span> <span class="attr">data-url</span>=<span class="string">"liuxj.com/&#123;&#123;page.url&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 多说评论框 end --&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    var duoshuoQuery = &#123;short_name:"liuxj"&#125;;</span></div><div class="line"><span class="undefined">    (function() &#123;</span></div><div class="line"><span class="undefined">      var ds = document.createElement('script');</span></div><div class="line"><span class="undefined">      ds.type = 'text/javascript';ds.async = true;</span></div><div class="line"><span class="undefined">      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';</span></div><div class="line"><span class="undefined">      ds.charset = 'UTF-8';</span></div><div class="line"><span class="undefined">      (document.getElementsByTagName('head')[0]</span></div><div class="line"><span class="undefined">      || document.getElementsByTagName('body')[0]).appendChild(ds);</span></div><div class="line"><span class="undefined">    &#125;)();</span></div><div class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></div></pre></td></tr></table></figure>
+<p>这里四个地方可以自定义：</p>
+<ul>
+<li><ol>
+<li>1.data-thread-key填上</li>
+</ol>
+</li>
+<li><ol>
+<li>2.data-title 填上 </li>
+</ol>
+</li>
+<li><ol>
+<li>3.data-url 填上 your web site/</li>
+</ol>
+</li>
+<li><ol>
+<li>4.short_name 注册多说账号的时候让你填的二级短域名</li>
+</ol>
+</li>
+</ul>
+<p>###代码复用</p>
+<p>为了能够复用代码，同时自由设置评论系统什么时候显示，什么时候隐藏，将评论系统的代码单独放在_includes文件夹中的comment.html中<br>在页面上通过一下代码引入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;/% include comment.html /%&#125;</div></pre></td></tr></table></figure>
+<h2 id="博文markdown格式以及代码高亮"><a href="#博文markdown格式以及代码高亮" class="headerlink" title="博文markdown格式以及代码高亮"></a>博文markdown格式以及代码高亮</h2><p>代码高亮<br>在配置文件_config.yml中修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">markdown： redcarpet</div><div class="line">permalink: pretty</div></pre></td></tr></table></figure>
+<p>在具体的md中，代码块的外面加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;% highlight css %&#125;</div><div class="line">&#123;% endhighlight %&#125;</div></pre></td></tr></table></figure>
+<h2 id="实现分类页面导航"><a href="#实现分类页面导航" class="headerlink" title="实现分类页面导航"></a>实现分类页面导航</h2><ol>
+<li>首先_layout中加入category.html</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: default</div><div class="line">---</div><div class="line">//...html代码</div></pre></td></tr></table></figure>
+<ol>
+<li>然后新建一个category目录，新建类别如js文件夹<br>新建一个 index.html文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: category</div><div class="line">category: js</div><div class="line">---</div><div class="line">//layout告诉jekyll去哪里渲染页面</div></pre></td></tr></table></figure>
+<h2 id="实现文章列表分页"><a href="#实现文章列表分页" class="headerlink" title="实现文章列表分页"></a>实现文章列表分页</h2><ol>
+<li>1.命令行中输入gem install jekyll-paginate，安装paginate</li>
+<li>2.在_config.yml中添加以下信息</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gems: [jekyll-paginate]</div><div class="line">paginate: 2</div><div class="line">paginate_path: “page:num”</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2015/12/10/jekyll-blog/">localhost/2015/12/10/jekyll-blog/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/01/24/reading1/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">《你不知道的Javascript上卷》 (this)</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/09/10/情景化git命令速记/">
+        <span class="next-text nav-default">情景化Git命令速记</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

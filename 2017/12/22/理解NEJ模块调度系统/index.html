@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="理解 NEJ 模块调度系统"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2017/12/22/理解NEJ模块调度系统/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 理解 NEJ 模块调度系统 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          理解 NEJ 模块调度系统
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么需要模块调度系统（为什么）"><span class="toc-text">为什么需要模块调度系统（为什么）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模块调度系统包括哪些功能（是什么）"><span class="toc-text">模块调度系统包括哪些功能（是什么）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何实现一个模块调度系统（怎么样）"><span class="toc-text">如何实现一个模块调度系统（怎么样）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#模块的封装和实现"><span class="toc-text">模块的封装和实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块的组合和调度"><span class="toc-text">模块的组合和调度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何维护模块之间的组合"><span class="toc-text">如何维护模块之间的组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调度策略"><span class="toc-text">调度策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块之间的通信"><span class="toc-text">模块之间的通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#点对点通信"><span class="toc-text">点对点通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布订阅"><span class="toc-text">发布订阅</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模块化的解决办法"><span class="toc-text">模块化的解决办法</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>本文将从三个方面来理解 NEJ 模块调度系统，WHY？ WHAT？ HOW？</p>
+</blockquote>
+<h1 id="为什么需要模块调度系统（为什么）"><a href="#为什么需要模块调度系统（为什么）" class="headerlink" title="为什么需要模块调度系统（为什么）"></a>为什么需要模块调度系统（为什么）</h1><p>我们想要开发一个单页系统，但是单页系统复杂度高，放在一起不好协同开发和调试，很多代码放在一起也很难看。这个时候就需要一套模块系统，将页面按照内容和功能划分成多个部分，就有了多个子系统，子系统之间具有低耦合、高重组性。然后开发小哥哥们就可以各自领一块内容共同开发了。</p>
+<h1 id="模块调度系统包括哪些功能（是什么）"><a href="#模块调度系统包括哪些功能（是什么）" class="headerlink" title="模块调度系统包括哪些功能（是什么）"></a>模块调度系统包括哪些功能（是什么）</h1><p>模块调度系统需要实现哪些功能，才能帮助我们解决上面的问题呢？</p>
+<ul>
+<li>模块的封装和实现</li>
+<li>模块的组合和调度</li>
+<li>模块之间的通信</li>
+</ul>
+<h1 id="如何实现一个模块调度系统（怎么样）"><a href="#如何实现一个模块调度系统（怎么样）" class="headerlink" title="如何实现一个模块调度系统（怎么样）"></a>如何实现一个模块调度系统（怎么样）</h1><h2 id="模块的封装和实现"><a href="#模块的封装和实现" class="headerlink" title="模块的封装和实现"></a>模块的封装和实现</h2><p>每个模块就是页面的一部分，包括样式、结构和逻辑三个部分（css html js）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 模块样式 --&gt;</div><div class="line">&lt;style&gt;</div><div class="line">    .m-mdl-1 .a&#123;color:#aaa;&#125;</div><div class="line">    .m-mdl-1 .b&#123;color:#bbb;&#125;</div><div class="line"></div><div class="line">    /* 此处省略若干内容 */</div><div class="line">&lt;/style&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块结构 --&gt;</div><div class="line">&lt;div class=&quot;m-mdl-1&quot;&gt;</div><div class="line">  &lt;p class=&quot;a&quot;&gt;aaaaaaaaaaaaaaaaaaa&lt;/p&gt;</div><div class="line">  &lt;p class=&quot;b&quot;&gt;bbbbbbbbbbbbbbbbbbb&lt;/p&gt;</div><div class="line"></div><div class="line">  &lt;!-- 此处省略若干内容 --&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块逻辑 --&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    (function()&#123;</div><div class="line">        var a = &apos;aaa&apos;;</div><div class="line">        var b = &apos;bbb&apos;;</div><div class="line"></div><div class="line">        // 此处省略若干内容</div><div class="line">    &#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>但是系统预加载的时候，这个模块的内容会直接被浏览器执行，我们不能控制它在我们需要的时候展示。所以我们将三个部分文本化处理，然后在我们需要的时候再渲染出来。<br>文本化处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 模块样式 --&gt;</div><div class="line">&lt;textarea name=&quot;css&quot;&gt;</div><div class="line">    .m-mdl-1 .a&#123;color:#aaa;&#125;</div><div class="line">    .m-mdl-1 .b&#123;color:#bbb;&#125;</div><div class="line"></div><div class="line">    /* 此处省略若干内容 */</div><div class="line">&lt;/textarea&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块结构 --&gt;</div><div class="line">&lt;textarea name=&quot;html&quot;&gt;</div><div class="line">    &lt;div class=&quot;m-mdl-1&quot;&gt;</div><div class="line">      &lt;p class=&quot;a&quot;&gt;aaaaaaaaaaaaaaaaaaa&lt;/p&gt;</div><div class="line">      &lt;p class=&quot;b&quot;&gt;bbbbbbbbbbbbbbbbbbb&lt;/p&gt;</div><div class="line"></div><div class="line">      &lt;!-- 此处省略若干内容 --&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/textarea&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块逻辑 --&gt;</div><div class="line">&lt;textarea name=&quot;js&quot;&gt;</div><div class="line">    (function()&#123;</div><div class="line">        var a = &apos;aaa&apos;;</div><div class="line">        var b = &apos;bbb&apos;;</div><div class="line"></div><div class="line">        // 此处省略若干内容</div><div class="line">    &#125;)();</div><div class="line">&lt;/textarea&gt;</div></pre></td></tr></table></figure>
+<p>模块的实现<br>模块中 js 会继承模块基类 util/dispatcher/module，基类是模块特有属性、行为的抽象</p>
+<p>基类的几个接口及其实现</p>
+<ul>
+<li>__doBuild</li>
+<li>__onShow</li>
+<li>__onRefresh</li>
+<li>__onHide</li>
+</ul>
+<p>__doBuild 会在每次控件 init 的时候执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">pro.__init = function() &#123;</div><div class="line">    this.__super();</div><div class="line">    this.__export = &#123;&#125;;</div><div class="line">    this.__doBuild();</div><div class="line">&#125;</div><div class="line">pro.__doBuild = function () &#123;&#125;;</div></pre></td></tr></table></figure>
+<p><strong>onShow </strong>onRefresh __onHide 会在控件 reset 的时候绑定事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">pro.__reset = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 省略一部分实现</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="keyword">this</span>._$batEvent(&#123;</div><div class="line">        onshow: <span class="keyword">this</span>.__onShow._$bind(<span class="keyword">this</span>),</div><div class="line">        onhide: <span class="keyword">this</span>.__onHide._$bind(<span class="keyword">this</span>),</div><div class="line">        onrefresh: <span class="keyword">this</span>.__onRefresh._$bind(<span class="keyword">this</span>),</div><div class="line">        onmessage: <span class="keyword">this</span>.__onMessage._$bind(<span class="keyword">this</span>),</div><div class="line">        onbeforehide: <span class="keyword">this</span>.__onBeforeHide._$bind(<span class="keyword">this</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 解析模块所在容器的节点</span></div><div class="line"><span class="comment"> * @return &#123;[Node]&#125; [模块所在容器的节点]</span></div><div class="line"><span class="comment"> */</span></div><div class="line">pro.__doParseParent = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// _parent = _e._$get(_options.input || _options.parent || _options.parent);</span></div><div class="line">    <span class="comment">// return _parent;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 显示模块触发事件,</span></div><div class="line"><span class="comment"> * 将 body 添加到 parent 节点中</span></div><div class="line"><span class="comment"> * 刷新其他子模块</span></div><div class="line"><span class="comment"> * 调用 onRefresh</span></div><div class="line"><span class="comment"> */</span></div><div class="line">pro.__onShow = <span class="function"><span class="keyword">function</span> (<span class="params">_options</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> _parent = <span class="keyword">this</span>.__doParseParent(_options);</div><div class="line">    <span class="comment">// show and refresh module </span></div><div class="line">    <span class="keyword">if</span> (!! _parent &amp;&amp; !!<span class="keyword">this</span>.body) &#123;</div><div class="line">        _parent.appendChild(<span class="keyword">this</span>.__body);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 应用组合模块</span></div><div class="line">    <span class="keyword">this</span>.__doApplyComposite(<span class="string">'onshow'</span>, _options);</div><div class="line">    <span class="keyword">this</span>.__onRefresh(_options);</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 显示模块触发事件</span></div><div class="line"><span class="comment"> */</span></div><div class="line">pro.__onRefresh = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.__doApplyComposite(<span class="string">'onrefresh'</span>, _options);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 隐藏模块触发事件</span></div><div class="line"><span class="comment"> */</span></div><div class="line">_pro.__onHide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// 隐藏组合模块</span></div><div class="line">    <span class="keyword">this</span>.__doHideComposite();</div><div class="line">    <span class="comment">// 节点移至内存</span></div><div class="line">    _e._$removeByEC(<span class="keyword">this</span>.__body);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 根据 ...??</span></div><div class="line"><span class="comment"> */</span></div><div class="line">__pro.__doApplyComposite = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="keyword">this</span>.__dispatcher.__$redirect(umi,)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>业务模块中 js 需要继承模块基类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 然后在 ondoBuild 函数里做三件事</div><div class="line"> * - 构建模块结构 __body</div><div class="line"> * - 缓存后续需要使用的节点</div><div class="line"> * - 初始化需要使用的组件配置信息 __export</div><div class="line"> */</div><div class="line">pro.__doBuild = function() &#123;</div><div class="line">    this.__super();</div><div class="line">    this.__body = e._$html2node(tpl._$getTextTemplate(&apos;knowledgeRobot&apos;));</div><div class="line">    this.__cnt = e._$get(&apos;boss-module&apos;) || e._$get(&apos;kefu-module&apos;);</div><div class="line">    var _flag = e._$getByClassName(this.__body,  &apos;j-flag&apos;);</div><div class="line">    this.__export = &#123;</div><div class="line">        category : _flag[0],</div><div class="line">        list : _flag[1]</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 显示模块</div><div class="line"> * 添加事件</div><div class="line"> * 分配组件</div><div class="line"> * 处理输入信息</div><div class="line"> */</div><div class="line">pro.__onShow = function (_options) &#123;</div><div class="line">    this.__super(_options);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 刷新模块</div><div class="line"> * 分配组件</div><div class="line"> * 同步状态</div><div class="line"> * 载入数据</div><div class="line"> */</div><div class="line">pro.__onRefresh = function (_options) &#123;</div><div class="line">    this.__super(_options);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 隐藏模块</div><div class="line"> * 回收事件</div><div class="line"> * 回收组件</div><div class="line"> * 尽量保证恢复到构建时的状态</div><div class="line"> */</div><div class="line">pro.__onHide = function (_options) &#123;</div><div class="line">    this.__super(_options);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// notify dispatcher  _e = util/dispatcher/module</div><div class="line">// 注册模块 </div><div class="line">_e._$regist(</div><div class="line">    &apos;umi_or_alias&apos;,</div><div class="line">    _p._$ModuleDemo</div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="模块的组合和调度"><a href="#模块的组合和调度" class="headerlink" title="模块的组合和调度"></a>模块的组合和调度</h2><h3 id="如何维护模块之间的组合"><a href="#如何维护模块之间的组合" class="headerlink" title="如何维护模块之间的组合"></a>如何维护模块之间的组合</h3><p>被拆分的各个模块之间不是完全独立的，在页面显示上总有组合、包含之类的关系。 UMI（统一模块标识）同来标识模块的唯一ID，和模块一一对应，且承载模块的依赖关系。</p>
+<p>模块的渲染需要一个容器来呈现，如果一个模块具有子模块，那么这个模块也要提供呈现子模块的容器。提供容器的模块和使用容器的模块可以任意组合。</p>
+<h3 id="调度策略"><a href="#调度策略" class="headerlink" title="调度策略"></a>调度策略</h3><p>模块显示调度策略：<br>假设请求显示 /m/blog/list 模块，经过的步骤如下</p>
+<ul>
+<li>检查目标节点到根节点路径上注册的模块，如果注册的是模块的实现文件地址，则请求载入模块实现文件。</li>
+<li>如果模块所有的祖先节点已显示，则当前模块可被显示出来。否则等待祖先模块的现实调度。</li>
+<li>模块载入后根据第二原则尝试调度目标模块的显示。</li>
+</ul>
+<p>模块切换调度策略</p>
+<ul>
+<li>查找源模块到目标模块的公共父节点</li>
+<li>从源节点到公共节点之间的模块调度的隐藏</li>
+<li>从根节点到公共节点之间模块调度刷新</li>
+<li>公共节点到目标节点之间的模块调度的显示</li>
+</ul>
+<h2 id="模块之间的通信"><a href="#模块之间的通信" class="headerlink" title="模块之间的通信"></a>模块之间的通信</h2><h3 id="点对点通信"><a href="#点对点通信" class="headerlink" title="点对点通信"></a>点对点通信</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 发布消息</div><div class="line">_pro.__doSomething = function()&#123;</div><div class="line"></div><div class="line">    // TODO</div><div class="line"></div><div class="line">    this.__doSendMessage(</div><div class="line">        &apos;/m/setting/account/&apos;,&#123;</div><div class="line">            a:&apos;aaaaaa&apos;,</div><div class="line">            b:&apos;bbbbbbbbb&apos;</div><div class="line">        &#125;</div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 接收消息</div><div class="line">_pro.__onMessage = function(_event)&#123;</div><div class="line">    // _event.from 消息来源</div><div class="line">    // _event.data 消息数据，这里可能是 &#123;a:&apos;aaaaaa&apos;,b:&apos;bbbbbbbbb&apos;&#125;</div><div class="line"></div><div class="line">    // TODO</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 发布消息</div><div class="line">_pro.__doSomething = function()&#123;</div><div class="line"></div><div class="line">    // TODO</div><div class="line"></div><div class="line">    this.__doPublishMessage(</div><div class="line">        &apos;onok&apos;,&#123;</div><div class="line">            a:&apos;aaaaaa&apos;,</div><div class="line">            b:&apos;bbbbbbbb&apos;</div><div class="line">        &#125;</div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 订阅消息</div><div class="line">_pro.__doBuild = function()&#123;</div><div class="line"></div><div class="line">    // TODO</div><div class="line"></div><div class="line">    this.__doSubscribeMessage(</div><div class="line">        &apos;/m/message/account/&apos;,&apos;onok&apos;,</div><div class="line">        this.__onMessageReceive._$bind(this)</div><div class="line">    );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="模块化的解决办法"><a href="#模块化的解决办法" class="headerlink" title="模块化的解决办法"></a>模块化的解决办法</h1><p>在 JS 没有模块化之前，出现了一些模块的加载方案，如 CommonJS，AMD，CMD等，后来为了兼容各种模块加载方案，提出了UMD。一些框架也提出了模块化实现的解决方案，如 NEJ。</p>
+<p>现在 JS 在 ES6 规范中规定了模块系统的实现，可以取代过去的一些实现方案 CommonJS AMD 等等。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="localhost/2017/12/22/理解NEJ模块调度系统/">localhost/2017/12/22/理解NEJ模块调度系统/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/12/26/关于组件化的一些思考/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">关于组件化的一些思考</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/11/25/node静态资源服务器/">
+        <span class="next-text nav-default">node 实现静态资源服务器</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/01/22/读书笔记《design patterns》/">读书笔记《design patterns》</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>类之间的关系对应代码中的表现</p>
+<ul>
+<li><strong>泛化关系</strong> generalize 继承非抽象类</li>
+<li><strong>实现关系</strong> realize 继承抽象类 </li>
+<li><strong>聚合关系</strong> aggregation 整体由部分构成，但整体和部分并不是强依赖的，整体不存在了，部分依然存在</li>
+<li><strong>组合关系</strong> composition 整体由部分构成，整体和部分是强依赖的特殊聚合关系，如果整体不存在，部分也不存在</li>
+<li><strong>关联关系</strong> association 静态的天然的结构，强关联关系，代码中关联对象一般是以成员变量的形式实现的。</li>
+<li><strong>依赖关系</strong> 一个对象在运行期间会用到另一个对象的关系，代码中表现为构造类方法以及类方法的传入参数，除了知道对方外还可使用对方的方法和属性。</li>
+</ul>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>工厂方法是静态方法，只需要传入简单参数即可。<br>简单工厂模式最大的问题在于工厂类的职责相对过重，增加新的产品需要修改工厂类的判断逻辑，这一点与开闭原则是相违背的。<br>开闭原则：软件实体应该是可扩展的，但是是不可修改的。<br>简单工厂模式的要点在于：当你需要什么，只需要传入一个正确的参数，就可以获取你所需要的对象，而无须知道其创建细节。</p>
+<p>例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> productManager = &#123;&#125;;</div><div class="line">productManager.createProductA = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'ProductA'</span>);</div><div class="line">&#125;</div><div class="line">productManager.createProductB = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'ProductB'</span>);</div><div class="line">&#125;</div><div class="line">productManager.factory = <span class="function"><span class="keyword">function</span> (<span class="params">typeType</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> productManager[typeType];</div><div class="line">&#125;</div><div class="line">productManager.factory(<span class="string">"createProductA"</span>);</div></pre></td></tr></table></figure></p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/12/26/关于组件化的一些思考/">关于组件化的一些思考</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-26
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="关于组件化的一些思考"><a href="#关于组件化的一些思考" class="headerlink" title="关于组件化的一些思考"></a>关于组件化的一些思考</h1><h2 id="什么是组件化"><a href="#什么是组件化" class="headerlink" title="什么是组件化"></a>什么是组件化</h2><p>组件化就是从设计的层面上对 UI 进行拆分，从代码层面进行封装的过程。</p>
+<h2 id="组件化和模块化的区别"><a href="#组件化和模块化的区别" class="headerlink" title="组件化和模块化的区别"></a>组件化和模块化的区别</h2><p>模块化是代码层面的拆分，而组件化是在模块化的基础上，从设计层面对 UI 进行拆分。</p>
+<h2 id="组件可以分为哪几类"><a href="#组件可以分为哪几类" class="headerlink" title="组件可以分为哪几类"></a>组件可以分为哪几类</h2><p>根据组件的通用性（复用性），可以分为三类：</p>
+<ul>
+<li>通用组件 （不同产品间可以复用的组件）</li>
+<li>通用业务组件 （同一产品中可以复用的组件）</li>
+<li>业务组件 （不可复用的组件）</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/12/22/理解NEJ模块调度系统/">理解 NEJ 模块调度系统</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-22
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>本文将从三个方面来理解 NEJ 模块调度系统，WHY？ WHAT？ HOW？</p>
+</blockquote>
+<h1 id="为什么需要模块调度系统（为什么）"><a href="#为什么需要模块调度系统（为什么）" class="headerlink" title="为什么需要模块调度系统（为什么）"></a>为什么需要模块调度系统（为什么）</h1><p>我们想要开发一个单页系统，但是单页系统复杂度高，放在一起不好协同开发和调试，很多代码放在一起也很难看。这个时候就需要一套模块系统，将页面按照内容和功能划分成多个部分，就有了多个子系统，子系统之间具有低耦合、高重组性。然后开发小哥哥们就可以各自领一块内容共同开发了。</p>
+<h1 id="模块调度系统包括哪些功能（是什么）"><a href="#模块调度系统包括哪些功能（是什么）" class="headerlink" title="模块调度系统包括哪些功能（是什么）"></a>模块调度系统包括哪些功能（是什么）</h1><p>模块调度系统需要实现哪些功能，才能帮助我们解决上面的问题呢？</p>
+<ul>
+<li>模块的封装和实现</li>
+<li>模块的组合和调度</li>
+<li>模块之间的通信</li>
+</ul>
+<h1 id="如何实现一个模块调度系统（怎么样）"><a href="#如何实现一个模块调度系统（怎么样）" class="headerlink" title="如何实现一个模块调度系统（怎么样）"></a>如何实现一个模块调度系统（怎么样）</h1><h2 id="模块的封装和实现"><a href="#模块的封装和实现" class="headerlink" title="模块的封装和实现"></a>模块的封装和实现</h2><p>每个模块就是页面的一部分，包括样式、结构和逻辑三个部分（css html js）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 模块样式 --&gt;</div><div class="line">&lt;style&gt;</div><div class="line">    .m-mdl-1 .a&#123;color:#aaa;&#125;</div><div class="line">    .m-mdl-1 .b&#123;color:#bbb;&#125;</div><div class="line"></div><div class="line">    /* 此处省略若干内容 */</div><div class="line">&lt;/style&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块结构 --&gt;</div><div class="line">&lt;div class=&quot;m-mdl-1&quot;&gt;</div><div class="line">  &lt;p class=&quot;a&quot;&gt;aaaaaaaaaaaaaaaaaaa&lt;/p&gt;</div><div class="line">  &lt;p class=&quot;b&quot;&gt;bbbbbbbbbbbbbbbbbbb&lt;/p&gt;</div><div class="line"></div><div class="line">  &lt;!-- 此处省略若干内容 --&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块逻辑 --&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    (function()&#123;</div><div class="line">        var a = &apos;aaa&apos;;</div><div class="line">        var b = &apos;bbb&apos;;</div><div class="line"></div><div class="line">        // 此处省略若干内容</div><div class="line">    &#125;)();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>但是系统预加载的时候，这个模块的内容会直接被浏览器执行，我们不能控制它在我们需要的时候展示。所以我们将三个部分文本化处理，然后在我们需要的时候再渲染出来。<br>文本化处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 模块样式 --&gt;</div><div class="line">&lt;textarea name=&quot;css&quot;&gt;</div><div class="line">    .m-mdl-1 .a&#123;color:#aaa;&#125;</div><div class="line">    .m-mdl-1 .b&#123;color:#bbb;&#125;</div><div class="line"></div><div class="line">    /* 此处省略若干内容 */</div><div class="line">&lt;/textarea&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块结构 --&gt;</div><div class="line">&lt;textarea name=&quot;html&quot;&gt;</div><div class="line">    &lt;div class=&quot;m-mdl-1&quot;&gt;</div><div class="line">      &lt;p class=&quot;a&quot;&gt;aaaaaaaaaaaaaaaaaaa&lt;/p&gt;</div><div class="line">      &lt;p class=&quot;b&quot;&gt;bbbbbbbbbbbbbbbbbbb&lt;/p&gt;</div><div class="line"></div><div class="line">      &lt;!-- 此处省略若干内容 --&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/textarea&gt;</div><div class="line"></div><div class="line">&lt;!-- 模块逻辑 --&gt;</div><div class="line">&lt;textarea name=&quot;js&quot;&gt;</div><div class="line">    (function()&#123;</div><div class="line">        var a = &apos;aaa&apos;;</div><div class="line">        var b = &apos;bbb&apos;;</div><div class="line"></div><div class="line">        // 此处省略若干内容</div><div class="line">    &#125;)();</div><div class="line">&lt;/textarea&gt;</div></pre></td></tr></table></figure>
+<p>模块的实现<br>模块中 js 会继承模块基类 util/dispatcher/module，基类是模块特有属性、行为的抽象</p>
+<p>基类的几个接口及其实现</p>
+<ul>
+<li>__doBuild</li>
+<li>__onShow</li>
+<li>__onRefresh</li>
+<li>__onHide</li>
+</ul>
+<p>__doBuild 会在每次控件 init 的时候执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">pro.__init = function() &#123;</div><div class="line">    this.__super();</div><div class="line">    this.__export = &#123;&#125;;</div><div class="line">    this.__doBuild();</div><div class="line">&#125;</div><div class="line">pro.__doBuild = function () &#123;&#125;;</div></pre></td></tr></table></figure>
+<p><strong>onShow </strong>onRefresh __onHide 会在控件 reset 的时候绑定事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">pro.__reset = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 省略一部分实现</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="keyword">this</span>._$batEvent(&#123;</div><div class="line">        onshow: <span class="keyword">this</span>.__onShow._$bind(<span class="keyword">this</span>),</div><div class="line">        onhide: <span class="keyword">this</span>.__onHide._$bind(<span class="keyword">this</span>),</div><div class="line">        onrefresh: <span class="keyword">this</span>.__onRefresh._$bind(<span class="keyword">this</span>),</div><div class="line">        onmessage: <span class="keyword">this</span>.__onMessage._$bind(<span class="keyword">this</span>),</div><div class="line">        onbeforehide: <span class="keyword">this</span>.__onBeforeHide._$bind(<span class="keyword">this</span>)</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 解析模块所在容器的节点</span></div><div class="line"><span class="comment"> * @return &#123;[Node]&#125; [模块所在容器的节点]</span></div><div class="line"><span class="comment"> */</span></div><div class="line">pro.__doParseParent = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// _parent = _e._$get(_options.input || _options.parent || _options.parent);</span></div><div class="line">    <span class="comment">// return _parent;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 显示模块触发事件,</span></div><div class="line"><span class="comment"> * 将 body 添加到 parent 节点中</span></div><div class="line"><span class="comment"> * 刷新其他子模块</span></div><div class="line"><span class="comment"> * 调用 onRefresh</span></div><div class="line"><span class="comment"> */</span></div><div class="line">pro.__onShow = <span class="function"><span class="keyword">function</span> (<span class="params">_options</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> _parent = <span class="keyword">this</span>.__doParseParent(_options);</div><div class="line">    <span class="comment">// show and refresh module </span></div><div class="line">    <span class="keyword">if</span> (!! _parent &amp;&amp; !!<span class="keyword">this</span>.body) &#123;</div><div class="line">        _parent.appendChild(<span class="keyword">this</span>.__body);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 应用组合模块</span></div><div class="line">    <span class="keyword">this</span>.__doApplyComposite(<span class="string">'onshow'</span>, _options);</div><div class="line">    <span class="keyword">this</span>.__onRefresh(_options);</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 显示模块触发事件</span></div><div class="line"><span class="comment"> */</span></div><div class="line">pro.__onRefresh = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.__doApplyComposite(<span class="string">'onrefresh'</span>, _options);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 隐藏模块触发事件</span></div><div class="line"><span class="comment"> */</span></div><div class="line">_pro.__onHide = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// 隐藏组合模块</span></div><div class="line">    <span class="keyword">this</span>.__doHideComposite();</div><div class="line">    <span class="comment">// 节点移至内存</span></div><div class="line">    _e._$removeByEC(<span class="keyword">this</span>.__body);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 根据 ...??</span></div><div class="line"><span class="comment"> */</span></div><div class="line">__pro.__doApplyComposite = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="keyword">this</span>.__dispatcher.__$redirect(umi,)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>业务模块中 js 需要继承模块基类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 然后在 ondoBuild 函数里做三件事</div><div class="line"> * - 构建模块结构 __body</div><div class="line"> * - 缓存后续需要使用的节点</div><div class="line"> * - 初始化需要使用的组件配置信息 __export</div><div class="line"> */</div><div class="line">pro.__doBuild = function() &#123;</div><div class="line">    this.__super();</div><div class="line">    this.__body = e._$html2node(tpl._$getTextTemplate(&apos;knowledgeRobot&apos;));</div><div class="line">    this.__cnt = e._$get(&apos;boss-module&apos;) || e._$get(&apos;kefu-module&apos;);</div><div class="line">    var _flag = e._$getByClassName(this.__body,  &apos;j-flag&apos;);</div><div class="line">    this.__export = &#123;</div><div class="line">        category : _flag[0],</div><div class="line">        list : _flag[1]</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 显示模块</div><div class="line"> * 添加事件</div><div class="line"> * 分配组件</div><div class="line"> * 处理输入信息</div><div class="line"> */</div><div class="line">pro.__onShow = function (_options) &#123;</div><div class="line">    this.__super(_options);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 刷新模块</div><div class="line"> * 分配组件</div><div class="line"> * 同步状态</div><div class="line"> * 载入数据</div><div class="line"> */</div><div class="line">pro.__onRefresh = function (_options) &#123;</div><div class="line">    this.__super(_options);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 隐藏模块</div><div class="line"> * 回收事件</div><div class="line"> * 回收组件</div><div class="line"> * 尽量保证恢复到构建时的状态</div><div class="line"> */</div><div class="line">pro.__onHide = function (_options) &#123;</div><div class="line">    this.__super(_options);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// notify dispatcher  _e = util/dispatcher/module</div><div class="line">// 注册模块 </div><div class="line">_e._$regist(</div><div class="line">    &apos;umi_or_alias&apos;,</div><div class="line">    _p._$ModuleDemo</div><div class="line">)</div></pre></td></tr></table></figure>
+<h2 id="模块的组合和调度"><a href="#模块的组合和调度" class="headerlink" title="模块的组合和调度"></a>模块的组合和调度</h2><h3 id="如何维护模块之间的组合"><a href="#如何维护模块之间的组合" class="headerlink" title="如何维护模块之间的组合"></a>如何维护模块之间的组合</h3><p>被拆分的各个模块之间不是完全独立的，在页面显示上总有组合、包含之类的关系。 UMI（统一模块标识）同来标识模块的唯一ID，和模块一一对应，且承载模块的依赖关系。</p>
+<p>模块的渲染需要一个容器来呈现，如果一个模块具有子模块，那么这个模块也要提供呈现子模块的容器。提供容器的模块和使用容器的模块可以任意组合。</p>
+<h3 id="调度策略"><a href="#调度策略" class="headerlink" title="调度策略"></a>调度策略</h3><p>模块显示调度策略：<br>假设请求显示 /m/blog/list 模块，经过的步骤如下</p>
+<ul>
+<li>检查目标节点到根节点路径上注册的模块，如果注册的是模块的实现文件地址，则请求载入模块实现文件。</li>
+<li>如果模块所有的祖先节点已显示，则当前模块可被显示出来。否则等待祖先模块的现实调度。</li>
+<li>模块载入后根据第二原则尝试调度目标模块的显示。</li>
+</ul>
+<p>模块切换调度策略</p>
+<ul>
+<li>查找源模块到目标模块的公共父节点</li>
+<li>从源节点到公共节点之间的模块调度的隐藏</li>
+<li>从根节点到公共节点之间模块调度刷新</li>
+<li>公共节点到目标节点之间的模块调度的显示</li>
+</ul>
+<h2 id="模块之间的通信"><a href="#模块之间的通信" class="headerlink" title="模块之间的通信"></a>模块之间的通信</h2><h3 id="点对点通信"><a href="#点对点通信" class="headerlink" title="点对点通信"></a>点对点通信</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// 发布消息</div><div class="line">_pro.__doSomething = function()&#123;</div><div class="line"></div><div class="line">    // TODO</div><div class="line"></div><div class="line">    this.__doSendMessage(</div><div class="line">        &apos;/m/setting/account/&apos;,&#123;</div><div class="line">            a:&apos;aaaaaa&apos;,</div><div class="line">            b:&apos;bbbbbbbbb&apos;</div><div class="line">        &#125;</div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 接收消息</div><div class="line">_pro.__onMessage = function(_event)&#123;</div><div class="line">    // _event.from 消息来源</div><div class="line">    // _event.data 消息数据，这里可能是 &#123;a:&apos;aaaaaa&apos;,b:&apos;bbbbbbbbb&apos;&#125;</div><div class="line"></div><div class="line">    // TODO</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 发布消息</div><div class="line">_pro.__doSomething = function()&#123;</div><div class="line"></div><div class="line">    // TODO</div><div class="line"></div><div class="line">    this.__doPublishMessage(</div><div class="line">        &apos;onok&apos;,&#123;</div><div class="line">            a:&apos;aaaaaa&apos;,</div><div class="line">            b:&apos;bbbbbbbb&apos;</div><div class="line">        &#125;</div><div class="line">    );</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 订阅消息</div><div class="line">_pro.__doBuild = function()&#123;</div><div class="line"></div><div class="line">    // TODO</div><div class="line"></div><div class="line">    this.__doSubscribeMessage(</div><div class="line">        &apos;/m/message/account/&apos;,&apos;onok&apos;,</div><div class="line">        this.__onMessageReceive._$bind(this)</div><div class="line">    );</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="模块化的解决办法"><a href="#模块化的解决办法" class="headerlink" title="模块化的解决办法"></a>模块化的解决办法</h1><p>在 JS 没有模块化之前，出现了一些模块的加载方案，如 CommonJS，AMD，CMD等，后来为了兼容各种模块加载方案，提出了UMD。一些框架也提出了模块化实现的解决方案，如 NEJ。</p>
+<p>现在 JS 在 ES6 规范中规定了模块系统的实现，可以取代过去的一些实现方案 CommonJS AMD 等等。</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/11/25/node静态资源服务器/">node 实现静态资源服务器</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-25
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="node-实现静态资源服务器"><a href="#node-实现静态资源服务器" class="headerlink" title="node 实现静态资源服务器"></a>node 实现静态资源服务器</h1><p>考虑到的点</p>
+<ul>
+<li>路径分析</li>
+<li>不同类型的文件展示</li>
+<li>增加文件夹逻辑 形如<a href="http://xxx.com/a/b/" target="_blank" rel="external">http://xxx.com/a/b/</a> , 则查找b目录下是否有index.html,如果有就显示，如果没有就列出该目录下的所有文件及文件夹，并可以进一步访问</li>
+<li>增加缓存机制</li>
+</ul>
+<h2 id="路由解析"><a href="#路由解析" class="headerlink" title="路由解析"></a>路由解析</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>)</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa()</div><div class="line"></div><div class="line">app.use( <span class="keyword">async</span> ( ctx ) =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(ctx.request.path);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'app started at port 3000 ...'</span>);</div></pre></td></tr></table></figure>
+<h2 id="纯文本文件查找和读取"><a href="#纯文本文件查找和读取" class="headerlink" title="纯文本文件查找和读取"></a>纯文本文件查找和读取</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">app.use( <span class="function">(<span class="params"> ctx </span>) =&gt;</span> &#123;</div><div class="line">    <span class="comment">// 拼接出真实路径</span></div><div class="line">    <span class="keyword">let</span> pathName = path.join(staticPath, ctx.request.path);</div><div class="line">    <span class="built_in">console</span>.log(pathName);</div><div class="line"></div><div class="line">    <span class="comment">// 读取文件</span></div><div class="line">    <span class="keyword">let</span> exist = fs.existsSync(pathName);</div><div class="line">    <span class="keyword">if</span> (exist === <span class="literal">true</span>) &#123;</div><div class="line">        <span class="keyword">let</span> data = fs.readFileSync(pathName);</div><div class="line">        ctx.response.type = <span class="string">"html"</span>;</div><div class="line">        ctx.response.body = data;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ctx.response.type = <span class="string">'text/plain'</span>;</div><div class="line">        ctx.response.body = <span class="string">"The request URL '"</span> + pathName + <span class="string">"' was not found on this server"</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="built_in">console</span>.log(exist);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="不同类型文件的读取"><a href="#不同类型文件的读取" class="headerlink" title="不同类型文件的读取"></a>不同类型文件的读取</h2><p>MIME值制作映射表<br>MIME.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> type = &#123;</div><div class="line">    <span class="string">"txt"</span>: <span class="string">"text/plain"</span>,</div><div class="line">    <span class="string">"xml"</span>: <span class="string">"text/xml"</span>,</div><div class="line">    <span class="string">"html"</span>: <span class="string">"text/html"</span>,</div><div class="line">    <span class="string">"css"</span>: <span class="string">"text/css"</span>,</div><div class="line">    <span class="string">"js"</span>: <span class="string">"text/javascript"</span>,</div><div class="line">    <span class="string">"json"</span>: <span class="string">"application/json"</span>,</div><div class="line">    <span class="string">"gif"</span>: <span class="string">"image/gif"</span>,</div><div class="line">    <span class="string">"png"</span>: <span class="string">"image/png"</span>,</div><div class="line">    <span class="string">"jpeg"</span>: <span class="string">"image/jpeg"</span>,</div><div class="line">    <span class="string">"jpg"</span>: <span class="string">"image/jpeg"</span>,</div><div class="line">    <span class="string">"svg"</span>: <span class="string">"image/svg+xml"</span>,</div><div class="line">    <span class="string">"ico"</span>: <span class="string">"image/x-icon"</span>,</div><div class="line">    <span class="string">"pdf"</span>: <span class="string">"application/pdf"</span>,</div><div class="line">    <span class="string">"swf"</span>: <span class="string">"application/x-shockwave-flash"</span>,</div><div class="line">    <span class="string">"tiff"</span>: <span class="string">"image/tiff"</span>,</div><div class="line">    <span class="string">"wav"</span>: <span class="string">"audio/x-wav"</span>,</div><div class="line">    <span class="string">"wma"</span>: <span class="string">"audio/x-ms-wma"</span>,</div><div class="line">    <span class="string">"wmv"</span>: <span class="string">"video/x-ms-wmv"</span></div><div class="line">&#125;</div><div class="line">exports.type = type;</div></pre></td></tr></table></figure></p>
+<p>通过映射表，根据后缀名来查找 response.type<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> findFileMIME = <span class="function"><span class="keyword">function</span> (<span class="params">pathName</span>) </span>&#123; <span class="comment">// 根据文件后缀名来判断 </span></div><div class="line">    <span class="keyword">let</span> filetype = path.extname(pathName).substring(<span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span> (MIME.type[filetype]) &#123;</div><div class="line">        <span class="keyword">return</span> MIME.type[filetype];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> data = fs.readFileSync(pathName);</div><div class="line">ctx.response.type = findFileMIME(pathName) || <span class="string">'text'</span>;</div><div class="line">ctx.response.body = data;</div></pre></td></tr></table></figure>
+<h2 id="完整的文件和文件夹处理"><a href="#完整的文件和文件夹处理" class="headerlink" title="完整的文件和文件夹处理"></a>完整的文件和文件夹处理</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> main = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> pathName = path.join(staticPath, ctx.request.path);</div><div class="line">    <span class="comment">// 判断文件路径是否存在</span></div><div class="line">    <span class="keyword">let</span> exist = fs.existsSync(pathName);</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (exist === <span class="literal">true</span>) &#123;</div><div class="line">        <span class="comment">// 判断是文件还是文件夹</span></div><div class="line">        <span class="keyword">var</span> stats = fs.statSync(pathName);</div><div class="line">        <span class="keyword">if</span> (stats.isFile()) &#123; <span class="comment">// 如果是文件， 判断文件类型， 并显示文件</span></div><div class="line">            <span class="keyword">let</span> data = fs.readFileSync(pathName);</div><div class="line">            ctx.response.type = findFileMIME(pathName) || <span class="string">'text'</span>;</div><div class="line">            ctx.response.body = data;</div><div class="line"></div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stats.isDirectory()) &#123; <span class="comment">// 如果是文件夹, index.html or 文件列表</span></div><div class="line">            <span class="keyword">if</span> (!fs.existsSync(path.join(pathName, <span class="string">'index.html'</span>))) &#123; <span class="comment">// 判断是否存在 index.html</span></div><div class="line">                ctx.response.type = <span class="string">'html'</span>;</div><div class="line">                <span class="keyword">let</span> htmlbody = <span class="string">"&lt;head&gt;&lt;meta charset = 'utf-8'/&gt;&lt;/head&gt;&lt;body&gt;&lt;ul&gt;"</span>;</div><div class="line">                <span class="keyword">let</span> files = <span class="keyword">await</span> fs.readdir(pathName);</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> i  = <span class="number">0</span>;i&lt;files.length; i++) &#123;</div><div class="line">                    <span class="comment">// 排除 DS_STORE 文件</span></div><div class="line">                    <span class="keyword">if</span> (files[i]!== <span class="string">'.DS_Store'</span>) &#123;</div><div class="line">                        <span class="keyword">let</span> hreflink = path.join(ctx.request.path, files[i]);</div><div class="line">                        htmlbody = htmlbody + <span class="string">'&lt;li&gt;&lt;a href="'</span> + hreflink +<span class="string">'"&gt;'</span> + files[i] +<span class="string">'&lt;/a&gt;&lt;/li&gt;'</span>;</div><div class="line">                        <span class="built_in">console</span>.log(path.extname(files[i]));</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                htmlbody = htmlbody + <span class="string">'&lt;/ul&gt;&lt;/body&gt;'</span>;</div><div class="line">                ctx.response.body = htmlbody;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                ctx.response.redirect(path.join(ctx.request.path, <span class="string">'index.html'</span>));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        ctx.response.type = <span class="string">'text/plain'</span>;</div><div class="line">        ctx.response.body = <span class="string">"The request URL '"</span> + pathName + <span class="string">"' was not found on this server"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">app.use(main);</div></pre></td></tr></table></figure>
+<h2 id="增加缓存机制"><a href="#增加缓存机制" class="headerlink" title="增加缓存机制"></a>增加缓存机制</h2><p>目的：为了缓解请求量增大对服务器的压力，采用缓存机制能够减少对服务器文件的读写。</p>
+<p>属性：</p>
+<ul>
+<li><p>request </p>
+<ul>
+<li>If-Modified-Since：第一次请求时response 中的 Last-Modified</li>
+<li>If-Nont-Match： 浏览器第一次请求时 response 中的 ETag</li>
+</ul>
+</li>
+<li><p>response</p>
+<ul>
+<li>Cache-Control: max-age=【秒】 || no-cache || no-store || public || private</li>
+<li>ETag: 当前资源在服务器的唯一标志符</li>
+<li>Expires</li>
+<li>Last-Modified: 告诉浏览器当前资源的最后修改时间</li>
+</ul>
+</li>
+</ul>
+<p>HTTP 缓存策略</p>
+<ul>
+<li><strong>本地缓存阶段：</strong> 先在本地查找该资源，如果存在，且资源未过期，则使用这一资源，不发送 http 请求到服务器</li>
+<li><strong>协商缓存阶段：</strong> 如果在本地缓存找到对应资源，但是不知道是否过期，则发一个HTTP请求到服务器，然后服务器判断请求的资源在服务器上是否改动过，没有改动过则返回 304，让浏览器使用本地找到的资源</li>
+<li><strong>缓存失败：</strong> 当服务器发现请求的资源已经修改过，或这是一个新的请求，服务器则返回该资源的数据，并返回200。如果资源未找到则返回 404</li>
+</ul>
+<h3 id="本地缓存阶段"><a href="#本地缓存阶段" class="headerlink" title="本地缓存阶段"></a>本地缓存阶段</h3><ul>
+<li>Expires：缓存过期的绝对时间GMT，如果设置了max-age，expires会失效</li>
+<li>Cache-Control：max-age=【秒】</li>
+</ul>
+<h3 id="前端存储方式"><a href="#前端存储方式" class="headerlink" title="前端存储方式"></a>前端存储方式</h3><ul>
+<li>Cookie &lt;4k 且会在同域网络请求中进行传输，消耗网络带宽，大量Cookie会导致请求变慢，所以Cookie只保存与权限有关的用户信息。</li>
+<li>LocalStorage 存储非敏感的静态数据</li>
+<li>SeesionStorage 关闭浏览器后会清空</li>
+</ul>
+<h3 id="协商缓存阶段"><a href="#协商缓存阶段" class="headerlink" title="协商缓存阶段"></a>协商缓存阶段</h3><ul>
+<li>Last-Modified === if-modified-since 最后修改时间判断</li>
+<li>ETag === If-None-Match 文件的唯一符</li>
+</ul>
+<p>协商流程：<br>1.客户端请求一个页面（A）。<br>2.服务器返回页面A，并在给A加上一个Last-Modified/ETag。<br>3.客户端展现该页面，并将页面连同Last-Modified/ETag一起缓存。<br>4.客户再次请求页面A，并将上次请求时服务器返回的Last-Modified/ETag一起传递给服务器。<br>5.服务器检查该Last-Modified或ETag，并判断出该页面自上次客户端请求之后还未被修改，直接返回响应304和一个空的响应体。</p>
+<p><strong>Etag</strong> 主要为了解决 Last-Modified 无法解决的一些问题：<br>1、一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新GET；<br>2、某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；<br>3、某些服务器不能精确的得到文件的最后修改时间。</p>
+<p><strong>Content-Length：</strong>尽管并没有在缓存中明确涉及，Content-Length头部在设置缓存策略时很重要。某些软件如果不提前获知内容的大小以留出足够空间，则会拒绝缓存该内容。</p>
+<p><strong>Vary：</strong>缓存系统通常使用请求的主机和路径作为存储该资源的键。当判断一个请求是否是请求同样内容时，Vary头部可以被用来提醒缓存系统需要注意另一个附加头部。它通常被用来告诉缓存系统同样注意Accept-Encoding头部，以便缓存系统能够区分压缩和未压缩的内容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// ************ 判断 缓存 ***********************</span></div><div class="line"><span class="keyword">let</span> Expires = &#123;</div><div class="line">    fileMatch: <span class="regexp">/^(\.gif|\.png|\.jpg|\.js|\.css|\.html)$/ig</span>,</div><div class="line">    maxAge: <span class="number">60</span>*<span class="number">60</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">if</span> (path.extname(ctx.request.path).match(Expires.fileMatch)) &#123;</div><div class="line">    <span class="comment">//获取最后修改时间 last-modified </span></div><div class="line">    <span class="keyword">var</span> stats = fs.statSync(pathName);</div><div class="line">    <span class="keyword">let</span> lastModified = stats.mtime.toUTCString();</div><div class="line">    </div><div class="line">    <span class="comment">// last-modified</span></div><div class="line">    <span class="keyword">if</span> (ctx.request.header[<span class="string">'if-modified-since'</span>]) &#123;</div><div class="line">        <span class="keyword">if</span> (ctx.request.header[<span class="string">'if-modified-since'</span>] === lastModified) &#123;</div><div class="line">            ctx.status = <span class="number">304</span>;</div><div class="line">            <span class="keyword">await</span> next();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// ETag </span></div><div class="line">    <span class="keyword">if</span> (ctx.request.header[<span class="string">'if-none-match'</span>]) &#123;</div><div class="line">        <span class="keyword">if</span> (ctx.request.header[<span class="string">'if-none-match'</span>] == lastModified) &#123;</div><div class="line">            ctx.status = <span class="number">304</span>;</div><div class="line">            <span class="keyword">await</span> next();</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// cache 失效 fetch new data</span></div><div class="line">    ctx.set(<span class="string">'ETag'</span>, lastModified);</div><div class="line">    ctx.set(<span class="string">'Last-Modified'</span>, lastModified);</div><div class="line">    ctx.status = <span class="number">200</span>;</div><div class="line">    <span class="keyword">let</span> data = fs.readFileSync(pathName);</div><div class="line">    ctx.response.type = findFileMIME(pathName) || <span class="string">'text'</span>;</div><div class="line">    ctx.response.body = data;</div><div class="line">    <span class="keyword">await</span> next();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://imweb.io/topic/55c6f9bac222e3af6ce235b9" target="_blank" rel="external">缓存策略</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/10/28/NEJ-TEMPLATE/">NEJ 的模板类型</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-28
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="NEJ-template"><a href="#NEJ-template" class="headerlink" title="NEJ template"></a>NEJ template</h1><p><strong>document.createDocumentFragment</strong><br>返回一个文档片段，对该文档片段的修改不会导致页面 reflow ，故常用于 DOM 操作的性能优化</p>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><h3 id="txt"><a href="#txt" class="headerlink" title="txt"></a>txt</h3><p>步骤：</p>
+<ul>
+<li>将模板放入缓存</li>
+<li>取出模板，字符串格式</li>
+<li>字符串格式模板转为node 格式</li>
+<li>node格式模板加入DOM tree </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/tpl'</span></div><div class="line">_t._$addTextTemplate(<span class="string">'txt-template-1'</span>, <span class="string">`&lt;div&gt;&lt;p&gt;aaaaaaaaaa&lt;/p&gt;&lt;/div&gt;`</span>);</div><div class="line"><span class="keyword">var</span> _text = _t._$getTextTemplate(<span class="string">'txt-template-1'</span>);</div><div class="line"><span class="keyword">var</span> _node = _e._$html2node(_text);</div><div class="line">_e._$get(<span class="string">'text'</span>).append(_node);</div></pre></td></tr></table></figure>
+<p>或者将模板写入 TEXTAREA 标签下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"txt"</span> <span class="attr">id</span>=<span class="string">"txt-template-1"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>aaaaaaaaaaaaaa<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- content here --&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/tpl'</span></div><div class="line"> _t._$parseTemplate(<span class="string">'txt-template-1'</span>);</div><div class="line"><span class="keyword">var</span> _text = _t._$getTextTemplate(<span class="string">'txt-template-1'</span>);</div><div class="line"><span class="keyword">var</span> _node = _e._$html2node(_text);</div><div class="line">_e._$get(<span class="string">'text'</span>).append(_node);</div></pre></td></tr></table></figure>
+<p><strong>html2node</strong></p>
+<ul>
+<li>正则找到第一个标签名</li>
+<li>根据标签名，生成一个元素。li–&gt; ul tr–&gt;tbody 等， 一般生成 div </li>
+<li>将 html 字符串作为 innerHTML 放入 div 中</li>
+<li>判断 div 中的 children 元素有几个？一个的话返回children 元素，多个的话返回 div 元素本身</li>
+</ul>
+<h3 id="ntp"><a href="#ntp" class="headerlink" title="ntp"></a>ntp</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/tpl'</span></div><div class="line"><span class="comment">// 解析模版，支持textarea的批量解析</span></div><div class="line">_t._$parseTemplate(<span class="string">'ntp-template-1'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 根据模板ID取模板内容</span></div><div class="line"><span class="comment">// 返回模板对应的DOM树结构</span></div><div class="line"><span class="keyword">var</span> _node = _t._$getNodeTemplate(<span class="string">'ntp-template-1'</span>);</div></pre></td></tr></table></figure>
+<p><strong>_$getNodeTemplate</strong><br>判断<br>-如果取出来的格式是字符串的话，执行 html2node 返回 node 格式，并缓存起来，以便下次直接调用</p>
+<h3 id="jsx"><a href="#jsx" class="headerlink" title="jsx"></a>jsx</h3><p>符合jst语法的模板，例如服务器端模板 freemarkder, verlocity 等</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"jst"</span> <span class="attr">id</span>=<span class="string">"jst-template-1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"w-table"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>序号<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">thead</span>&gt;</span>\</div><div class="line">      &#123;if !defined("workers")&#125;</div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"3"</span>&gt;</span>数据加载失败，请稍后再试！<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      &#123;elseif workers&amp;&amp;workers.length&#125;</div><div class="line">        &#123;list workers as x&#125;</div><div class="line">          <span class="tag">&lt;<span class="name">tr&#123;if</span> <span class="attr">x_index</span>==<span class="string">x_length-1&#125;</span> <span class="attr">class</span>=<span class="string">"last"</span>&#123;/<span class="attr">if</span>&#125;&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;x_index+1&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>$&#123;x.name&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;if x.gender==1&#125;男&#123;else&#125;女&#123;/if&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">          <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">        &#123;/list&#125;</div><div class="line">      &#123;else&#125;</div><div class="line">      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"3"</span>&gt;</span>没有工人！<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">      &#123;/if&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// _t = 'util/template/jst'</span></div><div class="line"><span class="comment">// 模板缓存</span></div><div class="line">_t._$add(<span class="string">'jst-template-1'</span>);</div><div class="line"><span class="comment">// 根据模板ID取模板内容</span></div><div class="line"><span class="comment">// 返回整合数据后的html代码</span></div><div class="line"><span class="keyword">var</span> _html = _t._$get(<span class="string">'jst-template-1'</span>,&#123;</div><div class="line">    workers:[</div><div class="line">        &#123;<span class="attr">name</span>:<span class="string">'abc'</span>,<span class="attr">gender</span>:<span class="number">1</span>&#125;,</div><div class="line">        &#123;<span class="attr">name</span>:<span class="string">'def'</span>,<span class="attr">gender</span>:<span class="number">1</span>&#125;,</div><div class="line">        &#123;<span class="attr">name</span>:<span class="string">'ghi'</span>&#125;</div><div class="line">    ]</div><div class="line">&#125;);</div><div class="line"><span class="keyword">var</span> _node = _e._$html2node(_html);</div><div class="line">_e._$get(<span class="string">'text'</span>).append(_node);</div></pre></td></tr></table></figure>
+<p><strong>模板解析</strong><br>采用 TrimPath 库来解析</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/10/15/面向对象设计五大基本原则/">面向对象设计的五大基本原则</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-10-15
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="SOLID-面向对象设计的五大基本原则"><a href="#SOLID-面向对象设计的五大基本原则" class="headerlink" title="SOLID 面向对象设计的五大基本原则"></a>SOLID 面向对象设计的五大基本原则</h1><ul>
+<li>S 单一职责原则</li>
+<li>O 开放封闭原则</li>
+<li>L 里氏替换原则</li>
+<li>I 接口隔离原则</li>
+<li>D 依赖倒置原则</li>
+</ul>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>一个类应该只有一项工作，只有一个改变它的理由</p>
+<p>单一指责类型：</p>
+<ul>
+<li>information holder 存储对象并提供对象信息</li>
+<li>structurer 维护对象和信息之间的关系</li>
+<li>service provider 处理工作并提供服务</li>
+<li>controller 控制决策一系列负责的任务处理</li>
+<li>coordinator 分配工作</li>
+<li>interfacer 在系统的各个部分转化信息（或请求）</li>
+</ul>
+<h2 id="开放封闭原则"><a href="#开放封闭原则" class="headerlink" title="开放封闭原则"></a>开放封闭原则</h2><p>软件实体应该是可以扩展的，但是是不可修改的</p>
+<h3 id="利用对象的多态性消除条件分支"><a href="#利用对象的多态性消除条件分支" class="headerlink" title="利用对象的多态性消除条件分支"></a>利用对象的多态性消除条件分支</h3><p>每当看到大片的 if 或者 else 就应该考虑是否能够利用对象的多态性来重构它们</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> makeSound = <span class="function"><span class="keyword">function</span> (<span class="params">animal</span>) </span>&#123;</div><div class="line">    animal.sound();</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Duck = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">Duck.prototype.sound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'嘎嘎嘎'</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> Chicken = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line">Chicken.prototype.sound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'咯咯咯'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">makeSound(<span class="keyword">new</span> Duck());</div><div class="line">makeSound(<span class="keyword">new</span> Chicken());</div></pre></td></tr></table></figure>
+<h3 id="放置挂钩"><a href="#放置挂钩" class="headerlink" title="放置挂钩"></a>放置挂钩</h3><p>模版中在可能变化的地方放置挂钩函数，挂钩返回结果由具体子类决定。程序就拥有了变化的可能。</p>
+<h3 id="使用回调"><a href="#使用回调" class="headerlink" title="使用回调"></a>使用回调</h3><p>回调是一种特殊的挂钩。可以把一部分易于变化的逻辑封装在回调函数里，然后把回调函数当作参数传入一个稳定和封闭的函数中。如 AJAX请求后要做的一些事情。</p>
+<h2 id="里氏替换原则-LSP-The-Liskov-Substitution-Priciple"><a href="#里氏替换原则-LSP-The-Liskov-Substitution-Priciple" class="headerlink" title="里氏替换原则 LSP The Liskov Substitution Priciple"></a>里氏替换原则 LSP The Liskov Substitution Priciple</h2><p>派生类型必须可以替换它的基类型<br>继承子类型需要在语义上等价于基类型里的期望行为。</p>
+<h2 id="最少知识原则"><a href="#最少知识原则" class="headerlink" title="最少知识原则"></a>最少知识原则</h2><p>中介者模式 &amp;&amp; 外观模式<br>封装：数据的隐藏，只暴露必要的接口API供外界访问。<br>实现：闭包</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/09/05/对象的继承/">js对象的继承</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-05
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="javascript-继承"><a href="#javascript-继承" class="headerlink" title="javascript 继承"></a>javascript 继承</h1><h2 id="构造函数的继承"><a href="#构造函数的继承" class="headerlink" title="构造函数的继承"></a>构造函数的继承</h2><h3 id="prototype-继承"><a href="#prototype-继承" class="headerlink" title="prototype 继承"></a>prototype 继承</h3><p>利用空对象来继承 Parent.prototype, 这样修改子对象的 prototype 就不会影响 父对象的prototype了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">F.prototype = Parent.prototype;</div><div class="line">Child.prototype = <span class="keyword">new</span> F();</div><div class="line">Child.prototype.constructor = Child;</div></pre></td></tr></table></figure>
+<h3 id="拷贝属性继承"><a href="#拷贝属性继承" class="headerlink" title="拷贝属性继承"></a>拷贝属性继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p = Parent.prototype;</div><div class="line"><span class="keyword">var</span> c = Child.prototype;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">    c[i] = p[i];</div><div class="line">&#125;</div><div class="line">c.uber = p;</div></pre></td></tr></table></figure>
+<p>上述两个例子来自<a href="http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html" target="_blank" rel="external">ruanyifeng博客</a></p>
+<h2 id="非构造函数的继承"><a href="#非构造函数的继承" class="headerlink" title="非构造函数的继承"></a>非构造函数的继承</h2><h3 id="利用-prototype"><a href="#利用-prototype" class="headerlink" title="利用 prototype"></a>利用 prototype</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>将父对象的属性拷贝到子对象中</p>
+<h2 id="NEJ-Klass-如何实现继承"><a href="#NEJ-Klass-如何实现继承" class="headerlink" title="NEJ Klass 如何实现继承"></a>NEJ Klass 如何实现继承</h2><p>_Klass 函数是一个构造函数的生产器，可以返回一个构造函数<br>其中 _Klass.init 方法可以重写，用来生成 this 对象里面的各个属性，<br>_Klass.extend 方法主要用来修改 this.prototype，可以实现父元素的继承，返回的是 this.prototype</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">_Klass = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> klass = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.init.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">        &#125;;</div><div class="line">        <span class="comment">// &lt;!-- 初始化对象 --&gt;</span></div><div class="line">        klass.prototype.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">        <span class="comment">// &lt;!-- 实现继承 --&gt;</span></div><div class="line">        klass.extend = <span class="function"><span class="keyword">function</span> (<span class="params">ssuper</span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.$<span class="keyword">super</span> = ssuper;</div><div class="line">            <span class="keyword">var</span> P = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">            P.prototype = ssuper.prototype;</div><div class="line">            <span class="keyword">this</span>.prototype = <span class="keyword">new</span> P();</div><div class="line">            <span class="keyword">this</span>.prototype.constructor = <span class="keyword">this</span>;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.prototype;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> klass;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>定义一个想要继承的父元素<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Parent = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.parentname = <span class="string">'parent'</span>;</div><div class="line">&#125;</div><div class="line">Parent.prototype.country = <span class="string">'China'</span>;</div></pre></td></tr></table></figure></p>
+<p>实现子元素<br>B 为 _Klass 生成的一个构造函数<br>pro 为 B.prototype，此时 Parent.prototype 已经赋值给 B.prototype 了<br>可以在 pro 上拓展属性，相当于在 B.prototype 上增加原型属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> B = _Klass();</div><div class="line"><span class="keyword">var</span> pro = B.extend(Parent);</div><div class="line">pro.init = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = <span class="string">'xiaojing'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最终生成实例，此时 pp 属性有 name,<br>pp.<strong>proto</strong> 为 pro 这个对象，包括 init, constructor, <strong>proto</strong>(Parent.prototype)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pp = <span class="keyword">new</span> B();</div></pre></td></tr></table></figure>
+<h2 id="关于-new-究竟做了啥"><a href="#关于-new-究竟做了啥" class="headerlink" title="关于 new 究竟做了啥"></a>关于 new 究竟做了啥</h2><p>来自 javascript 语言精粹<br>如果在一个函数前面带上 new 来调用，那么背地里将会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会绑定到那个新对象上。</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/09/01/移动前端开发小Tip/">移动端前端开发小Tip</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="移动端前端开发–采用-rem-来定义宽度，实现不同设备的等比缩放"><a href="#移动端前端开发–采用-rem-来定义宽度，实现不同设备的等比缩放" class="headerlink" title="移动端前端开发–采用 rem 来定义宽度，实现不同设备的等比缩放"></a>移动端前端开发–采用 rem 来定义宽度，实现不同设备的等比缩放</h1><h2 id="常用的-meta-标签实例"><a href="#常用的-meta-标签实例" class="headerlink" title="常用的 meta 标签实例"></a>常用的 meta 标签实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&gt;</div></pre></td></tr></table></figure>
+<p>这里device-width 为理想适口宽度，即 css 像素。</p>
+<h2 id="采用设备像素进行开发"><a href="#采用设备像素进行开发" class="headerlink" title="采用设备像素进行开发"></a>采用设备像素进行开发</h2><p>因为一般设计稿都是最大分辨率进行设计的，即基于设备像素进行设计，所以开发的时候也基于设备像素进行开发是比较方便的。通过 document.documentElement.clientWidth 可以拿到设备像素，设备像素 = css像素（理想适口宽度） * window.devicePixelRatio(设备像素比)<br>需要 js 动态获取当前设备的设备像素，设置 meta，进行缩放。这时，开发中 css 的像素就是针对设备像素而言的。css中的像素值可以直接根据设计稿来定义啦。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> scale = <span class="number">1</span> / <span class="built_in">window</span>.devicePixelRatio;</div><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">'meta[name="viewport"]'</span>).setAttribute(<span class="string">'content'</span>, <span class="string">'width=device-width, initial-scale='</span> + scale + <span class="string">',minimum-scale='</span> + scale + <span class="string">', user-scalable=no'</span>);</div></pre></td></tr></table></figure>
+<h2 id="针对不同设备进行缩放"><a href="#针对不同设备进行缩放" class="headerlink" title="针对不同设备进行缩放"></a>针对不同设备进行缩放</h2><p>不同设备的具有不同的设备像素，如何将针对 iphone6 的设计稿也同样适用于 iphone5 呢？这里采用 rem 来解决这个问题。1rem 等于 html元素的 fontSize。我们针对不同的设备（iphone5, iphone6 等等）设置不同的fontSize = 设备分辨率的1/10。那么 CSS 中，1rem 就等于屏幕的1/10，就可以针对不同的设备宽度进行缩放了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.documentElement.style.fontSize = <span class="built_in">document</span>.documentElement.clientWidth / ratio + <span class="string">'px'</span>;</div></pre></td></tr></table></figure>
+<p>这里 ratio 的大小针对设计稿中的设备像素宽度决定，比如，设备像素宽度为750px，radio=7.5， 此时 1rem = 100px，定义宽度时就可以直接将设计稿中元素的宽度除以 100，如果设备像素为1200， radio= 12，1rem = 100px, 比较方便计算。</p>
+<h2 id="移动端字体大小"><a href="#移动端字体大小" class="headerlink" title="移动端字体大小"></a>移动端字体大小</h2><p>通常采用媒体查询的方式，媒体查询一般分为 321px以下，321px～400px 之间，400px 以上三种。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> screen and (max-width: <span class="number">321px</span>) &#123;</div><div class="line">    <span class="selector-tag">header</span>,<span class="selector-tag">footer</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">16px</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">321px</span>) and (max-width:<span class="number">400px</span>) &#123;</div><div class="line">    <span class="selector-tag">header</span>,<span class="selector-tag">footer</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">17px</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">400px</span>) &#123;</div><div class="line">    <span class="selector-tag">header</span>,<span class="selector-tag">footer</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">19px</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://hcysun.me/2015/10/19/%E4%B8%80%E7%AF%87%E7%9C%9F%E6%AD%A3%E6%95%99%E4%BC%9A%E4%BD%A0%E5%BC%80%E5%8F%91%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%96%87%E7%AB%A0-%E4%BA%8C/" target="_blank" rel="external">一篇真正教会你开发移动端页面的文章</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/09/01/css BEM 命名思想/">CSS BEM 命名思想</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="css-BEM-命名思想"><a href="#css-BEM-命名思想" class="headerlink" title="css BEM 命名思想"></a>css BEM 命名思想</h1><blockquote>
+<p>关注这个问题源于我连续写了三个页面，在想css classname的时候想的头疼，不外乎section section1 section2 里面包裹 list, title, summary。。。感觉是那种写完就不想再看一眼的命名。这对于复杂的，需要不断迭代和维护的大项目肯定是不可行的，我就搜索了下解决方案，然后就了解到 BEM </p>
+</blockquote>
+<h1 id="BEM-是什么"><a href="#BEM-是什么" class="headerlink" title="BEM 是什么"></a>BEM 是什么</h1><p>BEM 即</p>
+<ul>
+<li>Block （块）</li>
+<li>Element (元素，如 img )</li>
+<li>Modifier (状态，如 active)</li>
+</ul>
+<p>其中 block 和 element 之间用<strong>连接，和 modifier 之间用 – 连接。<br>.navigation<br>.navigation</strong>item<br>.navigation__item–active</p>
+<p>一般情况下我们这么写css </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.navigation &#123;</div><div class="line">    .item &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    .item.active &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样写的坏处使得代码过分依赖HTML结构，不易于继续发展进化，同时会造成 .active 常见的类有冲突的风险。</p>
+<p>而使用 BEM 风格命名类名，就能够容易的拆解组件，且具有良好的可移植性。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="http://www.w3cplus.com/css/mindbemding-getting-your-head-round-bem-syntax.html" target="_blank" rel="external">BEM 思想之彻底弄清 BEM 语法</a></li>
+<li><a href="https://github.com/FrankFang/githublog/blob/master/%E6%8A%80%E6%9C%AF/BEMCSS.md" target="_blank" rel="external">技术博客BEM</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/09/01/weinre远程调试/">weinre 远程调试移动设备</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="weinre-远程调试移动设备"><a href="#weinre-远程调试移动设备" class="headerlink" title="weinre 远程调试移动设备"></a>weinre 远程调试移动设备</h1><blockquote>
+<p>想要解决的问题：调试移动端样式</p>
+</blockquote>
+<h1 id="weinre-是什么"><a href="#weinre-是什么" class="headerlink" title="weinre 是什么"></a>weinre 是什么</h1><p>weinre (Web Inspector Remote)是基于Web Inspector(Webkit)的远程调试工具。可以直接在电脑上调试运行在手机上的远程页面。</p>
+<h1 id="weinre-安装"><a href="#weinre-安装" class="headerlink" title="weinre 安装"></a>weinre 安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[sudo] npm -g install weinre</div></pre></td></tr></table></figure>
+<h1 id="运行-werine"><a href="#运行-werine" class="headerlink" title="运行 werine"></a>运行 werine</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weinre --httpPort 8082 --boundHost -all-</div></pre></td></tr></table></figure>
+<p>安装成功会出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">2017-09-04T11:01:01.604Z weinre: starting server at http://localhost:8082</div><div class="line">2017-09-04T11:19:04.561Z weinre: target t-6: weinre: target t-6 connected to client c-5</div><div class="line">2017-09-04T11:19:08.652Z weinre: target t-6: weinre: target t-6 disconnected from client c-5</div><div class="line">2017-09-04T11:19:08.692Z weinre: target t-6: weinre: target t-6 connected to client c-5</div></pre></td></tr></table></figure></p>
+<p>在浏览器地址栏中输入下面的网址打开Weinre调试工具。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip:8082</div></pre></td></tr></table></figure></p>
+<p>ip地址 –&gt; 命令行 ifconfig<br>该网页中 Target script 要加载需要调试的页面中<br>该网页中的 <strong>Access Points</strong>   debug client user interface: <a href="http://10.242.10.198:8082/client/#anonymous" target="_blank" rel="external">http://10.242.10.198:8082/client/#anonymous</a> 点击进入出现调试页面</p>
+<p>然后用手机连接调试页面，再调试页面中target列表中选中需要调试的URL，elements中可以看到样式</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://github.com/nupthale/weinre" target="_blank" rel="external">werine</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/08/26/js动态加载文件及处理依赖/">JS 动态加载文件及处理依赖</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-26
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="NEJ-define-js-源码简析"><a href="#NEJ-define-js-源码简析" class="headerlink" title="NEJ define.js 源码简析"></a>NEJ define.js 源码简析</h1><blockquote>
+<p><a href="https://github.com/NEYouFan/nej-framework/blob/master/doc/DEPENDENCY.md" target="_blank" rel="external">define.js</a> 是 <a href="https://github.com/NEYouFan/nej-framework" target="_blank" rel="external">NEJ</a> 提供的一套文件依赖管理系统，功能有点类似于 requirejs。</p>
+</blockquote>
+<h2 id="NEJ-define-的使用"><a href="#NEJ-define-的使用" class="headerlink" title="NEJ.define 的使用"></a>NEJ.define 的使用</h2><blockquote>
+<p>注：define.js 除了文件依赖的管理还有一些其他配置，本文仅讨论依赖文件的加载是如何实现的</p>
+</blockquote>
+<p>页面引入依赖库文件，配置参数通过 define.js 的查询参数输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;/path/to/nej/define.js?pro=./&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>NEJ.define 为全局函数，输入参数为 _deps 依赖文件列表，以及 _callback 回调函数，其中依赖文件列表中返回的对象会作为回调函数的参数返回，供 _callback 函数调用。<br>除了依赖文件返回的对象以外，回调函数还会额外注入四个参数，依次为p、o、f、r，其中：</p>
+<ul>
+<li>p为输出结果集空间，用于注入到其他执行函数中的内容</li>
+<li>o为对象实例，即{}，用于处理对象默认值，如 var x = options||o;</li>
+<li>f为函数实例，返回false，用于处理方法默认值，如 var func = x.onready||f;</li>
+<li>r为数组实例，即[]，用于处理数组默认值，如 var arr = options.list||r;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">NEJ.define([</div><div class="line">    &apos;base/element&apos;,</div><div class="line">    &apos;pro/extend/util&apos;,</div><div class="line">    &apos;/path/to/file.js&apos;,</div><div class="line">    &apos;&#123;platform&#125;patch.js&apos;,</div><div class="line">    &apos;text!/path/to/file.css&apos;,</div><div class="line">    &apos;text!/path/to/file.html&apos;</div><div class="line">],function(e,u,t,h,css,html,p,o,f,r)&#123;</div><div class="line"></div><div class="line">    // TODO something</div><div class="line"></div><div class="line">    // 返回结果可注入给其他文件</div><div class="line">    return p;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="NEJ-define-函数的实现逻辑"><a href="#NEJ-define-函数的实现逻辑" class="headerlink" title="NEJ.define 函数的实现逻辑"></a>NEJ.define 函数的实现逻辑</h2><p>匿名函数中定义全局变量记录状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">xqueue = [&#123;</div><div class="line">    n: filename, //当前文件路径</div><div class="line">    d: dependency, //依赖文件路径列表</div><div class="line">    f: function, //当前函数回调列表</div><div class="line">    //...</div><div class="line">&#125;];</div><div class="line"></div><div class="line">scache = &#123;</div><div class="line">    filename: state //状态 0-loading 1-waiting 2-defined</div><div class="line">&#125;;</div><div class="line"></div><div class="line">rcache = &#123;</div><div class="line">    filename: result //文件返回对象</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>具体实现函数及流程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">define(deps, callback)</div><div class="line">|</div><div class="line">|-- dodefine(window, deps) // xqueue.push(uri, deps, callback) xqueue列表中加入&#123;当前文件路径，依赖列表，回调函数&#125;</div><div class="line">    |</div><div class="line">    |--- doLoadScript(deps) // 通过 createElement(script) 引入依赖文件</div><div class="line">    |   |</div><div class="line">    |   |--- doAddListener() // 添加 script 元素 onload 事件，执行 doScriptLoaded </div><div class="line">    |       |</div><div class="line">    |       |--- doScriptLoaded() // 相应 filename 的 scache 状态变为 2-defined  </div><div class="line">    |    </div><div class="line">    |--- doCheckLoading() // 检查 deps 依赖文件是否加载完毕</div><div class="line">        |</div><div class="line">        |---| doExecFunction() // deps 全部加载完毕后（检查 scache）, 执行 callback(xqueue[].f)函数，函数执行参数 args 由 doMergeID 计算得到</div><div class="line">            |</div><div class="line">            |--- doMergeID() // 从 rcache 中取出 deps 依赖文件的返回结果 args</div><div class="line">            |</div><div class="line">            |--- doMergeResulst() // 将callback回调函数的执行结果记录在 rcache 中</div></pre></td></tr></table></figure></p>
+<h2 id="循环依赖"><a href="#循环依赖" class="headerlink" title="循环依赖"></a>循环依赖</h2><p>github 上有 define.js 对于<a href="https://github.com/NEYouFan/nej-framework/blob/master/doc/DEPENDENCY.md" target="_blank" rel="external">循环依赖</a>的处理。</p>
+<ul>
+<li>强依赖：依赖文件之间的接口调用直接出现在文件定义函数中，避免代码出现强依赖，执行过程会出异常</li>
+<li>弱依赖：依赖文件之间的接口调用出现在文件定义函数内部的某个接口中，允许出现弱依赖，可以正常处理</li>
+</ul>
+<p>这里主要讨论弱依赖的情况下，还是 github 上的例子 a.js  -&gt;  b.js  -&gt;  a.js<br>a.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">NEJ.define([</div><div class="line">    &apos;./b.js&apos;</div><div class="line">],function(b,p)&#123;</div><div class="line"></div><div class="line">    // 在其他API中调用了b的接口</div><div class="line">    p.doSomething = function()&#123;</div><div class="line">        var result = b.api();</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    p.api = function()&#123;</div><div class="line">        // TODO</div><div class="line">        return &apos;aaaaa&apos;;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    return p;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>b.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">NEJ.define([</div><div class="line">    &apos;./a.js&apos;</div><div class="line">],function(a,p)&#123;</div><div class="line"></div><div class="line">    // 在其他API中调用了a的接口</div><div class="line">    p.doSomething = function()&#123;</div><div class="line">        var result = b.api();</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    p.api = function()&#123;</div><div class="line">        // TODO</div><div class="line">        return &apos;bbbbbb&apos;;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    return p;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>当出现弱依赖的情况下，在上节实现流程中，doLoadScript() 函数中，在加载依赖的文件前，会判断 scache[_uri] 中值是否为null（scache记录了文件的状态）， 如果不为 null 则说明之前已经加载过，不会再进行加载，依赖文件返回的对象可以直接从 rcache 中找到。</p>
+<h2 id="define-依赖文件类型为-TEXT-JSON／-CSS"><a href="#define-依赖文件类型为-TEXT-JSON／-CSS" class="headerlink" title="define 依赖文件类型为 TEXT/ JSON／ CSS"></a>define 依赖文件类型为 TEXT/ JSON／ CSS</h2><ul>
+<li><p>动态加载 TEXT<br>通过 XMLHttpRequest 请求 TEXT 文件，得到返回结果保存在 rcache 中。</p>
+</li>
+<li><p>动态加载 JSON<br>动态加载 TEXT 的流程，JSON.parse(result) 保存在 rcache 中找到。</p>
+</li>
+<li><p>动态加载 CSS<br>创建一个 link 元素</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var link = d.createElement(&apos;link&apos;);</div><div class="line">link.rel = &apos;stylesheet&apos;;</div><div class="line">(d.getElementsByTagName(&apos;head&apos;)[0]||d.body).appendChild(link);</div><div class="line">link.href = _uri;</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/08/26/Regular笔记/">Regular笔记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-26
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="Regular-js-笔记"><a href="#Regular-js-笔记" class="headerlink" title="Regular.js 笔记"></a>Regular.js 笔记</h1><h2 id="关于指令"><a href="#关于指令" class="headerlink" title="关于指令"></a>关于指令</h2><p>Regular.directive(name, definition) // 指令名 | 指令定义<br>其中 definition = function (elem, value) {}<br>elem 为指令绑定的当前元素<br>value 为指令等于的值，有两种类型 <strong>string</strong> 以及 <strong>expression</strong><br>string 可以直接获取它的值，而expression类型的值需要 Component.$get 方法获取。</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">r-html</span>=<span class="string">&#123;ppp&#125;</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">  name: <span class="string">'alert'</span>,</div><div class="line">  template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">  </div><div class="line">&#125;);</div><div class="line">Alert.directive(<span class="string">'r-html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">elem, value</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (value.type === <span class="string">'expression'</span>) &#123;</div><div class="line">      <span class="keyword">var</span> vv = <span class="keyword">this</span>.$get(value);</div><div class="line">      elem.innerHTML = vv;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      elem.innerHTML = value;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Alert(&#123;<span class="attr">data</span>: &#123;<span class="attr">ppp</span>: <span class="string">'hello kitty'</span>&#125;&#125;).$inject(<span class="built_in">document</span>.getElementById(<span class="string">'test'</span>));</div></pre></td></tr></table></figure></p>
+<p>在directive definition 里面还可以使用 Component.$watch 来监测数据的改变，实时修改数据。</p>
+<p>通过 directive 赋值的数据，是不会自动更新到View的，所以需要Component.$watch 手动绑定。<br>下面代码将 data.ppp 与 p 元素绑定，自动更新 view<br>涉及到的API： component.$watch(expression, callback(newValue, oldValue) [, options])</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span> <span class="attr">r-html</span>=<span class="string">&#123;ppp&#125;</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.changedata()&#125;</span>&gt;</span>click me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">  name: <span class="string">'alert'</span>,</div><div class="line">  template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">  </div><div class="line">&#125;);</div><div class="line">Alert.directive(<span class="string">'r-html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">elem, value</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (value.type === <span class="string">'expression'</span>) &#123;</div><div class="line">      <span class="keyword">var</span> vv = <span class="keyword">this</span>.$get(value);</div><div class="line">      elem.innerHTML = vv;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      elem.innerHTML = value;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">this</span>.$watch(value, <span class="function"><span class="keyword">function</span>(<span class="params">newValue, oldValue</span>) </span>&#123;</div><div class="line">      elem.innerHTML = newValue;</div><div class="line">    &#125;);</div><div class="line">&#125;)</div><div class="line"><span class="keyword">new</span> Alert(&#123;</div><div class="line">  data: &#123;<span class="attr">ppp</span>: <span class="string">'hello kitty'</span>&#125;,</div><div class="line">  changedata: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.data.ppp=<span class="string">"hahaha"</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.data.ppp);</div><div class="line">  &#125;</div><div class="line">&#125;).$inject(<span class="built_in">document</span>.getElementById(<span class="string">'test'</span>));</div></pre></td></tr></table></figure></p>
+<h2 id="关于-过滤器-filter"><a href="#关于-过滤器-filter" class="headerlink" title="关于 过滤器 filter"></a>关于 过滤器 filter</h2><p>Component.filter(name, factory) //过滤器名称 | 新的自定义过滤器<br>模版过滤器</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;name | addname: 'ergou'&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Alert.filter(<span class="string">'addname'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value, name</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> value + name;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>又一个问题，现在情况这个过滤器应该是个单向的，双向绑定的过滤器应该这么写</p>
+<p><strong>template:</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">r-model</span>=<span class="string">&#123;array|join:</span>'<span class="attr">-</span>'&#125; &gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>script:</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Regular.filter(<span class="string">'join'</span>, &#123;</div><div class="line">  <span class="comment">//["1","2","3"] - &gt; '1-2-3'</span></div><div class="line">  get: <span class="function"><span class="keyword">function</span>(<span class="params">origin, split </span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> origin.join( split || <span class="string">"-"</span> );</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">// **Important **</span></div><div class="line">  <span class="comment">// "1"-"2"-"3" - &gt; ["1","2","3"]</span></div><div class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">dest, split </span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> dest.split( split || <span class="string">"-"</span> );</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="关于-Event"><a href="#关于-Event" class="headerlink" title="关于 Event"></a>关于 Event</h2><h3 id="事件可以分为两大类：-DOM事件-amp-组件事件"><a href="#事件可以分为两大类：-DOM事件-amp-组件事件" class="headerlink" title="事件可以分为两大类： DOM事件 &amp; 组件事件"></a>事件可以分为两大类： <strong>DOM事件</strong> &amp; <strong>组件事件</strong></h3><p>事件触发：</p>
+<ul>
+<li>DOM事件：用户触发</li>
+<li>组件事件： Component.$emit(eventName)</li>
+</ul>
+<p>关于事件冒泡</p>
+<ul>
+<li>DOM事件部分可以冒泡</li>
+<li>组件事件不能冒泡</li>
+</ul>
+<p>关于$event </p>
+<ul>
+<li>DOM事件中传入的 $event 是事件对象</li>
+<li>组件事件中是$emit(eventName, [,args…]) 传入的第一个参数</li>
+</ul>
+<h3 id="自定义事件注册"><a href="#自定义事件注册" class="headerlink" title="自定义事件注册"></a>自定义事件注册</h3><p>两个方法：显式 &amp; 隐式</p>
+<ul>
+<li>显示方法<br>Component.event(eventName, factory);</li>
+<li>隐式<br>在节点或者组件中遇到 on-eventName 属性时，会先检查是否注册了 eventName 这个自定义事件，如果没有，则会通过 addEventListener 来绑定事件。</li>
+</ul>
+<h3 id="事件的回调"><a href="#事件的回调" class="headerlink" title="事件的回调"></a>事件的回调</h3><p>1、表达式插值 触发后表达式会执行一次<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.heihei(</span>'<span class="attr">hello</span>')&#125;&gt;</span>click on me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
+<p>2、非表达式<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;printOut&#125;</span>&gt;</span>click on me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;,</div><div class="line">    init: &#123;</div><div class="line">      <span class="keyword">this</span>.$on(<span class="string">"printOut"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.heihei(<span class="string">'hello'</span>);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><ul>
+<li>子组件触发事件，父组件监听：<br>组件方法的注册需要在组件的最外层用on-XXX来注册，触发需要在组件里里面采用 this.$emit(eventName, args)实现，例如：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.clickBtn()&#125;</span>&gt;</span>btn1!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;,</div><div class="line">    clickBtn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'clicked by btn1'</span>);</div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'show'</span>); <span class="comment">//触发了 show 事件</span></div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">var</span> Parent = Regular.extend(&#123;</div><div class="line">      name: <span class="string">'pp'</span>,</div><div class="line">      template: <span class="string">'&lt;div &gt;&lt;alert on-show=&#123;this.printout("show pp")&#125;&gt;&lt;/alert&gt;&lt;/div&gt;'</span>, <span class="comment">//注册show 事件</span></div><div class="line">      printout: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(text); </div><div class="line">      &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">new</span> Parent(&#123;</div><div class="line">  &#125;).$inject(<span class="built_in">document</span>.getElementById(<span class="string">'test'</span>));</div></pre></td></tr></table></figure>
+<ul>
+<li>组件内部触发 this.$emit，组件内部监听 this.$on </li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">on-click</span>=<span class="string">&#123;this.clickBtn()&#125;</span>&gt;</span>btn1!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Alert = Regular.extend(&#123; </div><div class="line">    name: <span class="string">'alert'</span>,</div><div class="line">    template: <span class="built_in">document</span>.querySelector(<span class="string">'#regular'</span>).innerHTML,</div><div class="line">    heihei: <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'aaàa'</span>);</div><div class="line">      <span class="built_in">console</span>.log(text);</div><div class="line">    &#125;,</div><div class="line">    clickBtn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'clicked by btn1'</span>);</div><div class="line">      <span class="keyword">this</span>.$emit(<span class="string">'show'</span>);</div><div class="line">    &#125;,</div><div class="line">    init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.$on(<span class="string">'show'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'showevent'</span>);</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="http://regularjs.github.io/guide/zh/basic/directive.html" target="_blank" rel="external">官方guide</a></li>
+<li><a href="http://regularjs.github.io/reference/?api-zh#api-reference-静态接口-componentdirective" target="_blank" rel="external">官方文档</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/05/25/binding/">双向绑定中如何发现数据变化</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-05-25
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="双向绑定需求"><a href="#双向绑定需求" class="headerlink" title="双向绑定需求:"></a>双向绑定需求:</h2><ol>
+<li>识别哪个UI元素被绑定了相应的属性 </li>
+<li>监视属性和UI元素的变化 </li>
+<li>将所有变化传播到绑定的对象和元素</li>
+</ol>
+<p>参考资料：<a href="http://www.html-js.com/article/2776" target="_blank" rel="external">2015前端组件化框架之路</a></p>
+<h2 id="如何发现数据变化"><a href="#如何发现数据变化" class="headerlink" title="如何发现数据变化"></a>如何发现数据变化</h2><p>MVVM 框架中，前端的视图层和数据层需要双向绑定，最难的一点是如何发现数据发生了变化，主要有三种途径：</p>
+<h3 id="存取器的封装"><a href="#存取器的封装" class="headerlink" title="存取器的封装"></a>存取器的封装</h3><p>  主要思路是通过在数据对象上定义 get 和 set 方法。调用时手动调用 get 或 set 数据，改变数据后触发UI层的渲染操作。<br>  <strong>缺点</strong>：要对每个数据的读取进行封装</p>
+<h3 id="脏检测-（-angular-实现方式）"><a href="#脏检测-（-angular-实现方式）" class="headerlink" title="脏检测 （ angular 实现方式）"></a>脏检测 （ angular 实现方式）</h3><p>保存数据的新旧值，某些特定的事件发生后，用这个事件之后的数据去跟之前保存的数据进行比对，如果相同，就不触发界面刷新，否则就刷新。</p>
+<p>触发脏检测的事件：</p>
+<ol>
+<li>DOM 事件，譬如用户输入文本，点击按钮等。(ng-click)</li>
+<li>XHR 响应事件 ($http)</li>
+<li>浏览器 Location 变更事件 ($location)</li>
+<li>Timer事件($timeout, $interval)</li>
+<li>执行 $digest()或$apply()</li>
+</ol>
+<p><strong>缺点</strong>：效率比较低</p>
+<p>angluar 的双向绑定参考 <a href="http://www.html-js.com/article/2145" target="_blank" rel="external">AngularJS 数据双向绑定揭秘</a></p>
+<h3 id="观察机制-polymer-observe-js"><a href="#观察机制-polymer-observe-js" class="headerlink" title="观察机制 (polymer observe.js)"></a>观察机制 (polymer observe.js)</h3><p>  在ES7里面，引入了Object的observe方法，可以用于监控对象或数组的变动。polymer实现了一个observe-js，用于观测数组、对象和路径的变更，有兴趣的可以关注。</p>
+<h2 id="补充：单向数据流思想"><a href="#补充：单向数据流思想" class="headerlink" title="补充：单向数据流思想"></a>补充：单向数据流思想</h2><p>react 如何解决view端用户修改数据的情况的？</p>
+<p><a href="https://facebook.github.io/react/docs/two-way-binding-helpers.html" target="_blank" rel="external">React two-way-binding</a></p>
+<p>监听用户特定的事件，获取数据(一般从DOM中), setState()更新数据。这样的单项数据流更易理解和维护。</p>
+<p>In React, you would implement this by listening to a “change” event, read from your data source (usually the DOM) and call setState() on one of your components. “Closing the data flow loop” explicitly leads to more understandable and easier-to-maintain programs.</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/05/25/classList/">好用的原生JS－classList</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-05-25
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>改了好几天的论文，实在无聊，就在 console 里面看了看 classList，发现 classList 真是好用啊！喜欢原生JS！<br>本文很短，最近好忙 T.T</p>
+</blockquote>
+<h2 id="classList-自带属性与方法"><a href="#classList-自带属性与方法" class="headerlink" title="classList 自带属性与方法"></a>classList 自带属性与方法</h2><ol>
+<li><strong>length</strong>: class数量</li>
+<li><strong>add(“newclass”)</strong>: 增加类名，如果已经存在则忽略</li>
+<li><strong>item()</strong>: 索引，输入索引，返回类名</li>
+<li><strong>remove()</strong>: 移除类名</li>
+<li><strong>contains()</strong>: 输入字符串参数，判断是否包含该类</li>
+<li><strong>toggle()</strong>: 有则移除，没有则加上</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/05/10/localStorage&sessionStorage&Cookie/">localStorage, sessionStorage与cookie的同与异</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-05-10
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>本文主要从存储的有效期和作用域来谈谈 localStorage , sessionStorage 以及 cookie 的同与异</p>
+</blockquote>
+<h2 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h2><p>有效期：永久的，除非主动删除存储的数据，否则将一直保留在用户的电脑中，永不过期</p>
+<p>作用域：限定在文档源，文档源通过协议，主机名和端口来确定，同源的文档间共享同样的localStorage数据，同时localStorage的作用域受到浏览器供应商限制，用firefox存储的数据，通过chrome浏览器是无法获取的。</p>
+<h2 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h2><p>有效期：与存储数据的脚本所在的最顶层的窗口或浏览器标签页时一样的，一旦窗口或者标签页被永久关闭了，那么存储数据也被删除</p>
+<p>作用域：限定在文档源，除此之外还被限制在窗口中，如果同源的文档渲染在不同的浏览器标签页中，那么它们之间互相拥有的是不同的sessionStorage数据</p>
+<h2 id="localStorage和sessionStorage的存储方法"><a href="#localStorage和sessionStorage的存储方法" class="headerlink" title="localStorage和sessionStorage的存储方法"></a>localStorage和sessionStorage的存储方法</h2><ol>
+<li>setItem()</li>
+<li>getItem()</li>
+<li>removeItem()</li>
+<li>clear()</li>
+</ol>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><p>有效期：由属性max-age定义有效期</p>
+<p>作用域：cookie的path和domain属性配置 </p>
+<p>secure属性：cookie默认以不安全的形式传递（普通的，不安全的HTTP连接），但是一旦cookie被标识为安全的，那就只能当浏览器和服务器通过HTTPS或者其他的安全协议连接的时候才能传递它。</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/04/24/cookie/">使用Cookie的状态管理</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-04-24
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>HTTP 是无状态协议，它不对之前发生过的请求和响应状态进行管理，也就无法根据之前的请求状态进行本次的请求处理。Cookie技术就是为了记录和控制客户端的状态。</p>
+</blockquote>
+<h2 id="关于Cookie"><a href="#关于Cookie" class="headerlink" title="关于Cookie"></a>关于Cookie</h2><p>Cookie会根据从服务器端发送的响应报文内的一个叫做 <strong>Set-Cookie</strong> 的首部字段信息来通知客户端保存Cookie。当下次客户端再往该服务器发送请求时，客户端会自动在请求报文中加入Cookie值后发送出去。</p>
+<p>具体操作和参数：</p>
+<p>如果客户端中存有cookie信息，客户端像服务器端发送请求时，请求首部字段会有cookie记录发送给服务器<br>打开chrome浏览器调试，http请求抓包</p>
+<pre><code>Request Headers
+    Accepte: text/css, */*; q=0.1
+    Accepte-Encoding: gzip, deflate,sdch
+    Accept-Language: zh-CN, zh; q=0.8, en;q=0.6
+    Cache-Control:
+    Connection:
+    Cookie: connect_sid=s%selfhwelafHKAUEhkKSF23
+    Host:
+    If-Modified-Since:
+    If-None-Match:
+    Refer:
+    User-Agent:
+</code></pre><p>如果服务器端想要设置cookie<br>在请求报文中添加<set-cookie>字段</set-cookie></p>
+<pre><code>Response Headers
+    Connection: keep-alive
+    Content-Length: 46
+    Content-Type: text/html; charset=utf-8
+    Date: Sun, 24 Apr 2016 14:19:12 GMT
+    Location: /
+    Set-Cookie: username=lxj; Max-Age=60; Path=/;Expires=Sun, 24 April ...
+</code></pre><p>Set-Cookie中可以设置的属性有：</p>
+<pre><code>expires属性: Cookie的有效期
+secure属性: 限制web页面仅在HTTPS安全连接时才可以发送Cookie。
+HTtpOnly属性: 使得js脚本无法获得Cookie。主要目的是防止跨站脚本攻击，对Cookie的信息窃取。
+</code></pre><p>另外：<br>cookie存在客户端，安全性较低，一般要存入加密后的信息<br>    建议设置过期时间，或者不使用时删除掉</p>
+<p><a href="">参考资料: 图解HTTP请求</a></p>
+<h2 id="实践：nodejs-express-实现用户的登陆，登出管理"><a href="#实践：nodejs-express-实现用户的登陆，登出管理" class="headerlink" title="实践：nodejs express 实现用户的登陆，登出管理"></a>实践：nodejs express 实现用户的登陆，登出管理</h2><p><a href="https://github.com/mingxinyike/express-cookie" target="_blank" rel="external">cookie example实现 Github地址</a><br>下面简单讲讲实现的主要流程和技术：</p>
+<ol>
+<li><p>首先进入登陆页面 ／login 判断get请求的首部字段是否有cookie.username信息:</p>
+<p> (1) 没有, 则显示login.html 表单界面，供用户登录，表单post方法中设置set-cookie，设置username信息以及过期时间。</p>
+<p> (2) 有cookie的username字段，跳转到 welcome.html页面</p>
+</li>
+<li><p>welcome.html中提供退出登录链接，点击链接，清除cookie.username信息。</p>
+</li>
+</ol>
+<p>提交用户登录表单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">router.post(&apos;/&apos;, function(req, res, next) &#123;</div><div class="line">  var userName = req.body.username,</div><div class="line">  userPwd = req.body.userpwd;</div><div class="line">    </div><div class="line">  //生成口令的散列值</div><div class="line">  var md5 = crypto.createHash(&apos;md5&apos;);   //crypto模块功能是加密并生成各种散列</div><div class="line">  var en_upwd = md5.update(userPwd).digest(&apos;hex&apos;);</div><div class="line">  //set-cookie name: value 以及过期时间</div><div class="line">  res.cookie(&apos;username&apos;, userName, &#123; maxAge: 60000 &#125;);</div><div class="line">  req.session.isVisit = &#123;user:userName, password:userPwd&#125;;</div><div class="line">  res.redirect(&apos;/&apos;); //重新进入login</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>判断请求中是否有cookie信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;/&apos;, function(req, res, next) &#123;</div><div class="line">    if(req.cookies.username) &#123; </div><div class="line">        res.redirect(&apos;/welcome&apos;);//存在username,重定向到welcome</div><div class="line">    &#125; </div><div class="line">    else &#123;</div><div class="line">        res.render(&apos;login&apos;, &#123; title: &apos;Express&apos; &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>删除cookie信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;/&apos;, function(req, res, next) &#123;</div><div class="line">    res.clearCookie(&apos;username&apos;);</div><div class="line">    res.redirect(&apos;/login&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/04/19/CORS&JSONP/">CORS or JSONP</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-04-19
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>CORS是前后端跨域交互的官方支持版本,现代浏览器通过XMLHttpRequest，IE通过XDomainRequest实现。</p>
+</blockquote>
+<h2 id="CORS-实现"><a href="#CORS-实现" class="headerlink" title="CORS 实现"></a>CORS 实现</h2><p>支持CORS的浏览器，可以和一般的请求一样，访问跨域服务器。而服务器端需要设置<strong>Access-Control-Allow-Origin</strong>标识允许请求的来源</p>
+<p>nodejs服务器端，设置 <strong>Access-Control-Allow-Origin</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line">var server = http.createServer(function(req, res) &#123;</div><div class="line">    // 处理请求</div><div class="line">    //修改HTTP响应头，告诉浏览器以什么方式响应数据</div><div class="line">    res.setHeader(&apos;Access-Control-Allow-Origin&apos;, &apos;*&apos;);</div><div class="line">    res.setHeader(&apos;Content-Type&apos;, &apos;text/plain&apos;);</div><div class="line">    res.write(&apos;hello world&apos;);</div><div class="line">    res.end();</div><div class="line">&#125;);</div><div class="line">server.listen(3000);</div></pre></td></tr></table></figure>
+<p>index.html 发送请求 支持XMLHttpRequest</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var xhr = new XMLHttpRequest();</div><div class="line">xhr.onload = function() &#123;</div><div class="line">    console.log(xhr.responseText);</div><div class="line">&#125;;</div><div class="line">xhr.onerror = function() &#123;</div><div class="line">    alert(&quot;fail&quot;);</div><div class="line">&#125;;</div><div class="line">xhr.open(&apos;get&apos;,&apos;http://localhost:3000&apos;);</div><div class="line">xhr.send(null);</div></pre></td></tr></table></figure>
+<p>IE 支持 XDomainRequest </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var xdr = new XDomainRequest(); </div><div class="line">xdr.onload = function() &#123;</div><div class="line">    console.log(xdr.responseText)</div><div class="line">&#125;</div><div class="line">xdr.onerror = function() &#123;</div><div class="line">    console.log(&apos;Request Error!&apos;);</div><div class="line">&#125;</div><div class="line">xdr.open(&apos;get&apos;, &apos;http://bar.com/.php&apos;);</div><div class="line">xdr.send(null);</div></pre></td></tr></table></figure>
+<h2 id="选择JSONP-or-CORS"><a href="#选择JSONP-or-CORS" class="headerlink" title="选择JSONP or CORS?"></a>选择JSONP or CORS?</h2><p>既然两者都可以实现跨域，那么该如何选择呢？这两个技术又分别有什么样的局限？</p>
+<ol>
+<li>JSONP：只能采用GET方式，只读接口，但是他兼容性强，可以支持IE&lt;9, Opera&lt;12, firefox&lt;3.5 等其他更老的不支持CORS的浏览器</li>
+<li>CORS是XHR2的新功能，支持XHR的多个方法（GET，POST可读写）。</li>
+<li>CORS用原生实现的话更简洁一些。</li>
+</ol>
+<p>##补充还有一些跨域的方法</p>
+<p>参考资料：<a href="http://www.cnblogs.com/rainman/archive/2011/02/20/1959325.html" target="_blank" rel="external">js跨域总结博客</a></p>
+<ol>
+<li>html5引入的message的API，<strong>postMessage()</strong>方法允许来自不同源的脚本采用异步方式进行有限的通信，可以实现跨文本档、多窗口、跨域消息传递。</li>
+</ol>
+<p>a.com/index.html代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;iframe id=&quot;ifr&quot; src=&quot;b.com/index.html&quot;&gt;&lt;/iframe&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    window.onload = function() &#123;</div><div class="line">    var ifr = document.getElementById(&apos;ifr&apos;);</div><div class="line">    var targetOrigin = &apos;http://b.com&apos;;  </div><div class="line">    // 若写成&apos;http://b.com/c/proxy.html&apos;效果一样</div><div class="line">    // 若写成&apos;http://c.com&apos;就不会执行postMessage了</div><div class="line">    ifr.contentWindow.postMessage(&apos;I was there!&apos;, targetOrigin);</div><div class="line">&#125;;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>b.com/index.html </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">window.addEventListener(&apos;message&apos;, function(event)&#123;</div><div class="line">    // 通过origin属性判断消息来源地址</div><div class="line">    if (event.origin == &apos;http://a.com&apos;) &#123;</div><div class="line">        alert(event.data);    // 弹出&quot;I was there!&quot;</div><div class="line">        alert(event.source);  // 对a.com、index.html中window对象的引用</div><div class="line">        // 但由于同源策略，这里event.source不可以访问window对象</div><div class="line">    &#125;</div><div class="line">&#125;, false);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>对于主域相同，而子域不同的例子可以通过设置<strong>document.domain</strong>来解决<br>（这种方式适用于{www.kuqin.com, kuqin.com, script.kuqin.com, css.kuqin.com}中的任何页面相互通信。）</p>
+</li>
+<li><p>利用iframe和<strong>location.hash</strong><br>在url： <a href="http://a.com#helloword中的‘#helloworld’就是location.hash，改变hash并不会导致页面刷新，所以可以利用hash值来进行数据传递，当然数据容量是有限的。" target="_blank" rel="external">http://a.com#helloword中的‘#helloworld’就是location.hash，改变hash并不会导致页面刷新，所以可以利用hash值来进行数据传递，当然数据容量是有限的。</a><br>缺点: 诸如数据直接暴露在了url中，数据容量和类型都有限等</p>
+</li>
+<li><p><a href="http://www.cnblogs.com/rainman/archive/2011/02/21/1960044.html" target="_blank" rel="external">window.name实现的跨域数据传输</a></p>
+</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/04/18/JSONP/">JSONP原理与实现</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-04-18
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>JSONP就是利用script标签没有跨域限制，来达到与第三方通讯的目的。并提供一个回调函数来接收数据（函数名可约定，或通过地址参数传递）。<br>第三方产生的响应为json数据的包装（故称之为jsonp，即json padding）<br><a href="https://www.zhihu.com/question/19966531" target="_blank" rel="external">知乎－JSONP工作原理</a></p>
+</blockquote>
+<p>同源策略：所谓同源是指，域名，协议，端口相同。不同源的客户端脚本(javascript、ActionScript)在没明确授权的情况下，不能读写对方的资源。</p>
+<p>作为同源策略的一部分，XMLHttpRequest对象通常仅可以发起和文档具有相同服务器的HTTP请求。这个限制关闭了安全漏洞，但也阻止了大量合适的跨域请求</p>
+<p>Ajax跨域技术三方面的解决方案：</p>
+<ol>
+<li>JSONP </li>
+<li>Peoxy 代理 </li>
+<li>CORS</li>
+</ol>
+<p>本文主要讨论JSONP的实现</p>
+<h2 id="JSONP简单实现"><a href="#JSONP简单实现" class="headerlink" title="JSONP简单实现"></a>JSONP简单实现</h2><p>例子来源于<a href="http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json" target="_blank" rel="external">Flickr API</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">        function callbackFunction(result) &#123;</div><div class="line">            console.log(result);</div><div class="line">        &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json&amp;jsoncallback=callbackFunction&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>支持JSONP的服务不会强制指定客户端必须实现的回调函数名称。它使用查询参数的值，允许客户端指定一个函数名，然后使用函数名去填充响应。如上例中jsoncallback=callbackFunction。callbackFunction就是执行返回数据的回调函数名称</p>
+<p>jsonp的URL格式： url?key1=value1&amp;key2=value2&amp;…&amp;jsoncallback=callback</p>
+<h2 id="JSONP封装"><a href="#JSONP封装" class="headerlink" title="JSONP封装"></a>JSONP封装</h2><p><strong>封装结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">JSONP(url, &#123;</div><div class="line">    data: &#123;key1: value, key2: value&#125;, </div><div class="line">    callback: function()&#123;&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>JSONP实现</strong>  </p>
+<p>参考js权威指南P507<br>实现流程:</p>
+<ol>
+<li>创建独一无二的回调函数名称</li>
+<li>创建回调函数，调用参数中的callback函数</li>
+<li>根据URL，data参数，以及回调函数名，生成新的URL访问地址</li>
+<li>创建script标签，设置src为新的访问地址。将script标签插入body中<br><em>注意：访问例子中的URL貌似需要翻墙</em></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">function JSONP(url, obj) &#123;</div><div class="line">        //创建唯一的回调函数名称</div><div class="line">        var callbackFuc = &quot;callback&quot; + JSONP.counter++;</div><div class="line">        // url加工</div><div class="line">        var text = &quot;&quot;;</div><div class="line">        if (&quot;data&quot; in obj) &#123;</div><div class="line">            for (k in obj[&quot;data&quot;]) &#123;</div><div class="line">                text = text + k + &quot;=&quot; + obj[&quot;data&quot;][k] + &quot;&amp;&quot;;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        text = (url.indexOf(&quot;?&quot;) === -1)?  &quot;?&quot; + text: &quot;&amp;&quot; + text;</div><div class="line">        // 写入回调函数</div><div class="line">        if (obj[&quot;callback&quot;]) &#123;</div><div class="line">            JSONP[callbackFuc] = function(result)&#123;</div><div class="line">                obj[&quot;callback&quot;](result); // 处理响应数据</div><div class="line">            &#125;</div><div class="line">            text = text + &quot;jsoncallback=JSONP.&quot; + callbackFuc;</div><div class="line">        &#125;</div><div class="line">        // 插入script标签</div><div class="line">        var script = document.createElement(&quot;script&quot;);</div><div class="line">        script.src = url+text;</div><div class="line">        document.body.appendChild(script);</div><div class="line">    &#125;</div><div class="line">    // 创建唯一回调函数名</div><div class="line">    JSONP.counter = 0;</div><div class="line">    //跨域访问测试1</div><div class="line">    JSONP(&quot;http://api.flickr.com/services/feeds/photos_public.gne&quot;, &#123;</div><div class="line">        data: &#123;</div><div class="line">        &quot;tags&quot;: &quot;cat&quot;,</div><div class="line">        &quot;tagmode&quot;: &quot;any&quot;,</div><div class="line">        &quot;format&quot;: &quot;json&quot;</div><div class="line">        &#125;,</div><div class="line">        callback: function (data) &#123;</div><div class="line">            console.log(data);// data 是服务端返回的数据</div><div class="line">        &#125;</div><div class="line">    &#125;) </div><div class="line">    // 跨域访问测试2</div><div class="line">    JSONP(&quot;http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json&quot;, &#123;</div><div class="line">        callback: function (data) &#123;</div><div class="line">            alert(data.items[1].author);// data 是服务端返回的数据</div><div class="line">        &#125;</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<p>权威指南中在定义脚本执行回调函数时，对执行过的函数和标签进行销毁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">JSONP[callbackFuc] = function(result)&#123;</div><div class="line">    try &#123;</div><div class="line">        obj[&quot;callback&quot;](result); // 处理响应数据;</div><div class="line">    &#125;</div><div class="line">    finally &#123;</div><div class="line">        delete JSONP[callbackFuc]; //删除该函数</div><div class="line">        script.parentNode.removeChild(script); //移除script元素</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="补充-jQuery-ajax-实现版"><a href="#补充-jQuery-ajax-实现版" class="headerlink" title="补充 jQuery.ajax()实现版"></a>补充 jQuery.ajax()实现版</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">function callbackFunction(data) &#123;</div><div class="line">    alert(&quot;callback&quot;);</div><div class="line">    // console.log(data);</div><div class="line">&#125;</div><div class="line">jQuery.ajax(&#123;</div><div class="line">    type: &quot;GET&quot;,</div><div class="line">    url: &quot;http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&amp;tagmode=any&amp;format=json&amp;jsoncallback=callbackFunction&quot;,</div><div class="line">    dataType: &quot;jsonp&quot;,</div><div class="line">    jsonpCallback:&quot;callbackFunction&quot;,</div><div class="line">    success: function(data,response) &#123;</div><div class="line">        alert(&quot;success&quot;);</div><div class="line">        // console.log(data);</div><div class="line">        // console.log(&quot;response&quot;);</div><div class="line">        // console.log(response);</div><div class="line">    &#125;,</div><div class="line">    error: function(data) &#123;</div><div class="line">        alert(&apos;fail&apos;);</div><div class="line">        console.log(data);</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/28/threejs-earth/">Three.js实现会动的地球</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-28
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>通过Three.js实现自由转动的地球</p>
+<p>参考资料：<a href="http://www.smartjava.org/content/render-open-data-3d-world-globe-threejs" target="_blank" rel="external">Render open data on a 3D world globe with Three.js</a><br>and <a href="http://threejs.org/examples/#canvas_geometry_earth" target="_blank" rel="external">转动的地球－官网例子</a></p>
+</blockquote>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ol>
+<li>Three.js: revision:”49”</li>
+<li>jquery</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>1.创建three.js环境</li>
+<li>2.创建3D地球，并把它加到scene中</li>
+<li>3.通过鼠标位置来转动3D地球</li>
+</ol>
+<h2 id="创建three-js环境"><a href="#创建three-js环境" class="headerlink" title="创建three.js环境"></a>创建three.js环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">// 全局变量</div><div class="line">var POS_X = 0;</div><div class="line">var POS_Y = 0;</div><div class="line">var POS_Z = 3000;</div><div class="line">var WIDTH = window.innerWidth;</div><div class="line">var HEIGHT = window.innerHeight;</div><div class="line"></div><div class="line">var FOV = 45;</div><div class="line">var NEAR = 1;</div><div class="line">var FAR = 4000;</div><div class="line">var mouseX = 0, mouseY = 0;</div><div class="line">var windowHalfX = window.innerWidth / 2;</div><div class="line">var windowHalfY = window.innerHeight / 2;</div><div class="line"></div><div class="line">// some global variables and initialization code</div><div class="line">// simple basic renderer</div><div class="line">var renderer = new THREE.WebGLRenderer();</div><div class="line">renderer.setSize(WIDTH,HEIGHT);</div><div class="line">renderer.setClearColorHex(0x111111);</div><div class="line"></div><div class="line">// 将renderer内容加入到html#globe对象中</div><div class="line">var mapDiv = document.getElementById(&quot;globe&quot;);</div><div class="line">mapDiv.appendChild(renderer.domElement);</div><div class="line"></div><div class="line">// 创建摄像头，并指向原点</div><div class="line">var camera = new THREE.PerspectiveCamera(FOV,WIDTH/HEIGHT,NEAR,FAR);</div><div class="line">camera.position.set(POS_X,POS_Y, POS_Z);</div><div class="line">camera.lookAt(new THREE.Vector3(0,0,0));</div><div class="line"></div><div class="line">//创建scene</div><div class="line">// create a basic scene and add the camera</div><div class="line">var scene = new THREE.Scene();</div><div class="line">scene.add(camera);</div><div class="line"></div><div class="line">//执行</div><div class="line">$(document).ready(function()  &#123;</div><div class="line">	// 灯光</div><div class="line">	addLights();</div><div class="line">	// 绘制地球 </div><div class="line">	addEarth();</div><div class="line">	// 刷新，显示</div><div class="line">	render();</div><div class="line">	// 根据鼠标位置，旋转camera，从而能够多角度的观察地球</div><div class="line">	document.addEventListener( &apos;mousemove&apos;, onDocumentMouseMove, false );</div><div class="line">	// 当窗口大小改变时，自动调整内容大小</div><div class="line">	window.addEventListener( &apos;resize&apos;, onWindowResize, false );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="绘制地球"><a href="#绘制地球" class="headerlink" title="绘制地球"></a>绘制地球</h2><p>通过THREE.SphereGeometry创建球体对象，用jpg图片贴纹理，让球体像个地球，然后加入到场景scene中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// add the earth</div><div class="line">function addEarth() &#123;</div><div class="line">   var spGeo = new THREE.SphereGeometry(600,50,50);</div><div class="line">   var planetTexture = THREE.ImageUtils.loadTexture( &quot;assets/world-big-2-grey.jpg&quot; );</div><div class="line">   var mat2 =  new THREE.MeshPhongMaterial( &#123;</div><div class="line">       map: planetTexture,</div><div class="line">       perPixel: false,</div><div class="line">       shininess: 0.2 &#125; );</div><div class="line">   sp = new THREE.Mesh(spGeo,mat2);</div><div class="line">   scene.add(sp);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="鼠标移动让地球转起来"><a href="#鼠标移动让地球转起来" class="headerlink" title="鼠标移动让地球转起来"></a>鼠标移动让地球转起来</h2><p>首先，要监听鼠标移动mousemove事件，记录下鼠标相对于原点（0，0）的位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function onDocumentMouseMove( event ) &#123;</div><div class="line">   mouseX = ( event.clientX - windowHalfX );</div><div class="line">   mouseY = ( event.clientY - windowHalfY );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其次，render()函数中根据 mouseX mouseY的值，定时改变camera的位置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function render() &#123;</div><div class="line">	//根据鼠标位置来判断camera的位置</div><div class="line">	//mouseX  距离中点的偏移量   mouseX/windowHalfX  在横屏面内想要偏移的角度，效果使得球左右转动</div><div class="line">	//－mouseY 距离中点y的偏移量   -mouseY/windowHalfY 在纵平面内想要偏移的角度，效果使得球上下转动</div><div class="line">   camera.position.x = POS_Z*Math.sin(mouseX*Math.PI/windowHalfX);</div><div class="line">   camera.position.z = POS_Z*Math.cos(mouseX*Math.PI/windowHalfX);</div><div class="line">   camera.position.y = POS_Z*Math.sin((-mouseY/windowHalfY)*Math.PI/2)</div><div class="line">   </div><div class="line">   camera.lookAt( scene.position );</div><div class="line">   light.position = camera.position;</div><div class="line">   light.lookAt(scene.position);</div><div class="line">   renderer.render( scene, camera );</div><div class="line">   // 动画 根据浏览器的渲染间隔进行绘制</div><div class="line">   requestAnimationFrame( render );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>主要框架就讲到这里啦，还有一点实现细节，比如light的绘制，实现详见<a href="https://github.com/mingxinyike/3dGlobal" target="_blank" rel="external">Github</a></p>
+<p>在<a href="http://www.smartjava.org/content/render-open-data-3d-world-globe-threejs" target="_blank" rel="external">Render open data on a 3D world globe with Three.js</a>例子中还提到在地球上添加自定义数据。</p>
+<p>放上效果图一张：<br><img src="http://blog.liuxj.com/img/20160328.png" alt="哎呀，显示不粗来？！"></p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/20/requirejs-angularjs/">AngularJS 和 RequireJS的集成</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>这篇博文主要记录一下angularjs与requirejs的集成</p>
+<p>RequireJS帮助定义和管理js文件之间的依赖关系，鼓励模块化，是AMD规范最好的实现者之一。同时异步加载，防止js加载阻塞页面渲染。</p>
+</blockquote>
+<h2 id="环境需求"><a href="#环境需求" class="headerlink" title="环境需求"></a>环境需求</h2><ol>
+<li>requirejs</li>
+<li>angular.js</li>
+<li>angular-route.js</li>
+<li>angular-animate.js</li>
+</ol>
+<h2 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h2><p> <img src="http://blog.liuxj.com/img/20160320.png" alt="文件目录"></p>
+<h2 id="在index-html中插入script标签"><a href="#在index-html中插入script标签" class="headerlink" title="在index.html中插入script标签"></a>在index.html中插入script标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&apos;scripts/vendor/require.js&apos; data-main=&apos;scripts/main.js&apos;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h2 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h2><p>其中插一句嘴，requirejs有两个方法一个是require一个是define</p>
+<ol>
+<li><p>define 从名字就可以看出这个api是用来定义一个模块<br>如果模块存在依赖:则第一个参数是依赖的名称数组；第二个参数是函数，在模块的所有依赖加载完毕后，该函数会被调用来定义该模块，因此该模块应该返回一个定义了本模块的object。依赖关系会以参数的形式注入到该函数上，参数列表与依赖名称列表一一对应。</p>
+</li>
+<li><p>require 加载依赖模块，并执行加载完后的回调函数</p>
+</li>
+</ol>
+<p>require.config是用来配置模块加载位置,具体requirejs的语法详见<a href="http://www.requirejs.cn/" target="_blank" rel="external">requirejs</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">require.config(&#123;</div><div class="line">    baseUrl: &apos;scripts/&apos;,</div><div class="line">    paths: &#123;</div><div class="line">        jquery: &apos;vendor/jquery/jquery.min&apos;,</div><div class="line">        angular: &apos;http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min&apos;,</div><div class="line">        &apos;angular-route&apos;: &apos;http://apps.bdimg.com/libs/angular.js/1.4.6/angular-route.min&apos;,</div><div class="line">        &apos;angular-animate&apos;: &apos;http://apps.bdimg.com/libs/angular.js/1.4.6/angular-animate.min&apos;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    shim: &#123;</div><div class="line">        angular:&#123;</div><div class="line">            exports: &quot;angular&quot;</div><div class="line">        &#125;,</div><div class="line">        &apos;angular-route&apos;: &#123;</div><div class="line">            deps: [&quot;angular&quot;],</div><div class="line">            exports: &quot;angular-route&quot;</div><div class="line">        &#125;,</div><div class="line">        &apos;angular-animate&apos;: &#123;</div><div class="line">            deps: [&quot;angular&quot;],</div><div class="line">            exports: &quot;angular-animate&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// init myApp</div><div class="line">require([&quot;angular&quot;, &quot;app&quot;, &quot;controllers&quot;],function(angular)&#123;</div><div class="line">    // add myApp to document</div><div class="line">    angular.bootstrap(document, [&quot;myApp&quot;]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>其中app.js定义angular.module以及路由配置，controllers用来放置各种控制器代码。以后还需要directives, services也是在这里引入。<br>angular.bootstrap方法是angular自带的，用来手动启动一个angular app。所以不需要再index.html中再加上ng-app=”myApp”这个属性。</p>
+<h2 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h2><p>定义angular.module以及路由配置，返回angular.module对象<br>依赖： angular angular-route angular-animate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">define([&quot;angular&quot;,&quot;angular-route&quot;,&quot;angular-animate&quot;],function(angular)&#123;</div><div class="line"></div><div class="line">var app = angular.module(&quot;myApp&quot;,[&apos;ngRoute&apos;,&apos;ngAnimate&apos;]);</div><div class="line">    app.config([&apos;$routeProvider&apos;,function($routeProvider) &#123;</div><div class="line">        $routeProvider.</div><div class="line">            when(&apos;/&apos;, &#123;</div><div class="line">                redirectTo: &quot;/data&quot;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/data&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/data.html&apos;,</div><div class="line">                controller: &apos;dataCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/map&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/map.html&apos;,</div><div class="line">                controller: &apos;mapCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/analysis&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/analysis.html&apos;,</div><div class="line">                controller: &apos;analysisCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .when(&apos;/about&apos;, &#123;</div><div class="line">                templateUrl: &apos;views/about.html&apos;,</div><div class="line">                controller: &apos;aboutCtrl&apos;</div><div class="line">            &#125;)</div><div class="line">            .otherwise(&#123;</div><div class="line">                redirectTo: &apos;/data&apos;</div><div class="line">            &#125;);</div><div class="line">    &#125;]);</div><div class="line">    return app;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="controllers-js"><a href="#controllers-js" class="headerlink" title="controllers.js"></a>controllers.js</h2><p>依赖: app</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">define([&apos;app&apos;], function (app) &#123;</div><div class="line"></div><div class="line">app.controller(&quot;headerCtrl&quot;,[&apos;$scope&apos;,&apos;$location&apos;, function($scope, $location) &#123;</div><div class="line">    //...</div><div class="line">&#125;]);</div><div class="line"></div><div class="line">app.controller(&quot;dataCtrl&quot;, function($scope) &#123;</div><div class="line">    //...      </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/02/25/plan/">有一个梦想要在春天播种，秋天收获（小半年计划）</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-02-25
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Diary/">Diary</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="有一个梦想要在春天播种，秋天收获"><a href="#有一个梦想要在春天播种，秋天收获" class="headerlink" title="有一个梦想要在春天播种，秋天收获"></a>有一个梦想要在春天播种，秋天收获</h2><blockquote>
+<p>这半年内要好好学习基础，温故知新，为将来成为优秀前端工程师做准备！<br>我的经验告诉我，有计划的学习能够帮助你更好的利用时间，更快的进步呦！要不然感觉时间嗖一下就没有了呢</p>
+</blockquote>
+<h2 id="小半年计划"><a href="#小半年计划" class="headerlink" title="小半年计划"></a>小半年计划</h2><h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><p>第二遍读 《CSS权威指南》 </p>
+<p>第三遍读《Javascript权威指南》 并且建立文件夹，把书中的代码自己实现一遍，不能对着书敲！！！不能对着书敲！！！不能对着书敲！！！</p>
+<p>以上是经典的书籍，要反复看，深理解。</p>
+<h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p>underscore</p>
+<p>jquery</p>
+<p>源码要慢慢读，一开始会很吃力，不求多，但求精。</p>
+<p>总结整理其中的思想，并运用到项目中去。</p>
+<h3 id="学习要有成果"><a href="#学习要有成果" class="headerlink" title="学习要有成果"></a>学习要有成果</h3><p>这个成果可以是敲的代码，也可以是理解后写的博客～要督促自己学习新东西要及时写下来，写个过程就是一个再理解再梳理的过程。</p>
+<h3 id="项目中新技术的应用"><a href="#项目中新技术的应用" class="headerlink" title="项目中新技术的应用"></a>项目中新技术的应用</h3><p>最近要做一个关于信息可视化的网站，初步考虑采用angular框架，D3或是其他可视化工具。<br>要学习一下nodejs服务的发布，应用angular，学习一下d3, canvas等可视化的技术。</p>
+<h3 id="遇到问题怎么办"><a href="#遇到问题怎么办" class="headerlink" title="遇到问题怎么办"></a>遇到问题怎么办</h3><p><a href="https://segmentfault.com/" target="_blank" rel="external">segmentfault</a><br><a href="http://stackoverflow.com/" target="_blank" rel="external">stackoverflow</a><br>没事也可以多回答回答上面的问题哈～<br>google</p>
+<p>编程遇到问题拒绝度娘</p>
+<h3 id="少刷豆瓣，多看博客"><a href="#少刷豆瓣，多看博客" class="headerlink" title="少刷豆瓣，多看博客"></a>少刷豆瓣，多看博客</h3><p><a href="https://github.com/jikeytang/front-end-collect" target="_blank" rel="external">前端收集</a></p>
+<p>pocket上多关注大牛博客！</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/01/24/reading2/">《你不知道的Javascript上卷》 (作用域)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-01-24
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Reading/">Reading</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="第一章-作用域"><a href="#第一章-作用域" class="headerlink" title="第一章 作用域"></a>第一章 作用域</h2><p>LHS ： 对变量进行赋值时使用LHS查询<br>RHS ：获取变量的值使用RHS查询<br>LHS，RHS都会从当前执行作用域开始，向上级作用域一级一级查找，知道全局作用域<br>不成功的LHS会自动隐式地创建一个全局变量<br>不成功的RHS会抛出ReferenceError异常</p>
+<p>js 是基于词法作用域，<strong>即函数的变量由定义该函数的上下文决定，而不是执行环境上下文决定，非动态作用域</strong><br>主要区别在于：<br>词法作用域是在写代码或者说是定义时确定的，而动态作用域是运行环境确定的。<br>而this机制很像动态作用域</p>
+<h2 id="第二章-函数作用域和块作用域"><a href="#第二章-函数作用域和块作用域" class="headerlink" title="第二章 函数作用域和块作用域"></a>第二章 函数作用域和块作用域</h2><p>函数是js中最常见的作用域单元<br>声明在一个函数内部的变量或者函数会在当前作用域中隐藏起来，该做法满足最小授权或者最小暴露原则，指软件设计中，应该最小限度的暴露必要内容，而将其他内容隐藏起来，比如某对象的API设计；另一个好处就是避免命名冲突</p>
+<p>函数声明与函数表达式：<br>function在整个声明中的位置，如果是第一个词就是函数声明，否则就是函数表达式。</p>
+<blockquote>
+<p>函数声明</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function foo( )&#123; …… &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>函数表达式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">( function foo( ) &#123; …… &#125; ) ( )</div><div class="line">     //赋值表达式</div><div class="line">     var foo = function ( ) &#123; ……  &#125;</div><div class="line">     //匿名函数表达式</div><div class="line">     ( function( ) &#123; …… &#125; ) ( )</div></pre></td></tr></table></figure>
+<p>Q：立即执行的函数表达式有什么好处？ foo变量名会被隐藏在自身中不会非必要的污染外部作用域</p>
+<p>块级作用域</p>
+<p>ES3开始，try／catch 结构在catch分句中具有块级作用域<br>ES6中let和const可以声明块级作用域变量</p>
+<h2 id="第四章-js语句提升"><a href="#第四章-js语句提升" class="headerlink" title="第四章 js语句提升"></a>第四章 js语句提升</h2><p>作用域中变量和函数声明会被提升，而赋值表达式则不会。并且函数声明要优先于变量声明。</p>
+<h2 id="第五章-作用域闭包"><a href="#第五章-作用域闭包" class="headerlink" title="第五章 作用域闭包"></a>第五章 作用域闭包</h2><p>闭包定义： 这个函数在定义时的词法作用域以外的地方被调用。闭包使得函数可以继续访问定义时的词法作用域。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">for (var i = 1; i &lt;= 5; i++) &#123;</div><div class="line">     setTimeout(function timer() &#123;</div><div class="line">     console.log(i);</div><div class="line">&#125;, i* 1000);</div><div class="line">&#125;</div><div class="line">//输出6，6，6，6，6，因为引用的是同一个变量</div><div class="line"></div><div class="line">for (var i = 1; i &lt;= 5; i++) &#123;</div><div class="line">( function(i) &#123;</div><div class="line">     setTimeout(function timer() &#123;</div><div class="line">     console.log(i);</div><div class="line">&#125;, i* 1000);</div><div class="line">&#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>后者输出1，2，3，4，5，原因是匿名函数新建了一个词法作用域，把 i 瞬间的值赋值给匿名函数词法作用域中的i ，timer 中的 i 查找最近的词法作用域中的 i，就是匿名函数中的 i</p>
+<p>模块</p>
+<blockquote>
+<p>必须有外部的封闭函数，该函数必须至少被调用一次（每次调用都会创建一个新的模块实例）<br>封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并且可以访问或者修改私有的状态。</p>
+</blockquote>
+<p>eg:  jQuery<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">jquery = function()&#123;&#125;;</div><div class="line"></div><div class="line">window.jquery = window.$ = jquery;</div><div class="line">//将内部的闭包函数赋值给全局变量，从而对外提供借口</div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>eg: 现在的模块定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var module = (function manager()&#123;</div><div class="line">var module = &#123;&#125;;</div><div class="line">function define()&#123;&#125;;</div><div class="line">function get()&#123;&#125;;</div><div class="line">return &#123;</div><div class="line">     define: define;</div><div class="line">     get: get;</div><div class="line">&#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/01/24/reading1/">《你不知道的Javascript上卷》 (this)</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-01-24
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Reading/">Reading</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="第一章-关于this"><a href="#第一章-关于this" class="headerlink" title="第一章 关于this"></a>第一章 关于this</h2><p>this 隐式传递了一个对象的引用，即对上下文环境的引用<br>this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用</p>
+<h2 id="第二章-this-的全面解析"><a href="#第二章-this-的全面解析" class="headerlink" title="第二章 this 的全面解析"></a>第二章 this 的全面解析</h2><p>调用栈：为了到达当前执行的位置所调用的所有函数，可以理解为是函数调用列表<br>调用位置：函数被调用的位置</p>
+<p>this绑定规则<br>找到调用位置</p>
+<blockquote>
+<p>默认规则</p>
+</blockquote>
+<p>直接使用不带任何参数的函数引用进行调用，只能使用默认绑定，this指向全局变量</p>
+<blockquote>
+<p>隐式绑定</p>
+</blockquote>
+<p>调用位置是否有上下文，或者说是否被某个对象包含<br>function foo( ) { …… }<br>var obj = {  foo: foo; }<br>obj.foo( )<br>当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this绑定到这个上下文对象。<br>但是当 var bar = obj.foo; bar( ) 这时this就指向全局变量  因为这里obj.foo是引用</p>
+<blockquote>
+<p>显式绑定</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">call( )   apply ( )</div><div class="line">foo.call ( )</div><div class="line">Function.prototype.bind()</div><div class="line">eg:</div><div class="line">function foo ( ) &#123; &#125;</div><div class="line">var obj = &#123;&#125;</div><div class="line">var bar  = foo.bind ( obj );</div><div class="line">bar ( )</div></pre></td></tr></table></figure>
+<p>API 调用的上下文绑定<br>内置函数中有可选参数context ,通常被称为“上下文”，其作用和bind一样，确保你的回调函数使用指定的this</p>
+<blockquote>
+<p>new绑定</p>
+</blockquote>
+<p>使用new调用foo时，会构造一个新对象并把它绑定到foo( )调用中的this 上</p>
+<p>优先级：4 &gt; 3 &gt;  2 &gt; 1<br>特例： 当call apply bind 传入对象时null或者undefined时，实际应用是默认绑定规则。</p>
+<h2 id="第三章-对象"><a href="#第三章-对象" class="headerlink" title="第三章 对象"></a>第三章 对象</h2><blockquote>
+<p>js 中六种主要类型 ( 语言类型 )：</p>
+</blockquote>
+<ol>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>object</li>
+</ol>
+<blockquote>
+<p>内置对象</p>
+</blockquote>
+<ol>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Object</li>
+<li>Function</li>
+<li>Array</li>
+<li>Date</li>
+<li>RegExp</li>
+<li>Error</li>
+</ol>
+<p>obj.hasOwnProperty( key ) 属性key是否存在于obj中，不包括prototype链<br>obj.propertyIsEnumerable( key ) 属性key是否存在于obj中，不包括prototype链，且enumerable: true<br>Object.keys( obj ) 包含一个数组返回所有可枚举属性  只会查找对象直接包含的属性<br>Object.getOwnPropertyNames ( obj )  只会查找对象直接包含的属性</p>
+<p>for … in 属性存在于对象及其prototype原型链中</p>
+<p>使用 in 查找属性会查找整条原型链，无论是否可枚举</p>
+<p>遍历：</p>
+<ol>
+<li>forEach ( )会遍历所有的值，忽略函数的返回值</li>
+<li>every（）遍历直到返回值为 false</li>
+<li>some（）遍历直到返回值为 true</li>
+</ol>
+<h2 id="第五章-原型"><a href="#第五章-原型" class="headerlink" title="第五章 原型"></a>第五章 原型</h2><p>Object.create( obj ) 创建一个对象，并把这个对象的[[prototype]] 关联到指定对象<br>普通 prototype链最终都指向内置的Object.prototype</p>
+<p>Object.prototype包含：<br>.toString() .valueOf() .hasOwnProperty() .isPrototypeOf()</p>
+<h2 id="第六章-行为委托"><a href="#第六章-行为委托" class="headerlink" title="第六章 行为委托"></a>第六章 行为委托</h2><p>关联风格代码：对象关联（OLOO， Objects linked to other objects ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var LoginController = &#123;</div><div class="line">     errors: [],</div><div class="line">     getUsers: function( ) &#123; &#125;,</div><div class="line">     validateEntry: function ( ) &#123; &#125;,</div><div class="line">     showDialog: function ( ) &#123; &#125;</div><div class="line">&#125;</div><div class="line">var AuthController = object.create( LoginController );</div><div class="line">AuthController.errors = [ ];</div><div class="line">AuthController.checkAuth = function( ) &#123; &#125;;</div><div class="line"></div><div class="line">//简单的像委托链上添加一个或者多个对象，不需要实例化</div><div class="line">var controller1 = Object.create( AuthController );</div><div class="line">var controller2 = Object.create( AuthController );</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2015/12/10/jekyll-blog/">jekyll & github定制个人博客</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-12-10
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <blockquote>
+<p>我的个人博客是在github pages上的个人主页<a href="https://github.com/mingxinyike/mingxinyike.github.io" target="_blank" rel="external">github</a>，用Jekyll进行构建。其中，评论系统采用<a href="http://dev.duoshuo.com/docs" target="_blank" rel="external">多说</a>，主要因为多说是国内的，用户可以用微博豆瓣QQ登录，非常方便。</p>
+</blockquote>
+<h2 id="关于github-pages"><a href="#关于github-pages" class="headerlink" title="关于github pages"></a>关于github pages</h2><p>每个github帐号只能有一个仓库来存放个人主页，而且仓库的名字必须是username/username.github.io，这是特殊的命名约定。你可以通过<a href="http://username.github.io来访问你的个人主页。" target="_blank" rel="external">http://username.github.io来访问你的个人主页。</a></p>
+<h2 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h2><p>自行百度</p>
+<h2 id="Jekyll-模版"><a href="#Jekyll-模版" class="headerlink" title="Jekyll 模版"></a>Jekyll 模版</h2><p>拥有username.github.io个人主页仓库后，需要Jekyll构建博客。</p>
+<p>命令行中输入以下命令能够让网站跑起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 安装jekyll</div><div class="line">gem install jekyll</div><div class="line">//下载博客模板</div><div class="line">jekyll new my-awesome-site</div><div class="line">cd my-awesome-site</div><div class="line">my-awesome-site $ jekyll serve</div><div class="line">//这个时候随简单的博客网站就发布好了</div></pre></td></tr></table></figure>
+<p><a href="http://jekyll.bootcss.com/" target="_blank" rel="external">jekyll中文指南</a>模板指南中有网站结构的介绍，以及分业等一些功能。<br>再次基础上修改css, html就能够得到自己的博客啦，同时将项目上传至github上，别人就能够通过yourname.github.io 访问到你的博客啦！<br><a href="http://jekyllthemes.org/" target="_blank" rel="external">jekyll主题模板</a>这里也有很多好看的主题模板，喜欢的可以clone下来，在此基础上进行修改。</p>
+<h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>同时github－pages个人主页可以自定义域名，这样别人就可以通过你的自定义域名访问到你的博客了！<br>两个步骤：</p>
+<ol>
+<li>1.在项目中加CNAME文件，其中协商域名名称，如 <a href="http://blog.liuxj.com" target="_blank" rel="external">http://blog.liuxj.com</a></li>
+<li>2.在域名管理系统中，添加CNAME，主机记录： blog， 记录值：username.github.io</li>
+</ol>
+<h2 id="关于多说"><a href="#关于多说" class="headerlink" title="关于多说"></a>关于多说</h2><p>使用很简单：<br><strong>在多说的网站上注册，获得通用代码，粘贴到页面就OK</strong><br>我在default.html中加入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 多说评论框 start --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ds-thread"</span> <span class="attr">data-thread-key</span>=<span class="string">&#123;&#123;page.id&#125;&#125;</span> <span class="attr">data-title</span>=<span class="string">&#123;&#123;page.title&#125;&#125;</span> <span class="attr">data-url</span>=<span class="string">"liuxj.com/&#123;&#123;page.url&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 多说评论框 end --&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    var duoshuoQuery = &#123;short_name:"liuxj"&#125;;</span></div><div class="line"><span class="undefined">    (function() &#123;</span></div><div class="line"><span class="undefined">      var ds = document.createElement('script');</span></div><div class="line"><span class="undefined">      ds.type = 'text/javascript';ds.async = true;</span></div><div class="line"><span class="undefined">      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';</span></div><div class="line"><span class="undefined">      ds.charset = 'UTF-8';</span></div><div class="line"><span class="undefined">      (document.getElementsByTagName('head')[0]</span></div><div class="line"><span class="undefined">      || document.getElementsByTagName('body')[0]).appendChild(ds);</span></div><div class="line"><span class="undefined">    &#125;)();</span></div><div class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></div></pre></td></tr></table></figure>
+<p>这里四个地方可以自定义：</p>
+<ul>
+<li><ol>
+<li>1.data-thread-key填上</li>
+</ol>
+</li>
+<li><ol>
+<li>2.data-title 填上 </li>
+</ol>
+</li>
+<li><ol>
+<li>3.data-url 填上 your web site/</li>
+</ol>
+</li>
+<li><ol>
+<li>4.short_name 注册多说账号的时候让你填的二级短域名</li>
+</ol>
+</li>
+</ul>
+<p>###代码复用</p>
+<p>为了能够复用代码，同时自由设置评论系统什么时候显示，什么时候隐藏，将评论系统的代码单独放在_includes文件夹中的comment.html中<br>在页面上通过一下代码引入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;/% include comment.html /%&#125;</div></pre></td></tr></table></figure>
+<h2 id="博文markdown格式以及代码高亮"><a href="#博文markdown格式以及代码高亮" class="headerlink" title="博文markdown格式以及代码高亮"></a>博文markdown格式以及代码高亮</h2><p>代码高亮<br>在配置文件_config.yml中修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">markdown： redcarpet</div><div class="line">permalink: pretty</div></pre></td></tr></table></figure>
+<p>在具体的md中，代码块的外面加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;% highlight css %&#125;</div><div class="line">&#123;% endhighlight %&#125;</div></pre></td></tr></table></figure>
+<h2 id="实现分类页面导航"><a href="#实现分类页面导航" class="headerlink" title="实现分类页面导航"></a>实现分类页面导航</h2><ol>
+<li>首先_layout中加入category.html</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: default</div><div class="line">---</div><div class="line">//...html代码</div></pre></td></tr></table></figure>
+<ol>
+<li>然后新建一个category目录，新建类别如js文件夹<br>新建一个 index.html文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">layout: category</div><div class="line">category: js</div><div class="line">---</div><div class="line">//layout告诉jekyll去哪里渲染页面</div></pre></td></tr></table></figure>
+<h2 id="实现文章列表分页"><a href="#实现文章列表分页" class="headerlink" title="实现文章列表分页"></a>实现文章列表分页</h2><ol>
+<li>1.命令行中输入gem install jekyll-paginate，安装paginate</li>
+<li>2.在_config.yml中添加以下信息</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gems: [jekyll-paginate]</div><div class="line">paginate: 2</div><div class="line">paginate_path: “page:num”</div></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2015/09/10/情景化git命令速记/">情景化Git命令速记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2015-09-10
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h2 id="关于git的学习"><a href="#关于git的学习" class="headerlink" title="关于git的学习"></a>关于git的学习</h2><blockquote>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的官方网站</a>上有详细的git教程，推荐需要学习的童鞋。这篇博客的主要目的是记录下平时常用的几个情景，忘记的时候看一看。</p>
+</blockquote>
+<h2 id="不同场景下git命令速记"><a href="#不同场景下git命令速记" class="headerlink" title="不同场景下git命令速记"></a>不同场景下git命令速记</h2><h3 id="异地库的建立"><a href="#异地库的建立" class="headerlink" title="异地库的建立"></a>异地库的建立</h3><p>即获得上传的权限。命令行中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C youremail@example.com</div></pre></td></tr></table></figure>
+<p>并将生成的id_rsa.pub保存至GitHub SSH Keys</p>
+<h3 id="一般上传流程"><a href="#一般上传流程" class="headerlink" title="一般上传流程"></a>一般上传流程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git init </div><div class="line">git add * //git add . (不包括.gitignore文件中的内容)</div><div class="line">git rm file</div><div class="line">git status //观察状态</div><div class="line">git commit -m&quot;name&quot; //提交至版本库</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h3 id="第一次上传到远程仓库"><a href="#第一次上传到远程仓库" class="headerlink" title="第一次上传到远程仓库"></a>第一次上传到远程仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote add origin https://github.com/username/taskname.git </div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<h3 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h3><h4 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// 仓库当前的状态</div><div class="line">git status </div><div class="line">git diff readme.txt //如果status告诉你状态有修改过，git diff查看修改内容</div><div class="line">git log //显示从最近到最远的提交日志，其中有commit－id</div><div class="line">//版本表示 HEAD当前表示 HEAD^ 上一个版本 HEAD^^ HEAD~100</div><div class="line">//  回退到上一个版本</div><div class="line">git reset --hard HEAD^</div><div class="line">//  到未来某个版本</div><div class="line">git reflog//纪录每一次命令，找到未来commit-id</div><div class="line">git reset --hard commit_id</div></pre></td></tr></table></figure>
+<p>小结：</p>
+<ol>
+<li><p>HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset –hard commit_id。</p>
+</li>
+<li><p>穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。</p>
+</li>
+<li><p>要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。</p>
+</li>
+</ol>
+<h3 id="工作区和暂存区"><a href="#工作区和暂存区" class="headerlink" title="工作区和暂存区"></a>工作区和暂存区</h3><p>工作区： 电脑里能看到的目录<br>git add 放到了暂存区（stage）<br>git commit 就是放到了git 版本库 .git</p>
+<h3 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h3><ol>
+<li>情况一： 还没有add，想要丢弃工作区的修改</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout --file</div></pre></td></tr></table></figure>
+<ol>
+<li>情况二：已经add到暂存区，还没有commit</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git reset HEAD readme.txt</div><div class="line">//此时暂存区是干净的，但是工作区还没有退回</div><div class="line">git checkout --file</div></pre></td></tr></table></figure>
+<ol>
+<li>如果已经commit, 参考版本退回</li>
+</ol>
+<h3 id="分支的使用"><a href="#分支的使用" class="headerlink" title="分支的使用"></a>分支的使用</h3><p>当项目需要团队合作时，一般建议个人先在个人分支上提交完成的部分功能，等个人部分完成后再merge到总的团队分支，而origin master总支倾向于提交一个成熟的版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//创建dev分支，并且切换到dev分支</div><div class="line">git checkout -b dev</div><div class="line">//创建dev</div><div class="line">git branch dev</div><div class="line">//切换到分支dev</div><div class="line">git checkout dev</div><div class="line">//查看当前分支</div><div class="line">git branch dev</div><div class="line">//切换到master分支</div><div class="line">git checkout master</div><div class="line">//将dev分支的工作成果合并到master分支上</div><div class="line">git merge dev</div><div class="line">//合并后删除dev分支</div><div class="line">git branch -d dev</div></pre></td></tr></table></figure>
+<h4 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h4><p>当master和dev分支发生冲突时，必须手动解决冲突<br>git status 查看冲突文件</p>
+<h4 id="feature"><a href="#feature" class="headerlink" title="feature"></a>feature</h4><p> 开发一个新功能最好先建立一个分支，然后再合并</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git checkout -b feature</div><div class="line">git add *</div><div class="line">git commit -m &quot;feature&quot;</div><div class="line">git checkout dev</div><div class="line">git merge feature</div><div class="line">git branch -d feature</div><div class="line">//如果是没有merge过的feature需要删除</div><div class="line">git branch -D feature</div></pre></td></tr></table></figure>
+<h4 id="远程库"><a href="#远程库" class="headerlink" title="远程库"></a>远程库</h4><p>推送分支 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git push origin master </div><div class="line">git push origin dev</div></pre></td></tr></table></figure>
+<p>小伙伴a</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git clone git@github.com:xxx.git</div><div class="line">git branch</div><div class="line">//创建远程origin的dev分支到本地</div><div class="line">git checkout -b dev origin/dev</div><div class="line">//把dev分支push到远程</div><div class="line">git commit -m &quot;xxx&quot;</div><div class="line">git push origin dev</div></pre></td></tr></table></figure>
+<p>你</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">git push origin dev </div><div class="line">// 发生冲突</div><div class="line">//git pull 把最新的提交从origin／dev上抓下来，再本地合并，解决冲突，再推送：</div><div class="line">//指定本地dev分支与远程origin/dev分支的链接</div><div class="line">git branch --set-upstream dev origin/dev</div><div class="line">git pull</div><div class="line">git commit -m &quot;merge&quot;</div><div class="line">git push origin dev</div></pre></td></tr></table></figure>
+<p>小结</p>
+<ol>
+<li><p>查看远程库信息，使用git remote -v；</p>
+</li>
+<li><p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+</li>
+<li><p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+</li>
+<li><p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
+</li>
+<li><p>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；</p>
+</li>
+<li><p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
