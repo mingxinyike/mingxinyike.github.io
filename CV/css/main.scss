@@ -1,0 +1,391 @@
+$introColor: #00BCBD;
+$meddleGray: #DFDFDF;
+body {
+    //font-family: "Microsoft Jhenghei", "Microsoft Yahei", sans-serif;
+    font-family: "Lato", "Microsoft Yahei", sans-serif;
+}
+
+
+/*     intro      */
+
+#intro {
+    text-align: center;
+    //background: $introColor;
+    background: url('../img/bg1.png') repeat-x right top #f4f4f4;
+    transition: 0.5s;
+    #ll {
+        width: 250px;
+        height: 250px;
+        border: 10px solid $meddleGray;
+        border-radius: 50%;
+    }
+    .name {
+        text-shadow: 1px 2px #f4f4f4, 2px 4px #aee2d9;
+        text-align: center;
+        font-size: 4em;
+        margin-top: 20px;
+        color: $introColor;
+    }
+    p {
+        font-size: 1.5em;
+        padding-top: 6px;
+    }
+    .label {
+        font-family: "Microsoft Jhenghei", "Microsoft Yahei", sans-serif;
+        font-size: 1.5em;
+    }
+    .line {
+        border: none;
+        height: 1px;
+        width: 100%;
+        background: url('../img/hr1.png') no-repeat center center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .email {
+        margin: 15px auto;
+        -webkit-border-radius: 10px;
+        padding: 8px;
+        background: url('../img/bg2.png') no-repeat center center #08aeac;
+        width: 400px;
+        a {
+            color: #fff;
+            font-family: Lato, Arial, sans-serif;
+            font-size: 1.4em;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    .footer-social-icons {
+        margin: 20px;
+        .social {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            line-height: 30px;
+            margin: 5px;
+        }
+        #github {
+            background: #333333 url(../img/social.png) no-repeat 0 0;
+            &:hover {
+                background: #08aeac url(../img/social.png) no-repeat 0 0;
+            }
+        }
+        #blog {
+            background: #333333 url(../img/social.png) no-repeat -90px 0;
+            &:hover {
+                background: #08aeac url(../img/social.png) no-repeat -90px 0;
+            }
+        }
+        #douban {
+            background: #333333 url(../img/social.png) no-repeat -30px 0;
+            &:hover {
+                background: #08aeac url(../img/social.png) no-repeat -30px 0;
+            }
+        }
+        #weibo {
+            background: #333333 url(../img/social.png) no-repeat -60px 0;
+            &:hover {
+                background: #08aeac url(../img/social.png) no-repeat -60px 0;
+            }
+        }
+    }
+}
+
+
+/*skills*/
+
+#skills {
+    background: url('../img/bg1.png') repeat-x right top $introColor;
+    text-align: center;
+    color: white;
+    h1 {
+        text-shadow: 1px 2px $introColor, 2px 4px #aee2d9;
+        text-align: center;
+        font-size: 4em;
+        margin-top: 10px;
+        margin-bottom: 80px;
+        color: #f4f4f4;
+    }
+    p {
+        margin: 20px;
+    }
+    span {
+        margin: 10px;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 2em;
+        color: #fff;
+    }
+    #html {
+        opacity: 0.9;
+        font-size: 2em;
+        background: #008899;
+    }
+    #html5 {
+        opacity: 0.75;
+        font-size: 1.3em;
+        background: #008899;
+    }
+    #jade {
+        opacity: 0.8;
+        font-size: 1.3em;
+        background: #008899;
+    }
+    #p2 {
+        #css {
+            opacity: 0.9;
+            font-size: 2em;
+            background: #006e54;
+        }
+        #css3 {
+            opacity: 0.7;
+            font-size: 1.5em;
+            background: #006e54;
+        }
+        #sass {
+            opacity: 0.8;
+            font-size: 1.6em;
+            background: #006e54;
+        }
+    }
+    #p3 {
+        #js {
+            opacity: 0.8;
+            font-size: 2em;
+            background: #008899;
+        }
+        #jquery {
+            opacity: 0.7;
+            font-size: 1.5em;
+            background: #008899;
+        }
+        #angular {
+            opacity: 0.6;
+            font-size: 1.3em;
+            background: #008899;
+        }
+        #d3 {
+            opacity: 0.5;
+            font-size: 1.2em;
+            background: #008899;
+        }
+        #echarts {
+            opacity: 0.6;
+            font-size: 1.3em;
+            background: #008899;
+        }
+    }
+    #p4 {
+        #git {
+            opacity: 0.8;
+            font-size: 1.6em;
+            background: #316745;
+        }
+        #gulp {
+            opacity: 0.7;
+            font-size: 1.5em;
+            background: #316745;
+        }
+        #bower {
+            opacity: 0.7;
+            font-size: 1.3em;
+            background: #316745;
+        }
+        #requirejs {
+            opacity: 0.5;
+            font-size: 1.1em;
+            background: #316745;
+        }
+    }
+    #p5 {
+        #r {
+            opacity: 0.8;
+            font-size: 1.6em;
+            background: #008899;
+        }
+        #python {
+            opacity: 0.4;
+            font-size: 1em;
+            background: #008899;
+        }
+    }
+    #p6 {
+        #photoshop {
+            opacity: 0.6;
+            font-size: 1.5em;
+            background: #7058a3;
+        }
+    }
+}
+
+
+/*projects*/
+
+#projects {
+    background: url('../img/bg1.png') repeat-x right top #ff675f;
+    text-align: center;
+    h1 {
+        text-shadow: 1px 2px #ff675f, 2px 4px #f5b1aa;
+        text-align: center;
+        font-size: 4em;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+    .pro {
+        width: 550px;
+        margin: 10px auto;
+        background: #fafafa;
+        border-bottom: solid 4px #e8e7e7;
+        padding: 12px 60px 10px 47px;
+        text-align: left;
+        border-radius: 30px;
+        position: relative;
+    }
+    h2 {
+        font-family: "Microsoft Jhenghei", "Microsoft Yahei", sans-serif;
+        font-size: 1.8em;
+        font-weight: bold;
+        padding: 5px 5px 5px 5px;
+        color: #316745;
+        a {
+            color: #ff675f;
+            &:hover {
+                color: #ff675f;
+                cursor: pointer;
+            }
+        }
+    }
+    .proGithub {
+        position: absolute;
+        right: 30px;
+        bottom: 10px;
+        background: url(../img/github.png) no-repeat 0 0;
+        &:hover {
+            background: url(../img/github.png) no-repeat 0 0;
+        }
+        font-size: 0.8em;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+        line-height: 18px;
+        margin: 5px;
+    }
+    p {
+        font-family: "Microsoft Jhenghei", "Microsoft Yahei", sans-serif;
+        font-size: 1.5em;
+    }
+}
+
+
+/*    education     */
+
+#education {
+    background: url('../img/bg1.png') repeat-x right top #eeeeee;
+    text-align: center;
+    h1 {
+        text-shadow: 1px 2px #f4f4f4, 2px 4px #aee2d9;
+        text-align: center;
+        font-size: 4em;
+        margin-top: 10px;
+        margin-bottom: 80px;
+        color: $introColor;
+    }
+    .container {
+        width: 650px;
+        margin: auto;
+    }
+    .date {
+        float: left;
+        .eduDate {
+            font-size: 17px;
+            color: #fff;
+            background: #ff675f;
+            text-align: center;
+            width: 120px;
+            height: 120px;
+            margin-top: 40px;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            line-height: 120px;
+        }
+        margin-right: 20px;
+    }
+    .line {
+        float: left;
+        margin-right: 10px;
+        height: 400px;
+        border-right: 1px solid #ccc;
+    }
+    .eduDesc {
+        float: left;
+        width: 450px;
+        .eduGraduate {
+            background: #fafafa;
+            margin-top: 40px;
+            border-bottom: solid 4px #e8e7e7;
+            padding: 22px 47px 20px 47px;
+            margin-left: 15px;
+            text-align: center;
+        }
+        h2 {
+            font-family: "Microsoft Jhenghei", "Microsoft Yahei", sans-serif;
+            font-size: 2em;
+            font-weight: bold;
+            padding: 5px;
+        }
+        p {
+            font-family: "Microsoft Jhenghei", "Microsoft Yahei", sans-serif;
+            font-size: 1.5em;
+        }
+    }
+}
+
+
+/*    contact     */
+
+#contact {
+    background: url('../img/bg1.png') repeat-x right top $introColor;
+    text-align: center;
+    h1 {
+        text-shadow: 1px 2px $introColor, 2px 4px #aee2d9;
+        text-align: center;
+        font-size: 4em;
+        margin-top: 10px;
+        margin-bottom: 80px;
+        color: #f4f4f4;
+    }
+    p {
+        font-size: 1.5em;
+        color: #f4f4f4;
+    }
+    .email {
+        margin: 15px auto;
+        -webkit-border-radius: 10px;
+        padding: 8px;
+        background: url('../img/bg2.png') no-repeat center center #f4f4f4;
+        width: 400px;
+        a {
+            color: #006e54;
+            font-family: Lato, Arial, sans-serif;
+            font-size: 1.4em;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    .download {
+        a {
+            text-decoration: none;
+            color: #e6b422;
+        }
+        cursor: pointer;
+        font-size: 3em;
+        font-weight: bold;
+    }
+}
