@@ -96,7 +96,7 @@
         <li class="mobile-menu-item">
           
           
-            首页
+            Home
           
         </li>
       </a>
@@ -105,7 +105,7 @@
         <li class="mobile-menu-item">
           
           
-            归档
+            Archives
           
         </li>
       </a>
@@ -126,7 +126,7 @@
           <a class="menu-item-link" href="/">
             
             
-              首页
+              Home
             
           </a>
         </li>
@@ -135,7 +135,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              归档
+              Archives
             
           </a>
         </li>
@@ -151,6 +151,83 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/02/02/npm-package-json参数详解/">npm-package.json参数详解</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-02
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h1><h2 id="name"><a href="#name" class="headerlink" title="name"></a>name</h2><p>代表项目的唯一标识<br>规则：</p>
+<ul>
+<li>小于等于 214个字符</li>
+<li>不能以. 或者 _ 作为开头</li>
+<li>不能有大写字母在里面</li>
+<li>name 会成为 url 的一部分，故name 不能含有URL 非法字符</li>
+</ul>
+<h2 id="description"><a href="#description" class="headerlink" title="description"></a>description</h2><p>项目描述</p>
+<h2 id="version"><a href="#version" class="headerlink" title="version"></a>version</h2><p>在package.json 中最重要的两个属性就是name 和 version。package 的更新同时伴随着version的变化。</p>
+<h2 id="keywords"><a href="#keywords" class="headerlink" title="keywords"></a>keywords</h2><p>数组，有助于搜索 npm search </p>
+<h2 id="homepage"><a href="#homepage" class="headerlink" title="homepage"></a>homepage</h2><p>项目主页的url</p>
+<h2 id="bugs"><a href="#bugs" class="headerlink" title="bugs"></a>bugs</h2><p>项目 issue tracker 的 url，或者是email地址</p>
+<h2 id="licence"><a href="#licence" class="headerlink" title="licence"></a>licence</h2><p>申明一个license 让人们知道合法的使用途径</p>
+<h2 id="people-fields-author-or-contributors"><a href="#people-fields-author-or-contributors" class="headerlink" title="people fields: author or contributors"></a>people fields: author or contributors</h2><p>author 是一个人<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;name&quot;:&quot;&quot;, &quot;email&quot;:&quot;&quot;, &quot;url&quot;:&quot;&quot;&#125;</div><div class="line">//or </div><div class="line">&quot;name&lt;xxx@xx.com&gt;&quot;(http://xxx)</div></pre></td></tr></table></figure></p>
+<p>contributors 是一个数组</p>
+<h2 id="files"><a href="#files" class="headerlink" title="files"></a>files</h2><p>数组，模块下文件名或者文件夹名</p>
+<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><p>主入口文件，应该指向模块根目录下的一个文件，很多模块并不写这个属性。</p>
+<h2 id="bin"><a href="#bin" class="headerlink" title="bin"></a>bin</h2><p>可以配置一个或多个PATH路径下的可执行模块，如果你的模块只有一个可执行文件，且他的命令名称和模块名称一样，你可以只写一个字符串来完成配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"main"</span>,</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">    <span class="attr">"bin"</span>: <span class="string">"./path/main"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者有多个可执行文件需要配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"bin"</span>: &#123;</div><div class="line">        <span class="attr">"vusion"</span>: <span class="string">"bin/vusion"</span>,</div><div class="line">        <span class="attr">"vusion-dev"</span>: <span class="string">"bin/vusion-dev"</span>,</div><div class="line">        <span class="attr">"vusion-build"</span>: <span class="string">"bin/vusion-build"</span></div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="man"><a href="#man" class="headerlink" title="man"></a>man</h2><p>制定一个或通过数组制定一些文件来让Linux下的man命令查找文档地址。</p>
+<h2 id="directories"><a href="#directories" class="headerlink" title="directories"></a>directories</h2><p>CommonJS 通过directories来制定一些方法描述模块结构，暂时没有什么作用</p>
+<h2 id="repository"><a href="#repository" class="headerlink" title="repository"></a>repository</h2><p>制定一个代码存放的地址</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"type"</span>: <span class="string">"git"</span>,</div><div class="line">    <span class="attr">"url"</span>: <span class="string">"https://github.com/npm/npm.git"</span></div><div class="line">&#125;</div><div class="line">// 如果模块存放在github Bitbucket 或是 GitLab 的仓库里，可以缩写仓库名</div><div class="line">"repository": "npm/npm"</div></pre></td></tr></table></figure>
+<h2 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h2><p>存放了项目生命周期各个环节需要执行的命令。key 是生命周期中的事件。value 是要执行的命令。 如 start, stop等</p>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>设置项目中不怎么变化的配置，如port等</p>
+<h2 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a>dependencies</h2><p>配置模块依赖的模块列表<br>npm install module-name –save 自动加入依赖</p>
+<h2 id="devDependencies"><a href="#devDependencies" class="headerlink" title="devDependencies"></a>devDependencies</h2><p>开发过程中使用的额外测试或者文档框架<br>npm install module-name –save-dev 自动加入devDependencies依赖</p>
+<h2 id="peerDependencies"><a href="#peerDependencies" class="headerlink" title="peerDependencies"></a>peerDependencies</h2><p>插件开发的时候，此模块只能作为插件跑在宿主的某个版本范围下，可以配置 peerDependencies</p>
+<h2 id="bundledDependencies"><a href="#bundledDependencies" class="headerlink" title="bundledDependencies"></a>bundledDependencies</h2><p>指定发布时会被一起打包的模块</p>
+<h2 id="optionalDependencies"><a href="#optionalDependencies" class="headerlink" title="optionalDependencies"></a>optionalDependencies</h2><p>一个模块可以被使用，但如果模块找不到或者无法获取时可以继续运行你的项目，可以配置到optionalDependencies 中。</p>
+<h2 id="engines"><a href="#engines" class="headerlink" title="engines"></a>engines</h2><p>项目运行的node版本范围</p>
+<h2 id="os"><a href="#os" class="headerlink" title="os"></a>os</h2><p>指定模块只能在什么操作系统上跑</p>
+<h2 id="cpu"><a href="#cpu" class="headerlink" title="cpu"></a>cpu</h2><p>限制模块只能在某某 cpu 架构下运行</p>
+<h2 id="preferGlobal"><a href="#preferGlobal" class="headerlink" title="preferGlobal"></a>preferGlobal</h2><p>设置为true 代表这个模块主要安装到全局的命令行应用程序，如果安装在本地会提供警告</p>
+<h2 id="private"><a href="#private" class="headerlink" title="private"></a>private</h2><p>设置为true，npm将拒绝发布他</p>
+<h2 id="publishConfig"><a href="#publishConfig" class="headerlink" title="publishConfig"></a>publishConfig</h2><p>这个配置是会在模块发布时用到的一些值的集合。如果你不想模块被默认被标记为最新的，或者默认发布到公共仓库，可以在这里配置tag或仓库地址。</p>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
     
       
   <article class="post">
@@ -696,6 +773,64 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/09/01/weinre远程调试/">weinre 远程调试移动设备</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-09-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Learning/">Learning</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <h1 id="weinre-远程调试移动设备"><a href="#weinre-远程调试移动设备" class="headerlink" title="weinre 远程调试移动设备"></a>weinre 远程调试移动设备</h1><blockquote>
+<p>想要解决的问题：调试移动端样式</p>
+</blockquote>
+<h1 id="weinre-是什么"><a href="#weinre-是什么" class="headerlink" title="weinre 是什么"></a>weinre 是什么</h1><p>weinre (Web Inspector Remote)是基于Web Inspector(Webkit)的远程调试工具。可以直接在电脑上调试运行在手机上的远程页面。</p>
+<h1 id="weinre-安装"><a href="#weinre-安装" class="headerlink" title="weinre 安装"></a>weinre 安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[sudo] npm -g install weinre</div></pre></td></tr></table></figure>
+<h1 id="运行-werine"><a href="#运行-werine" class="headerlink" title="运行 werine"></a>运行 werine</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weinre --httpPort 8082 --boundHost -all-</div></pre></td></tr></table></figure>
+<p>安装成功会出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">2017-09-04T11:01:01.604Z weinre: starting server at http://localhost:8082</div><div class="line">2017-09-04T11:19:04.561Z weinre: target t-6: weinre: target t-6 connected to client c-5</div><div class="line">2017-09-04T11:19:08.652Z weinre: target t-6: weinre: target t-6 disconnected from client c-5</div><div class="line">2017-09-04T11:19:08.692Z weinre: target t-6: weinre: target t-6 connected to client c-5</div></pre></td></tr></table></figure></p>
+<p>在浏览器地址栏中输入下面的网址打开Weinre调试工具。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip:8082</div></pre></td></tr></table></figure></p>
+<p>ip地址 –&gt; 命令行 ifconfig<br>该网页中 Target script 要加载需要调试的页面中<br>该网页中的 <strong>Access Points</strong>   debug client user interface: <a href="http://10.242.10.198:8082/client/#anonymous" target="_blank" rel="external">http://10.242.10.198:8082/client/#anonymous</a> 点击进入出现调试页面</p>
+<p>然后用手机连接调试页面，再调试页面中target列表中选中需要调试的URL，elements中可以看到样式</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://github.com/nupthale/weinre" target="_blank" rel="external">werine</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/09/01/css BEM 命名思想/">CSS BEM 命名思想</a>
         
       </h1>
@@ -741,64 +876,6 @@
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
 <li><a href="http://www.w3cplus.com/css/mindbemding-getting-your-head-round-bem-syntax.html" target="_blank" rel="external">BEM 思想之彻底弄清 BEM 语法</a></li>
 <li><a href="https://github.com/FrankFang/githublog/blob/master/%E6%8A%80%E6%9C%AF/BEMCSS.md" target="_blank" rel="external">技术博客BEM</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/09/01/weinre远程调试/">weinre 远程调试移动设备</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-09-01
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Learning/">Learning</a>
-            
-          </div>
-        
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <h1 id="weinre-远程调试移动设备"><a href="#weinre-远程调试移动设备" class="headerlink" title="weinre 远程调试移动设备"></a>weinre 远程调试移动设备</h1><blockquote>
-<p>想要解决的问题：调试移动端样式</p>
-</blockquote>
-<h1 id="weinre-是什么"><a href="#weinre-是什么" class="headerlink" title="weinre 是什么"></a>weinre 是什么</h1><p>weinre (Web Inspector Remote)是基于Web Inspector(Webkit)的远程调试工具。可以直接在电脑上调试运行在手机上的远程页面。</p>
-<h1 id="weinre-安装"><a href="#weinre-安装" class="headerlink" title="weinre 安装"></a>weinre 安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[sudo] npm -g install weinre</div></pre></td></tr></table></figure>
-<h1 id="运行-werine"><a href="#运行-werine" class="headerlink" title="运行 werine"></a>运行 werine</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weinre --httpPort 8082 --boundHost -all-</div></pre></td></tr></table></figure>
-<p>安装成功会出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">2017-09-04T11:01:01.604Z weinre: starting server at http://localhost:8082</div><div class="line">2017-09-04T11:19:04.561Z weinre: target t-6: weinre: target t-6 connected to client c-5</div><div class="line">2017-09-04T11:19:08.652Z weinre: target t-6: weinre: target t-6 disconnected from client c-5</div><div class="line">2017-09-04T11:19:08.692Z weinre: target t-6: weinre: target t-6 connected to client c-5</div></pre></td></tr></table></figure></p>
-<p>在浏览器地址栏中输入下面的网址打开Weinre调试工具。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip:8082</div></pre></td></tr></table></figure></p>
-<p>ip地址 –&gt; 命令行 ifconfig<br>该网页中 Target script 要加载需要调试的页面中<br>该网页中的 <strong>Access Points</strong>   debug client user interface: <a href="http://10.242.10.198:8082/client/#anonymous" target="_blank" rel="external">http://10.242.10.198:8082/client/#anonymous</a> 点击进入出现调试页面</p>
-<p>然后用手机连接调试页面，再调试页面中target列表中选中需要调试的URL，elements中可以看到样式</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
-<li><a href="https://github.com/nupthale/weinre" target="_blank" rel="external">werine</a></li>
 </ul>
 
         
@@ -2056,11 +2133,11 @@ HTtpOnly属性: 使得js脚本无法获得Cookie。主要目的是防止跨站�
 
 <div class="copyright">
   <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    主题 - 
+    Theme - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 

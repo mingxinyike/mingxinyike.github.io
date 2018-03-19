@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="npm-package.json参数详解"/>
+
+
+
+
+  <meta name="keywords" content="learning npm, XiaoJ Liu" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/default" title="XiaoJ Liu">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="localhost/2018/02/02/npm-package-json参数详解/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> npm-package.json参数详解 - XiaoJ Liu </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">XiaoJ Liu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">XiaoJ Liu</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          npm-package.json参数详解
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-02
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#package-json"><span class="toc-text">package.json</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#name"><span class="toc-text">name</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#description"><span class="toc-text">description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#version"><span class="toc-text">version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#keywords"><span class="toc-text">keywords</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#homepage"><span class="toc-text">homepage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bugs"><span class="toc-text">bugs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#licence"><span class="toc-text">licence</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#people-fields-author-or-contributors"><span class="toc-text">people fields: author or contributors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#files"><span class="toc-text">files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main"><span class="toc-text">main</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bin"><span class="toc-text">bin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#man"><span class="toc-text">man</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#directories"><span class="toc-text">directories</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repository"><span class="toc-text">repository</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scripts"><span class="toc-text">scripts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config"><span class="toc-text">config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dependencies"><span class="toc-text">dependencies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#devDependencies"><span class="toc-text">devDependencies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#peerDependencies"><span class="toc-text">peerDependencies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bundledDependencies"><span class="toc-text">bundledDependencies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optionalDependencies"><span class="toc-text">optionalDependencies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#engines"><span class="toc-text">engines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#os"><span class="toc-text">os</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cpu"><span class="toc-text">cpu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preferGlobal"><span class="toc-text">preferGlobal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#private"><span class="toc-text">private</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#publishConfig"><span class="toc-text">publishConfig</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h1><h2 id="name"><a href="#name" class="headerlink" title="name"></a>name</h2><p>代表项目的唯一标识<br>规则：</p>
+<ul>
+<li>小于等于 214个字符</li>
+<li>不能以. 或者 _ 作为开头</li>
+<li>不能有大写字母在里面</li>
+<li>name 会成为 url 的一部分，故name 不能含有URL 非法字符</li>
+</ul>
+<h2 id="description"><a href="#description" class="headerlink" title="description"></a>description</h2><p>项目描述</p>
+<h2 id="version"><a href="#version" class="headerlink" title="version"></a>version</h2><p>在package.json 中最重要的两个属性就是name 和 version。package 的更新同时伴随着version的变化。</p>
+<h2 id="keywords"><a href="#keywords" class="headerlink" title="keywords"></a>keywords</h2><p>数组，有助于搜索 npm search </p>
+<h2 id="homepage"><a href="#homepage" class="headerlink" title="homepage"></a>homepage</h2><p>项目主页的url</p>
+<h2 id="bugs"><a href="#bugs" class="headerlink" title="bugs"></a>bugs</h2><p>项目 issue tracker 的 url，或者是email地址</p>
+<h2 id="licence"><a href="#licence" class="headerlink" title="licence"></a>licence</h2><p>申明一个license 让人们知道合法的使用途径</p>
+<h2 id="people-fields-author-or-contributors"><a href="#people-fields-author-or-contributors" class="headerlink" title="people fields: author or contributors"></a>people fields: author or contributors</h2><p>author 是一个人<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;name&quot;:&quot;&quot;, &quot;email&quot;:&quot;&quot;, &quot;url&quot;:&quot;&quot;&#125;</div><div class="line">//or </div><div class="line">&quot;name&lt;xxx@xx.com&gt;&quot;(http://xxx)</div></pre></td></tr></table></figure></p>
+<p>contributors 是一个数组</p>
+<h2 id="files"><a href="#files" class="headerlink" title="files"></a>files</h2><p>数组，模块下文件名或者文件夹名</p>
+<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><p>主入口文件，应该指向模块根目录下的一个文件，很多模块并不写这个属性。</p>
+<h2 id="bin"><a href="#bin" class="headerlink" title="bin"></a>bin</h2><p>可以配置一个或多个PATH路径下的可执行模块，如果你的模块只有一个可执行文件，且他的命令名称和模块名称一样，你可以只写一个字符串来完成配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"main"</span>,</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">    <span class="attr">"bin"</span>: <span class="string">"./path/main"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者有多个可执行文件需要配置</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"bin"</span>: &#123;</div><div class="line">        <span class="attr">"vusion"</span>: <span class="string">"bin/vusion"</span>,</div><div class="line">        <span class="attr">"vusion-dev"</span>: <span class="string">"bin/vusion-dev"</span>,</div><div class="line">        <span class="attr">"vusion-build"</span>: <span class="string">"bin/vusion-build"</span></div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="man"><a href="#man" class="headerlink" title="man"></a>man</h2><p>制定一个或通过数组制定一些文件来让Linux下的man命令查找文档地址。</p>
+<h2 id="directories"><a href="#directories" class="headerlink" title="directories"></a>directories</h2><p>CommonJS 通过directories来制定一些方法描述模块结构，暂时没有什么作用</p>
+<h2 id="repository"><a href="#repository" class="headerlink" title="repository"></a>repository</h2><p>制定一个代码存放的地址</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"type"</span>: <span class="string">"git"</span>,</div><div class="line">    <span class="attr">"url"</span>: <span class="string">"https://github.com/npm/npm.git"</span></div><div class="line">&#125;</div><div class="line">// 如果模块存放在github Bitbucket 或是 GitLab 的仓库里，可以缩写仓库名</div><div class="line">"repository": "npm/npm"</div></pre></td></tr></table></figure>
+<h2 id="scripts"><a href="#scripts" class="headerlink" title="scripts"></a>scripts</h2><p>存放了项目生命周期各个环节需要执行的命令。key 是生命周期中的事件。value 是要执行的命令。 如 start, stop等</p>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p>设置项目中不怎么变化的配置，如port等</p>
+<h2 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a>dependencies</h2><p>配置模块依赖的模块列表<br>npm install module-name –save 自动加入依赖</p>
+<h2 id="devDependencies"><a href="#devDependencies" class="headerlink" title="devDependencies"></a>devDependencies</h2><p>开发过程中使用的额外测试或者文档框架<br>npm install module-name –save-dev 自动加入devDependencies依赖</p>
+<h2 id="peerDependencies"><a href="#peerDependencies" class="headerlink" title="peerDependencies"></a>peerDependencies</h2><p>插件开发的时候，此模块只能作为插件跑在宿主的某个版本范围下，可以配置 peerDependencies</p>
+<h2 id="bundledDependencies"><a href="#bundledDependencies" class="headerlink" title="bundledDependencies"></a>bundledDependencies</h2><p>指定发布时会被一起打包的模块</p>
+<h2 id="optionalDependencies"><a href="#optionalDependencies" class="headerlink" title="optionalDependencies"></a>optionalDependencies</h2><p>一个模块可以被使用，但如果模块找不到或者无法获取时可以继续运行你的项目，可以配置到optionalDependencies 中。</p>
+<h2 id="engines"><a href="#engines" class="headerlink" title="engines"></a>engines</h2><p>项目运行的node版本范围</p>
+<h2 id="os"><a href="#os" class="headerlink" title="os"></a>os</h2><p>指定模块只能在什么操作系统上跑</p>
+<h2 id="cpu"><a href="#cpu" class="headerlink" title="cpu"></a>cpu</h2><p>限制模块只能在某某 cpu 架构下运行</p>
+<h2 id="preferGlobal"><a href="#preferGlobal" class="headerlink" title="preferGlobal"></a>preferGlobal</h2><p>设置为true 代表这个模块主要安装到全局的命令行应用程序，如果安装在本地会提供警告</p>
+<h2 id="private"><a href="#private" class="headerlink" title="private"></a>private</h2><p>设置为true，npm将拒绝发布他</p>
+<h2 id="publishConfig"><a href="#publishConfig" class="headerlink" title="publishConfig"></a>publishConfig</h2><p>这个配置是会在模块发布时用到的一些值的集合。如果你不想模块被默认被标记为最新的，或者默认发布到公共仓库，可以在这里配置tag或仓库地址。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="localhost">liuxj</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="localhost/2018/02/02/npm-package-json参数详解/">localhost/2018/02/02/npm-package-json参数详解/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/learning-npm/">learning npm</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/01/22/读书笔记《design patterns》/">
+        <span class="next-text nav-default">读书笔记《design patterns》</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:mingxinyike_lxj@foxmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/mingxinyike" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">liuxj</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
